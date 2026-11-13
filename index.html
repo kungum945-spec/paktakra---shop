@@ -39,7 +39,7 @@
     .presenter-card.active{border-color:var(--primary);background:var(--soft)}
     .presenter-preview{width:100%;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#f3f4f6;display:flex;align-items:center;justify-content:center}
     .presenter-preview img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-    .presenter-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+    .presenter-actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
     .demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:12px}
     .demo-card{border:2px solid #e5e7eb;border-radius:12px;padding:11px;background:#fff;cursor:pointer;text-align:left;font-family:inherit}
     .demo-card.active{border-color:var(--primary);background:var(--soft)}
@@ -98,7 +98,7 @@
   </section>
 
   <section class="card">
-    <h2>🔑 1. เชื่อมต่อ Gemini API (วิเคราะห์สินค้า 6 มุม &amp; ตรวจความตรงปกจากคลิป)</h2>
+    <h2>🔑 1. เชื่อมต่อ Gemini API (วิเคราะห์สินค้า 6 มุม, เจนรูปพรีเซนเตอร์ &amp; ตรวจความตรงปกจากคลิป)</h2>
     <div class="grid-2">
       <div>
         <label for="apiKeyInput">Gemini API Key (ไม่ใส่ก็ใช้งานโหมดพื้นฐานฟรีได้)</label>
@@ -188,13 +188,13 @@
   </section>
 
   <section class="card">
-    <h2>👩🏻👨🏻 3. พรีเซนเตอร์คนจริง (หญิง 23/35 ปี · ชาย 23/35 ปี เปิดหน้าชัด หน้าใสผิวขาว)</h2>
+    <h2>👩🏻👨🏻 3. พรีเซนเตอร์ (หญิงผมสั้น 23 ปี ผิวขาวอมชมพู 2 คน · ชาย 23 ปี ผิวขาวฉ่ำโกลว์อิ่มฟู 2 คน)</h2>
     <div class="toolbar" style="margin-bottom:10px">
       <label class="btn btn-outline btn-sm" style="margin:0;cursor:pointer">➕ เพิ่มพรีเซนเตอร์ใหม่<input type="file" id="customPresenterInput" accept="image/*" style="display:none"/></label>
-      <button type="button" class="btn btn-secondary btn-sm" id="copyPresenterPromptBtn">✨ คัดลอก Prompt สร้างรูปพรีเซนเตอร์ใน Gemini</button>
+      <button type="button" class="btn btn-secondary btn-sm" id="copyPresenterPromptBtn">📋 คัดลอก Prompt เจนรูปคนนี้ใน Gemini</button>
       <button type="button" class="btn btn-outline btn-sm" id="resetPresentersBtn">🔄 คืนค่ารูปเริ่มต้น</button>
     </div>
-    <div class="hint" style="margin-bottom:10px">กดปุ่ม <b>"📷 เปลี่ยนรูป"</b> บนการ์ดแต่ละคนเพื่อใส่รูปที่คุณชอบจากมือถือได้ทันทีครับ</div>
+    <div class="hint" id="presenterStatusHint" style="margin-bottom:10px">กด <b>"✨ เจนรูป AI"</b> บนการ์ดเพื่อสร้างรูปตรงสเปกด้วยคีย์ของคุณ หรือกด <b>"📷 เปลี่ยนรูป"</b> เพื่อใส่รูปจากมือถือครับ</div>
     <input type="file" id="replacePresenterInput" accept="image/*" style="display:none" />
     <div class="grid-4" id="presenterGrid"></div>
   </section>
@@ -246,7 +246,7 @@
         <input type="file" id="videoFileInput" accept="video/*" style="display:none" />
       </label>
       <label class="btn btn-outline btn-sm" style="margin:0;cursor:pointer">
-        🖼️ หรือเพิ่มภาพนิ่ง (สูงสุด 6 ภาพ)
+        🖼️ หรือเพิ่มภาพนิ่ง (สูงสุด 8 ภาพ)
         <input type="file" id="frameImagesInput" accept="image/*" multiple style="display:none" />
       </label>
       <button type="button" class="btn btn-outline btn-sm hidden" id="clearFramesBtn">🧹 ล้างเฟรมทั้งหมด</button>
@@ -268,10 +268,10 @@
 
 <script>
 const DEMO_MODES = [
-  {id:1,category:"spray",badge:"สเปรย์สไตล์ที่ 1",title:"แบบที่ 1: ฉีดสเปรย์ละอองละเอียดใส่หน้า",desc:"หลับตาพริ้ม เงยหน้า 15° ถือขวดห่าง 15–20 ซม. กดฉีดละอองนุ่มสม่ำเสมอ",promptAction:"Presenter tilts head up 15 degrees, eyes softly closed, holding spray bottle 15-20cm from face, pressing nozzle to release ultra-fine mist onto skin.",asmrCue:"เสียงกดสเปรย์ 'ฟู่...' นุ่มนวล ละอองละเอียด"},
+  {id:1,category:"spray",badge:"สเปรย์สไตล์ที่ 1",title:"แบบที่ 1: ฉีดสเปรย์ละอองละเอียดใส่หน้า",desc:"หลับตาพริ้ม เงยหน้า 15° ถือขวดห่าง 15–20 ซม. กดฉีดละอองนุ่มสม่ำเสมอ",promptAction:"Presenter tilts head up 15 degrees, eyes softly closed, holding spray bottle 15-20cm from face, pressing nozzle to release ultra-fine mist onto dewy skin.",asmrCue:"เสียงกดสเปรย์ 'ฟู่...' นุ่มนวล ละอองละเอียด"},
   {id:2,category:"spray",badge:"สเปรย์สไตล์ที่ 2",title:"แบบที่ 2: ฉีดสเปรย์ย้อนแสงโชว์ละอองฟุ้ง",desc:"จัดแสง Rim Light ฉีดแนวตัว X และ T เห็นละอองละเอียดฟุ้งชัดเจน",promptAction:"Backlit rim-lighting studio shot, presenter sprays in X and T motion in front of face, illuminating thousands of fine micro-mist droplets clearly.",asmrCue:"เสียงละอองสเปรย์ฟุ้งกระจายชัดใส"},
-  {id:3,category:"spray",badge:"สเปรย์สไตล์ที่ 3",title:"แบบที่ 3: ฉีดสเปรย์ล็อกเมคอัพฉ่ำวาว",desc:"ฉีดเฉียงขึ้นระดับคาง ให้ละอองตกกระทบผิวหน้า โชว์ผิวโกลว์ฉ่ำวาว",promptAction:"Close-up beauty shot after makeup, bottle below chin angled upward, mist settling evenly for a dewy luminous finish without smudging.",asmrCue:"เสียงฉีดเบาๆ 2-3 จังหวะ โชว์ผิวฉ่ำโกลว์"},
-  {id:4,category:"skincare",badge:"แบบที่ 4",title:"แบบที่ 4: ดรอปเปอร์หยดเซรั่มลงแก้ม",desc:"บีบหลอดหยดใกล้แก้ม หยดเนื้อเซรั่มลงผิวช้าๆ",promptAction:"Extreme macro close-up of glass dropper releasing a glistening serum drop onto presenter's smooth cheek.",asmrCue:"เสียงหมุนฝาและหยดเซรั่มนุ่มๆ"},
+  {id:3,category:"spray",badge:"สเปรย์สไตล์ที่ 3",title:"แบบที่ 3: ฉีดสเปรย์ล็อกเมคอัพฉ่ำวาว",desc:"ฉีดเฉียงขึ้นระดับคาง ให้ละอองตกกระทบผิวหน้า โชว์ผิวโกลว์ฉ่ำวาว",promptAction:"Close-up beauty shot after makeup, bottle below chin angled upward, mist settling evenly for a plump dewy luminous finish without smudging.",asmrCue:"เสียงฉีดเบาๆ 2-3 จังหวะ โชว์ผิวฉ่ำโกลว์"},
+  {id:4,category:"skincare",badge:"แบบที่ 4",title:"แบบที่ 4: ดรอปเปอร์หยดเซรั่มลงแก้ม",desc:"บีบหลอดหยดใกล้แก้ม หยดเนื้อเซรั่มลงผิวช้าๆ",promptAction:"Extreme macro close-up of glass dropper releasing a glistening serum drop onto presenter's plump dewy cheek.",asmrCue:"เสียงหมุนฝาและหยดเซรั่มนุ่มๆ"},
   {id:5,category:"skincare",badge:"แบบที่ 5",title:"แบบที่ 5: ปาดเนื้อครีมโชว์บนหลังมือ",desc:"ปาดเนื้อครีมบนหลังมือ เกลี่ยโชว์ความเข้มข้นและซึมไว",promptAction:"Macro top-down shot of cream swatched on back of hand, finger gliding to show silky absorbing texture.",asmrCue:"เสียงเปิดกระปุกและปาดเนื้อครีมละมุน"},
   {id:6,category:"skincare",badge:"แบบที่ 6",title:"แบบที่ 6: กดหัวปั๊มโชว์เนื้อเจล/โลชั่น",desc:"กดหัวปั๊มบนปลายนิ้ว โชว์เนื้อผลิตภัณฑ์เด้งใส",promptAction:"Close-up pressing pump dispenser smoothly, clear gel-lotion curling onto clean fingertips.",asmrCue:"เสียงกดหัวปั๊ม 'ปึ๊ด' ชัดเจน"},
   {id:7,category:"skincare",badge:"แบบที่ 7",title:"แบบที่ 7: ตีฟองโฟมล้างหน้าหนานุ่ม",desc:"ตีฟองโฟมจนหนานุ่มฟูละเอียดก่อนแตะแก้ม",promptAction:"Hands whipping cleanser into thick marshmallow micro-foam, pressing fluffy foam onto cheek.",asmrCue:"เสียงตีวิปโฟมนุ่มฟู"},
@@ -289,41 +289,42 @@ const DEMO_MODES = [
 ];
 
 function makeFallbackSvg(label) {
-  return "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320"><rect width="240" height="320" fill="#fdf2f8"/><text x="120" y="150" font-size="13" font-family="sans-serif" fill="#be185d" text-anchor="middle" font-weight="bold">${label}</text><text x="120" y="175" font-size="11" font-family="sans-serif" fill="#6b7280" text-anchor="middle">แตะปุ่ม "เปลี่ยนรูป" ด้านล่าง</text></svg>`);
+  return "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320"><rect width="240" height="320" fill="#fdf2f8"/><text x="120" y="150" font-size="12" font-family="sans-serif" fill="#be185d" text-anchor="middle" font-weight="bold">${label}</text><text x="120" y="175" font-size="11" font-family="sans-serif" fill="#6b7280" text-anchor="middle">กด "เจนรูป AI" หรือ "เปลี่ยนรูป"</text></svg>`);
 }
 
 const DEFAULT_PRESENTERS = [
   {
     id: "p1",
-    genderBadge: "👩🏻 หญิง · อายุ 23 ปี",
-    name: "น้องแพรว (23 ปี · สวยใสผิวขาวออร่า)",
-    desc: "Real attractive young Thai/East Asian woman, exact age 23 years old, open clear face facing camera directly, fair porcelain glowing glass skin, smooth blemish-free bright complexion, natural clean beauty makeup, bright soft skincare studio lighting",
-    img: "https://images.unsplash.com/photo-1695757002354-8bca71d087c7?w=600&auto=format&fit=crop&q=80"
+    genderBadge: "👩🏻 หญิง 1 · ผมสั้น · 23 ปี",
+    name: "น้องแพรว (23 ปี · ผมสั้น สวย ผิวขาวอมชมพู ฉ่ำโกลว์อิ่มฟู)",
+    desc: "Real gorgeous 23-year-old Thai/East Asian woman with stylish short chin-length bob hair, open clear face facing camera directly, fair pinkish-white porcelain skin, ultra-dewy glass skin, plump bouncy hydrated cheeks, radiant healthy glow, minimalist white top, bright beauty studio lighting",
+    img: "https://images.unsplash.com/photo-1682310934014-47fbe9d0f3d7?w=600&auto=format&fit=crop&q=80"
   },
   {
     id: "p2",
-    genderBadge: "👩🏻 หญิง · อายุ 35 ปี",
-    name: "คุณเอวา (35 ปี · สวยดูดีผิวขาวใส)",
-    desc: "Real attractive Asian woman, exact age 35 years old, graceful youthful elegance, open clear face facing camera directly, fair bright luminous smooth glass skin, healthy radiant complexion, long dark hair, crisp white shirt, bright beauty studio lighting",
-    img: "https://images.unsplash.com/photo-1758600587391-338f5376b7ed?w=600&auto=format&fit=crop&q=80"
+    genderBadge: "👩🏻 หญิง 2 · ผมสั้น · 23 ปี",
+    name: "น้องมิ้นท์ (23 ปี · ผมสั้น สวย ผิวขาวอมชมพู ฉ่ำโกลว์อิ่มฟู)",
+    desc: "Real gorgeous 23-year-old Thai/East Asian woman with chic short layered bob haircut, open clear face facing camera directly, fair rosy pinkish-white complexion, ultra-dewy plump glass skin, bouncy hydrated youthful glow, natural clean beauty makeup, bright soft skincare studio lighting",
+    img: "https://images.unsplash.com/photo-1682310933946-08cb480638eb?w=600&auto=format&fit=crop&q=80"
   },
   {
     id: "p3",
-    genderBadge: "👨🏻 ชาย · อายุ 23 ปี",
-    name: "คุณภัทร (23 ปี · หล่อหน้าใสผิวขาวคลีน)",
-    desc: "Real handsome young Asian man, exact age 23 years old, open clear face facing camera directly, fair bright clear glass skin, smooth blemish-free complexion, clean-shaven, neat dark hair, crisp white shirt, bright clean skincare studio lighting",
+    genderBadge: "👨🏻 ชาย 1 · อายุ 23 ปี · ผิวขาว",
+    name: "คุณภัทร (23 ปี · หล่อ หน้าใสฉ่ำโกลว์ อิ่มฟู ผิวขาว)",
+    desc: "Real handsome 23-year-old Thai/East Asian man, neat modern hair, open clear face facing camera directly, fair bright white complexion, plump hydrated dewy glass skin, healthy radiant glow, clean-shaven, crisp white t-shirt, bright clean skincare studio lighting",
     img: "https://images.unsplash.com/photo-1681097561932-36d0df02b379?w=600&auto=format&fit=crop&q=80"
   },
   {
     id: "p4",
-    genderBadge: "👨🏻 ชาย · อายุ 35 ปี",
-    name: "คุณธันวา (35 ปี · หล่อดูดีหน้าใสผิวขาว)",
-    desc: "Real handsome Asian man, exact age 35 years old, open clear face facing camera directly, fair bright clear healthy skin, smooth well-cared-for glass skin, clean-shaven, neat modern hair, smart casual light shirt, bright skincare studio lighting",
+    genderBadge: "👨🏻 ชาย 2 · อายุ 23 ปี · ผิวขาว",
+    name: "คุณคิม (23 ปี · หล่อ หน้าใสฉ่ำโกลว์ อิ่มฟู ผิวขาว)",
+    desc: "Real handsome 23-year-old Asian man, neat stylish dark hair, open clear face facing camera directly, fair bright white porcelain skin, plump dewy glass skin, smooth healthy radiant glow, clean-shaven, light clean casual shirt, bright skincare studio lighting",
     img: "https://images.unsplash.com/photo-1633177188754-980c2a6b6266?w=600&auto=format&fit=crop&q=80"
   }
 ];
 
-const STORAGE_KEY = "asmr_shop_studio_v1";
+const OLD_STORAGE_KEY = "asmr_shop_studio_v1";
+const STORAGE_KEY = "asmr_shop_studio_v2";
 const API_KEY_STORAGE = "asmr_shop_gemini_key";
 
 let state = {
@@ -390,8 +391,20 @@ function saveStateAuto() {
 
 function loadStateAuto() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
+    let saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      const oldSaved = localStorage.getItem(OLD_STORAGE_KEY);
+      if (oldSaved) {
+        const oldParsed = JSON.parse(oldSaved);
+        state.productName = oldParsed.productName || "";
+        state.productCategory = oldParsed.productCategory || state.productCategory;
+        state.productFeatures = oldParsed.productFeatures || "";
+        state.userPricePromo = oldParsed.userPricePromo || "";
+        state.productImages = oldParsed.productImages || [];
+        state.selectedDemoId = oldParsed.selectedDemoId || 1;
+        state.frameImages = oldParsed.frameImages || [];
+      }
+    } else {
       const parsed = JSON.parse(saved);
       state = { ...state, ...parsed };
       if (!state.presenterOverrides) state.presenterOverrides = {};
@@ -442,8 +455,7 @@ window.removeProductImage = (id) => {
 function renderPresenters() {
   const grid = document.getElementById("presenterGrid");
   grid.innerHTML = "";
-  const list = getAllPresenters();
-  list.forEach(p => {
+  getAllPresenters().forEach(p => {
     const isActive = p.id === state.selectedPresenterId;
     const isCustom = String(p.id).startsWith("custom_");
     const isMale = p.id === "p3" || p.id === "p4";
@@ -453,10 +465,11 @@ function renderPresenters() {
     card.innerHTML = `
       <div class="presenter-preview"><img src="${p.img}" alt="${p.name}" onerror="this.onerror=null;this.src='${makeFallbackSvg(p.name)}';"/></div>
       <div><span class="badge ${badgeClass}">${p.genderBadge || "✨ พรีเซนเตอร์ของคุณ"}</span></div>
-      <div style="font-weight:700;font-size:.86rem">${p.name}</div>
-      <div class="hint" style="margin:0;font-size:.73rem">${p.desc}</div>
+      <div style="font-weight:700;font-size:.85rem">${p.name}</div>
+      <div class="hint" style="margin:0;font-size:.72rem">${p.desc}</div>
       <div class="presenter-actions">
         <button type="button" class="btn btn-sm ${isActive ? "btn-primary" : "btn-outline"}" onclick="selectPresenter('${p.id}')">${isActive ? "✓ เลือกอยู่" : "เลือกคนนี้"}</button>
+        <button type="button" class="btn btn-sm btn-secondary" onclick="generateAiPresenterImage('${p.id}')">✨ เจนรูป AI</button>
         <button type="button" class="btn btn-sm btn-outline" onclick="triggerReplacePresenter('${p.id}')">📷 เปลี่ยนรูป</button>
         ${isCustom ? `<button type="button" class="btn btn-sm btn-outline" onclick="deletePresenter('${p.id}')">ลบ</button>` : ""}
       </div>`;
@@ -469,6 +482,49 @@ window.deletePresenter = (id) => {
   state.customPresenters = state.customPresenters.filter(p => p.id !== id);
   if (state.selectedPresenterId === id) state.selectedPresenterId = "p1";
   renderPresenters(); saveStateAuto();
+};
+
+window.generateAiPresenterImage = async (id) => {
+  const p = getAllPresenters().find(x => x.id === id);
+  if (!p) return;
+  const apiKey = document.getElementById("apiKeyInput").value.trim();
+  const promptText = `Ultra-realistic commercial beauty & skincare studio portrait photo of ${p.desc}, plump hydrated radiant dewy glass skin, 8K sharp editorial beauty photography, looking straight at camera, clean bright soft background, 3:4 portrait.`;
+  if (!apiKey) {
+    copyText(promptText);
+    return alert("คุณยังไม่ได้ใส่ API Key ในข้อ 1 — ระบบได้คัดลอก Prompt พรีเซนเตอร์คนนี้ให้แล้ว นำไปวางสร้างรูปใน Gemini แล้วกดปุ่ม '📷 เปลี่ยนรูป' มาใส่ได้เลยครับ!");
+  }
+  const hint = document.getElementById("presenterStatusHint");
+  hint.textContent = `⏳ กำลังให้ AI เจนรูป ${p.name}...`;
+  for (const model of ["gemini-2.5-flash-image", "gemini-3.1-flash-image-preview", "gemini-2.0-flash-exp-image-generation"]) {
+    try {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: promptText }] }],
+          generationConfig: { responseModalities: ["TEXT", "IMAGE"] }
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error?.message || `HTTP ${res.status}`);
+      const imgPart = data.candidates?.[0]?.content?.parts?.find(x => x.inlineData?.data);
+      if (imgPart) {
+        const dataUrl = `data:${imgPart.inlineData.mimeType || "image/jpeg"};base64,${imgPart.inlineData.data}`;
+        if (String(id).startsWith("custom_")) {
+          const t = state.customPresenters.find(x => x.id === id);
+          if (t) t.img = dataUrl;
+        } else {
+          state.presenterOverrides[id] = dataUrl;
+        }
+        state.selectedPresenterId = id;
+        renderPresenters(); saveStateAuto();
+        hint.textContent = `✅ เจนรูป AI สำหรับ ${p.name} สำเร็จ!`;
+        return;
+      }
+    } catch (e) { var lastErr = e; }
+  }
+  hint.textContent = `⚠️ ${lastErr?.message || "API Key รุ่นฟรีอาจไม่รองรับการสร้างภาพโดยตรง"} — ระบบคัดลอก Prompt ให้แล้ว นำไปวางเจนในแอป Gemini ได้เลยครับ`;
+  copyText(promptText);
 };
 
 function renderDemoModes() {
@@ -489,8 +545,7 @@ function renderDemoModes() {
 
 function renderFrames() {
   const grid = document.getElementById("frameGrid");
-  const clearBtn = document.getElementById("clearFramesBtn");
-  clearBtn.classList.toggle("hidden", state.frameImages.length === 0);
+  document.getElementById("clearFramesBtn").classList.toggle("hidden", state.frameImages.length === 0);
   grid.innerHTML = "";
   state.frameImages.forEach((f, idx) => {
     const div = document.createElement("div");
@@ -505,9 +560,7 @@ window.removeFrameImage = (id) => {
 };
 
 function formatSec(sec) {
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60);
-  return `${m}:${String(s).padStart(2, "0")}`;
+  return `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, "0")}`;
 }
 
 function captureCanvasFromVideo(video, maxSize = 540, quality = 0.74) {
@@ -532,9 +585,7 @@ async function handleVideoUpload(file) {
 
   if (currentVideoUrl) URL.revokeObjectURL(currentVideoUrl);
   currentVideoUrl = URL.createObjectURL(file);
-  video.src = currentVideoUrl;
-  video.muted = true;
-  video.playsInline = true;
+  video.src = currentVideoUrl; video.muted = true; video.playsInline = true;
 
   await new Promise((resolve, reject) => {
     const t = setTimeout(() => reject(new Error("โหลดวิดีโอไม่สำเร็จบนเบราว์เซอร์นี้")), 12000);
@@ -543,28 +594,23 @@ async function handleVideoUpload(file) {
   });
 
   const dur = isFinite(video.duration) && video.duration > 0 ? video.duration : 10;
-  const ratios = [0.05, 0.22, 0.40, 0.60, 0.78, 0.94];
   const extracted = [];
-
-  for (const r of ratios) {
+  for (const r of [0.05, 0.22, 0.40, 0.60, 0.78, 0.94]) {
     const targetTime = Math.min(Math.max(0.05, dur * r), Math.max(0.05, dur - 0.1));
     await new Promise((resolve) => {
       const timeout = setTimeout(resolve, 2500);
       video.onseeked = () => { clearTimeout(timeout); resolve(); };
       video.currentTime = targetTime;
     });
-    const dataUrl = captureCanvasFromVideo(video);
     extracted.push({
       id: "vid_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
-      dataUrl,
+      dataUrl: captureCanvasFromVideo(video),
       label: `คลิป ${formatSec(targetTime)}`
     });
   }
-
   state.frameImages = extracted;
-  renderFrames();
-  saveStateAuto();
-  statusEl.textContent = `✅ ดึงภาพจากคลิปสำเร็จ ${extracted.length} เฟรม (ความยาวคลิป ${formatSec(dur)})`;
+  renderFrames(); saveStateAuto();
+  statusEl.textContent = `✅ ดึงภาพจากคลิปสำเร็จ ${extracted.length} เฟรม (ความยาว ${formatSec(dur)})`;
 }
 
 function renderOutput(result) {
@@ -594,7 +640,7 @@ function renderOutput(result) {
 function generateOfflineStoryboard() {
   const name = state.productName.trim() || "สกินแคร์ตัวโปรด";
   const cat = state.productCategory;
-  const feat = state.productFeatures.trim() || "เนื้อสัมผัสบางเบา สบายผิว ช่วยดูแลผิวให้ดูชุ่มชื้นสดใส";
+  const feat = state.productFeatures.trim() || "เนื้อสัมผัสบางเบา สบายผิว ช่วยดูแลผิวให้ดูชุ่มชื้นอิ่มฟู";
   const pricePromo = state.userPricePromo.trim();
   const presenter = getAllPresenters().find(p => p.id === state.selectedPresenterId) || getAllPresenters()[0];
   const demo = DEMO_MODES.find(d => d.id === state.selectedDemoId) || DEMO_MODES[0];
@@ -605,21 +651,21 @@ function generateOfflineStoryboard() {
     : `ใครอยากลอง ${name} กดดูรายละเอียดเพิ่มเติมที่ตะกร้าด้านล่างได้เลยนะคะ`;
 
   const masterPrompt = `CONSISTENCY LOCK (${aspect}, 10-second per clip, photorealistic commercial beauty & skincare ASMR video):
-- Real Human Presenter: ${presenter.desc}. Keep exact same open clear face, exact age appearance, fair clear glowing skin, hairstyle, and outfit across every 10-second scene.
+- Real Human Presenter: ${presenter.desc}. Keep exact same open clear face, exact 23-year-old appearance, plump dewy glowing glass skin, hairstyle, and outfit across every 10-second scene.
 - Product: "${name}" (${cat}). Strictly match exact bottle shape, cap, color, and label design from uploaded reference photos.
-- Lighting: Bright natural beauty studio lighting, 4K realistic fair healthy skin texture.`;
+- Lighting: Bright natural beauty studio lighting, 4K realistic dewy plump healthy skin texture.`;
 
   let script = "", scenes = [];
   if (count === 1) {
-    script = sanitizeByGoldenRules(`[1 ฉาก · 0–10 วินาที · ${state.voiceTone}]\n"(0–3 วิ: ${demo.asmrCue}) ใครชอบฟีลผิวสบายๆ ต้องดูตัวนี้ค่ะ นี่คือ ${name}..."\n"(3–7 วิ) ${feat} เบาสบายผิวมากเลยค่ะ"\n"(7–10 วิ) ${priceLine}"`);
+    script = sanitizeByGoldenRules(`[1 ฉาก · 0–10 วินาที · ${state.voiceTone}]\n"(0–3 วิ: ${demo.asmrCue}) ใครชอบฟีลผิวฉ่ำโกลว์อิ่มฟู ต้องดูตัวนี้ค่ะ นี่คือ ${name}..."\n"(3–7 วิ) ${feat} เบาสบายผิวมากเลยค่ะ"\n"(7–10 วิ) ${priceLine}"`);
     scenes = [{
       title: `ฉากเดียวจบครบ: เปิดตัว + ${demo.title} + ปิดตะกร้า`,
       duration: "0–10 วินาที",
-      visualTh: `0–3 วิ โชว์ขวด ${name} ชัดๆ -> 3–7 วิ ${demo.desc} -> 7–10 วิ โชว์ผิวใสและยิ้มปิดคลิป`,
-      promptEn: `[10-Second Single Scene: 0s-10s] ${aspect}. Continuous 10s beauty ASMR video. (0-3s) ${presenter.desc} holds exact "${name}" bottle cleanly near camera. (3-7s) ${demo.promptAction} (7-10s) Presenter turns toward camera showing fair glowing hydrated skin while holding "${name}" beside face, leaving lower-left clear for basket icon.`
+      visualTh: `0–3 วิ โชว์ขวด ${name} ชัดๆ -> 3–7 วิ ${demo.desc} -> 7–10 วิ โชว์ผิวใสฉ่ำโกลว์อิ่มฟูและยิ้มปิดคลิป`,
+      promptEn: `[10-Second Single Scene: 0s-10s] ${aspect}. Continuous 10s beauty ASMR video. (0-3s) ${presenter.desc} holds exact "${name}" bottle cleanly near camera. (3-7s) ${demo.promptAction} (7-10s) Presenter turns toward camera showing plump dewy glowing skin while holding "${name}" beside face, leaving lower-left clear for basket icon.`
     }];
   } else {
-    script = sanitizeByGoldenRules(`[ฉากที่ 1 · 0–10 วินาที · Hook + สาธิตหลัก]\n"(${demo.asmrCue}) ใครที่กำลังมองหา ${cat} สบายผิว ต้องลอง ${name} ตัวนี้เลยค่ะ ดูจังหวะใช้งานจริงได้เลย..."\n\n[ฉากที่ 2 · 10–20 วินาที · โชว์ผิวจริง + ปิดตะกร้า]\n"หลังใช้สัมผัสได้ว่า ${feat} ไม่หนักหน้าเลยค่ะ ${priceLine}"`);
+    script = sanitizeByGoldenRules(`[ฉากที่ 1 · 0–10 วินาที · Hook + สาธิตหลัก]\n"(${demo.asmrCue}) ใครที่อยากได้ผิวดูใสฉ่ำโกลว์อิ่มฟู ต้องลอง ${name} ตัวนี้เลยค่ะ ดูจังหวะใช้งานจริงได้เลย..."\n\n[ฉากที่ 2 · 10–20 วินาที · โชว์ผิวจริง + ปิดตะกร้า]\n"หลังใช้สัมผัสได้ว่า ${feat} ผิวดูอิ่มฟูไม่หนักหน้าเลยค่ะ ${priceLine}"`);
     scenes = [
       {
         title: `Hook โชว์สินค้า & สาธิตหลัก: ${demo.title}`,
@@ -628,10 +674,10 @@ function generateOfflineStoryboard() {
         promptEn: `[Scene 1: 0s-10s] ${aspect}, 10-second clip. (0-3s) ${presenter.desc} holds exact reference "${name}" bottle near camera in bright studio daylight. (3-10s) ${demo.promptAction} Keep exact same presenter face and "${name}" packaging.`
       },
       {
-        title: "โคลสอัพผิวจริงหลังใช้ & ปิดตะกร้า (CTA)",
+        title: "โคลสอัพผิวฉ่ำโกลว์อิ่มฟูหลังใช้ & ปิดตะกร้า (CTA)",
         duration: "10–20 วินาที",
-        visualTh: `10–15 วิ โชว์ผิวขาวใสหลังใช้ (${feat}) -> 15–20 วิ ถือ ${name} ยิ้มปิดคลิป`,
-        promptEn: `[Scene 2: 10s-20s] ${aspect}, 10-second clip continuing from Scene 1. (10-15s) Macro close-up on presenter's fair clear glowing skin showing hydrated finish after "${name}". (15-20s) Presenter faces camera smiling warmly holding exact "${name}" beside face, lower-left clear for basket icon.`
+        visualTh: `10–15 วิ โชว์ผิวใสฉ่ำโกลว์อิ่มฟูหลังใช้ (${feat}) -> 15–20 วิ ถือ ${name} ยิ้มปิดคลิป`,
+        promptEn: `[Scene 2: 10s-20s] ${aspect}, 10-second clip continuing from Scene 1. (10-15s) Macro close-up on presenter's plump hydrated dewy glass skin showing radiant finish after "${name}". (15-20s) Presenter faces camera smiling warmly holding exact "${name}" beside face, lower-left clear for basket icon.`
       }
     ];
   }
@@ -697,7 +743,7 @@ async function generateWithGeminiAI() {
 ราคา/โปรโมชั่นที่อนุญาต: ${state.userPricePromo.trim() || "ไม่มี (ห้ามแต่งราคา โปร หรือโค้ดส่วนลดเองเด็ดขาด!)"}
 โทนเสียง: ${state.voiceTone} | สัดส่วน: ${state.targetPlatform}
 จำนวนฉาก: ${count} ฉาก (ฉากละ 10 วินาที รวม ${totalSec} วิ: ${count===1 ? "0–10 วินาที" : "ฉาก 1 = 0–10 วินาที, ฉาก 2 = 10–20 วินาที"})
-พรีเซนเตอร์คนจริง (เปิดหน้าชัด หน้าใส ผิวขาว): ${presenter.desc}
+พรีเซนเตอร์ (อายุ 23 ปี หน้าใสฉ่ำโกลว์ อิ่มฟู): ${presenter.desc}
 รูปแบบสาธิต: ${demo.title} (${demo.desc})
 กฎเหล็ก: ห้ามมีคำว่า "ตรงปก 100%", ห้ามแต่งราคา/โปรเอง, scenes ต้องมีพอดี ${count} ฉาก
 ตอบเป็น JSON เท่านั้น: {"script":"...","masterPrompt":"...","scenes":[{"title":"...","duration":"0–10 วินาที","visualTh":"...","promptEn":"..."}]}`;
@@ -737,7 +783,7 @@ async function checkConsistency() {
 ตรวจเช็ก 4 ข้อเป็นภาษาไทย:
 1. รูปทรงขวด/กระปุก สี และหัวฉีด/ฝาในคลิป ตรงปกกับสินค้าจริงทุกเฟรมไหม (ระบุเฟรม/วินาทีถ้ามีจุดเพี้ยน)
 2. ฉลาก/โลโก้ในคลิปตรงปกหรือเพี้ยน
-3. ใบหน้าพรีเซนเตอร์เปิดชัด ผิวขาวใส และต่อเนื่องกันทุกเฟรมไหม
+3. ใบหน้าพรีเซนเตอร์เปิดชัด ผิวขาวใสฉ่ำโกลว์อิ่มฟู และต่อเนื่องกันทุกเฟรมไหม
 4. สรุปผล: "ผ่าน (PASS)" หรือ "ควรแก้ใหม่ (FAIL)" พร้อมคำแนะนำ` },
       ...state.productImages.map(i => dataUrlToInlinePart(i.dataUrl)),
       ...state.frameImages.map(f => dataUrlToInlinePart(f.dataUrl))
@@ -788,7 +834,7 @@ function bindEvents() {
     const file = e.target.files?.[0]; if (!file) return;
     const dataUrl = await resizeImageToDataUrl(file, 540, 0.78);
     const name = prompt("ตั้งชื่อพรีเซนเตอร์:", "พรีเซนเตอร์ของฉัน") || "พรีเซนเตอร์ของฉัน";
-    const desc = prompt("ลักษณะภาษาอังกฤษ (สำหรับ Prompt):", "Real Thai presenter matching reference photo, open clear face, fair glowing clear skin") || "Real Thai presenter matching reference photo";
+    const desc = prompt("ลักษณะภาษาอังกฤษ (สำหรับ Prompt):", "Real 23yo Thai presenter matching reference photo, open clear face, plump dewy glass skin") || "Real 23yo Thai presenter matching reference photo";
     const id = "custom_" + Date.now();
     state.customPresenters.push({ id, genderBadge: "✨ พรีเซนเตอร์ของคุณ", name, desc, img: dataUrl });
     state.selectedPresenterId = id;
@@ -797,7 +843,7 @@ function bindEvents() {
 
   document.getElementById("copyPresenterPromptBtn").addEventListener("click", () => {
     const p = getAllPresenters().find(x => x.id === state.selectedPresenterId) || getAllPresenters()[0];
-    copyText(`Ultra-realistic commercial beauty & skincare studio portrait photo, ${p.desc}, 8K sharp focus on flawless glowing skin, looking directly at camera, clean pastel minimalist background, 3:4 portrait.`);
+    copyText(`Ultra-realistic commercial beauty & skincare studio portrait photo of ${p.desc}, 8K sharp focus on plump dewy glass skin, looking directly at camera, clean bright minimalist background, 3:4 portrait.`);
   });
 
   document.getElementById("resetPresentersBtn").addEventListener("click", () => {
