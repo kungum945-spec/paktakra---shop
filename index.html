@@ -435,15 +435,15 @@
     </div>
   </section>
 
-  <!-- 3. เลือกพรีเซนเตอร์ (คนจริง ชาย 2 หญิง 2 หน้าใส ผิวขาว ผิวดี) -->
+  <!-- 3. เลือกพรีเซนเตอร์ (หญิง 23/35 ปี · ชาย 23/35 ปี เปิดหน้าชัด หน้าใส ผิวขาว ผิวดี) -->
   <section class="card">
-    <h2>👩🏻👨🏻 3. พรีเซนเตอร์คนจริง (หญิง 2 · ชาย 2 หน้าใส ผิวขาว ผิวดี)</h2>
+    <h2>👩🏻👨🏻 3. พรีเซนเตอร์คนจริง (หญิง 23/35 ปี · ชาย 23/35 ปี เปิดหน้าชัด หน้าใสผิวขาว)</h2>
     <div class="toolbar" style="margin-bottom:10px;">
       <label class="btn btn-outline btn-sm" style="margin:0; cursor:pointer;">
         ➕ อัปโหลดรูปพรีเซนเตอร์ของคุณเอง
         <input type="file" id="customPresenterInput" accept="image/*" style="display:none;" />
       </label>
-      <span class="hint">เลือกพรีเซนเตอร์ 1 คน เพื่อล็อกหน้าตา ผิวใส และชุดให้ต่อเนื่องทุกฉาก</span>
+      <span class="hint">เลือกพรีเซนเตอร์ 1 คน เพื่อล็อกใบหน้าเปิดชัด ผิวขาวใส และอายุให้ตรงกันทุกฉาก</span>
     </div>
     <div class="grid-4" id="presenterGrid"></div>
   </section>
@@ -678,7 +678,7 @@ const DEMO_MODES = [
 ];
 
 // =========================
-// 2. พรีเซนเตอร์คนจริง: หญิง 2 + ชาย 2 (หน้าใส ผิวขาว ผิวดี)
+// 2. พรีเซนเตอร์คนจริง: หญิง 23/35 ปี + ชาย 23/35 ปี (เปิดหน้าชัด หน้าใส ผิวขาว ผิวดี)
 // =========================
 function makeFallbackSvg(label) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320">
@@ -691,31 +691,31 @@ function makeFallbackSvg(label) {
 const DEFAULT_PRESENTERS = [
   {
     id: "p1",
-    genderBadge: "👩🏻 หญิง 1 · หน้าใสผิวขาว",
-    name: "น้องแพรว (คลีนบิวตี้ผิวขาวออร่า)",
-    desc: "Real young East/Southeast Asian woman, 23yo, fair porcelain clear glowing glass skin, smooth healthy complexion, long dark hair, minimalist white shirt, soft bright studio daylight",
-    img: "https://images.unsplash.com/photo-1758600587391-338f5376b7ed?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    genderBadge: "👩🏻 หญิง · อายุ 23 ปี",
+    name: "น้องแพรว (23 ปี · สวยใสผิวขาวออร่า)",
+    desc: "Real attractive young Asian woman, exact age 23 years old, open clear face facing camera directly, fair porcelain glowing glass skin, smooth blemish-free bright complexion, natural clean beauty makeup, pastel top, bright soft beauty studio lighting",
+    img: "https://images.unsplash.com/photo-1695757002354-8bca71d087c7?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
   },
   {
     id: "p2",
-    genderBadge: "👩🏻 หญิง 2 · หน้าใสผิวดี",
-    name: "น้องมิ้นท์ (ผิวขาวใสละมุนธรรมชาติ)",
-    desc: "Real young Asian woman, 21yo, fair radiant smooth skin, clear poreless-looking healthy glow, soft natural makeup, cozy bright natural daylight beauty studio",
-    img: "https://images.unsplash.com/photo-1773899337978-b8d83bd9b783?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    genderBadge: "👩🏻 หญิง · อายุ 35 ปี",
+    name: "คุณเอวา (35 ปี · สวยดูดีผิวขาวใส)",
+    desc: "Real attractive Asian woman, exact age 35 years old, graceful youthful elegance, open clear face facing camera directly, fair bright luminous smooth skin, healthy radiant glass skin, long dark hair, crisp white shirt, bright clean beauty studio lighting",
+    img: "https://images.unsplash.com/photo-1758600587391-338f5376b7ed?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
   },
   {
     id: "p3",
-    genderBadge: "👨🏻 ชาย 1 · หน้าใสผิวขาว",
-    name: "คุณภัทร (หนุ่มหน้าใสผิวขาวคลีน)",
-    desc: "Real handsome young Asian man, 24yo, fair clear healthy glass skin, smooth clean complexion, neat dark hair, crisp white t-shirt, bright minimalist studio daylight",
+    genderBadge: "👨🏻 ชาย · อายุ 23 ปี",
+    name: "คุณภัทร (23 ปี · หล่อหน้าใสผิวขาวคลีน)",
+    desc: "Real handsome young Asian man, exact age 23 years old, open clear face facing camera directly, fair bright clear glass skin, smooth blemish-free complexion, clean-shaven, neat dark hair, crisp white shirt, bright clean skincare studio lighting",
     img: "https://images.unsplash.com/photo-1681097561932-36d0df02b379?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
   },
   {
     id: "p4",
-    genderBadge: "👨🏻 ชาย 2 · หน้าใสผิวดี",
-    name: "คุณคิม (หนุ่มผิวขาวใสสไตล์เกาหลี)",
-    desc: "Real young Korean/East Asian man, 23yo, fair luminous clear skin, healthy smooth facial skin, neat modern hairstyle, soft natural daylight",
-    img: "https://images.unsplash.com/photo-1633177188754-980c2a6b6266?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    genderBadge: "👨🏻 ชาย · อายุ 35 ปี",
+    name: "คุณธันวา (35 ปี · หล่อภูมิฐานผิวขาวดี)",
+    desc: "Real handsome Asian man, exact age 35 years old, open clear face facing camera directly, fair bright clear healthy skin, smooth well-cared-for complexion, clean-shaven, neat modern hairstyle, smart clean attire, bright skincare studio lighting",
+    img: "https://images.unsplash.com/photo-1752118464953-74e7ddb9c74f?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
   }
 ];
 
@@ -1018,8 +1018,8 @@ function generateOfflineStoryboard() {
     ? `ใครกำลังมองหา ${cat} ดีๆ แบบนี้ ${pricePromo} กดดูที่ตะกร้าได้เลยนะคะ`
     : `ใครอยากลอง ${name} กดดูรายละเอียดเพิ่มเติมที่ตะกร้าด้านล่างได้เลยนะคะ`;
 
-  const masterPrompt = `CONSISTENCY LOCK (${aspect}, 10-second per clip, photorealistic commercial beauty ASMR video):
-- Real Human Presenter: ${presenter.desc}. Keep exact same face, fair clear glowing skin, hairstyle, and outfit across every 10-second scene.
+  const masterPrompt = `CONSISTENCY LOCK (${aspect}, 10-second per clip, photorealistic commercial beauty & skincare ASMR video):
+- Real Human Presenter: ${presenter.desc}. Keep exact same open clear face, exact age appearance, fair clear glowing skin, hairstyle, and outfit across every 10-second scene.
 - Product: "${name}" (${cat}). Strictly match the exact bottle shape, cap, color, and label design from the uploaded reference photos (do NOT alter brand text or packaging).
 - Lighting & Mood: Soft bright natural beauty studio lighting, clean aesthetic, crisp ASMR audio focus, 4K realistic fair healthy skin texture.`;
 
@@ -1039,7 +1039,7 @@ function generateOfflineStoryboard() {
         title: `ฉากเดียวจบครบ: เปิดตัว + ${demo.title} + ปิดตะกร้า`,
         duration: "0–10 วินาที",
         visualTh: `0–3 วิ โชว์ขวด ${name} ชัดๆ พร้อมเสียง ASMR -> 3–7 วิ ${demo.desc} -> 7–10 วิ โชว์ผิวใสหลังใช้และถือสินค้ายิ้มปิดคลิป`,
-        promptEn: `[10-Second Single Scene: 0s-10s] ${aspect}. Continuous 10-second photorealistic beauty ASMR video. (0-3s) Same real presenter (${presenter.desc}) holds the exact reference "${name}" bottle cleanly near camera with gentle ASMR packaging tap. (3-7s) Smooth transition into main demo: ${demo.promptAction} (7-10s) Presenter turns slightly to show real fair glowing hydrated skin while holding the exact "${name}" product beside face, natural smile, leaving lower-left clear for basket icon.`
+        promptEn: `[10-Second Single Scene: 0s-10s] ${aspect}. Continuous 10-second photorealistic beauty ASMR video. (0-3s) Same real presenter (${presenter.desc}) with open clear face holds the exact reference "${name}" bottle cleanly near camera with gentle ASMR packaging tap. (3-7s) Smooth transition into main demo: ${demo.promptAction} (7-10s) Presenter turns slightly toward camera showing fair glowing hydrated skin while holding the exact "${name}" product beside face, natural warm smile, leaving lower-left clear for basket icon.`
       }
     ];
   } else {
@@ -1056,13 +1056,13 @@ function generateOfflineStoryboard() {
         title: `Hook โชว์สินค้า & สาธิตหลัก: ${demo.title}`,
         duration: "0–10 วินาที",
         visualTh: `0–3 วิ พรีเซนเตอร์ถือ ${name} ชัดเจนพร้อมเสียง ASMR -> 3–10 วิ ${demo.desc} (${demo.asmrCue})`,
-        promptEn: `[Scene 1: 0s-10s] ${aspect}, 10-second continuous clip. (0-3s) Same real presenter (${presenter.desc}) holding the exact reference "${name}" bottle cleanly near camera in bright soft daylight, sharp focus on real product label with crisp ASMR sound. (3-10s) Smoothly transitions into demo: ${demo.promptAction} Keep exact same presenter face, fair clear skin, and exact "${name}" packaging.`
+        promptEn: `[Scene 1: 0s-10s] ${aspect}, 10-second continuous clip. (0-3s) Same real presenter (${presenter.desc}) with open clear face holding the exact reference "${name}" bottle cleanly near camera in bright soft daylight, sharp focus on real product label with crisp ASMR sound. (3-10s) Smoothly transitions into demo: ${demo.promptAction} Keep exact same presenter face, age, fair clear skin, and exact "${name}" packaging.`
       },
       {
         title: "โคลสอัพผิวจริงหลังใช้ & ปิดคลิปชวนกดตะกร้า (CTA)",
         duration: "10–20 วินาที",
         visualTh: `10–15 วิ ซูมใกล้โชว์ผิวขาวใสหลังใช้ (${feat}) -> 15–20 วิ พรีเซนเตอร์ถือ ${name} คู่ใบหน้ายิ้มปิดคลิป`,
-        promptEn: `[Scene 2: 10s-20s] ${aspect}, 10-second continuous clip seamlessly continuing from Scene 1. (10-15s) Macro close-up on the same presenter's fair, clear, healthy glowing skin showing natural hydrated finish after applying "${name}", soft daylight reflection. (15-20s) Pull back slightly to presenter smiling warmly while holding the exact "${name}" product beside face, leaving lower-left area clear for TikTok/Shopee basket icon.`
+        promptEn: `[Scene 2: 10s-20s] ${aspect}, 10-second continuous clip seamlessly continuing from Scene 1. (10-15s) Macro close-up on the same presenter's fair, clear, healthy glowing skin showing natural hydrated finish after applying "${name}", soft daylight reflection. (15-20s) Pull back slightly to presenter facing camera clearly with a warm smile while holding the exact "${name}" product beside face, leaving lower-left area clear for TikTok/Shopee basket icon.`
       }
     ];
   }
@@ -1167,7 +1167,7 @@ async function generateWithGeminiAI() {
 - โทนเสียง ASMR: ${state.voiceTone}
 - สัดส่วน: ${state.targetPlatform}
 - ${timingInstruction}
-- พรีเซนเตอร์คนจริงที่ล็อกไว้ (หน้าใส ผิวขาว ผิวดี): ${presenter.desc}
+- พรีเซนเตอร์คนจริงที่ล็อกไว้ (เปิดหน้าชัด หน้าตาสวย/หล่อ หน้าใส ผิวขาว ผิวดี): ${presenter.desc}
 - รูปแบบการสาธิตที่เลือก: ${demo.title} (${demo.desc})
 
 กฎเหล็ก:
@@ -1177,7 +1177,7 @@ async function generateWithGeminiAI() {
 4. ให้ตอบเป็น JSON ตามโครงสร้างนี้เท่านั้น:
 {
   "script": "Hook และบทพูด ASMR ภาษาไทยแบ่งจังหวะเวลาให้พอดี ${totalSec} วินาที",
-  "masterPrompt": "English consistency lock prompt for real human presenter (fair clear glowing skin) & product (10-second per scene)",
+  "masterPrompt": "English consistency lock prompt for real human presenter (open clear face, fair clear glowing skin) & product (10-second per scene)",
   "scenes": [
     { "title": "ชื่อฉากภาษาไทย", "duration": "0–10 วินาที", "visualTh": "คำอธิบายภาพและเสียง ASMR ภาษาไทยภายใน 10 วินาที", "promptEn": "Detailed 10-second English video prompt maintaining exact real presenter and product packaging" }
   ]
@@ -1279,7 +1279,7 @@ function bindEvents() {
     if (!file) return;
     const dataUrl = await resizeImageToDataUrl(file, 640, 0.8);
     const name = prompt("ตั้งชื่อพรีเซนเตอร์คนนี้ (เช่น น้องมายด์):", "พรีเซนเตอร์ของฉัน") || "พรีเซนเตอร์ของฉัน";
-    const desc = prompt("อธิบายลักษณะสั้นๆ เป็นภาษาอังกฤษ (เพื่อใช้ใน Prompt):", "Real Thai presenter matching uploaded reference photo, fair clear glowing skin") || "Real presenter matching reference photo, fair clear glowing skin";
+    const desc = prompt("อธิบายลักษณะสั้นๆ เป็นภาษาอังกฤษ (เพื่อใช้ใน Prompt):", "Real Thai presenter matching uploaded reference photo, open clear face, fair clear glowing skin") || "Real presenter matching reference photo, open clear face, fair clear glowing skin";
     const newId = "custom_" + Date.now();
     state.presenters.push({ id: newId, genderBadge: "✨ พรีเซนเตอร์ของคุณ", name, desc, img: dataUrl });
     state.selectedPresenterId = newId;
