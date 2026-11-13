@@ -5,309 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ปักตะกร้า Shop Online — Beauty &amp; Skincare ASMR Studio</title>
   <style>
-    :root {
-      --bg: #fff8fb;
-      --card: #ffffff;
-      --primary: #e11d74;
-      --primary-dark: #b9145c;
-      --secondary: #7c3aed;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #f3d5e3;
-      --soft: #fdf2f8;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-    }
-    header {
-      background: linear-gradient(135deg, #e11d74, #7c3aed);
-      color: #fff;
-      padding: 20px 16px;
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(225, 29, 116, 0.2);
-    }
-    header h1 { margin: 0 0 6px; font-size: 1.55rem; }
-    header p { margin: 0; opacity: 0.94; font-size: 0.94rem; }
-    .quick-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 14px;
-    }
-    .quick-links a, .quick-links button {
-      background: rgba(255,255,255,0.18);
-      color: #fff;
-      text-decoration: none;
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.35);
-      cursor: pointer;
-      font-family: inherit;
-      transition: 0.2s;
-    }
-    .quick-links a:hover, .quick-links button:hover { background: rgba(255,255,255,0.32); }
-
-    main {
-      max-width: 1120px;
-      margin: 20px auto;
-      padding: 0 14px 52px;
-      display: grid;
-      gap: 18px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    }
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: 1.12rem;
-      color: var(--primary-dark);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
-
-    label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 5px; }
-    input[type="text"], input[type="password"], select, textarea {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      font-family: inherit;
-      background: #fff;
-    }
-    textarea { resize: vertical; min-height: 76px; }
-    .hint { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 15px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      text-decoration: none;
-      font-family: inherit;
-    }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); }
-    .btn-secondary { background: var(--secondary); color: #fff; }
-    .btn-success { background: #059669; color: #fff; }
-    .btn-outline {
-      background: #fff;
-      color: var(--text);
-      border: 1px solid #d1d5db;
-    }
-    .btn-outline:hover { background: #f9fafb; }
-    .btn-sm { padding: 6px 10px; font-size: 0.8rem; border-radius: 8px; }
-    .btn-filter.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .upload-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .thumb-box {
-      position: relative;
-      border: 1px dashed #d1d5db;
-      border-radius: 10px;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #fafafa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-align: center;
-      padding: 4px;
-    }
-    .thumb-box img { width: 100%; height: 100%; object-fit: cover; }
-    .thumb-remove {
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      background: rgba(0,0,0,0.65);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      cursor: pointer;
-      font-size: 12px;
-      line-height: 1;
-    }
-
-    .presenter-card {
-      border: 2px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 12px;
-      background: #fff;
-      transition: 0.2s;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .presenter-card.active {
-      border-color: var(--primary);
-      background: var(--soft);
-    }
-    .presenter-preview {
-      width: 100%;
-      aspect-ratio: 3/4;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #f3f4f6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .presenter-preview img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-    .presenter-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
-
-    .demo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .demo-card {
-      border: 2px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 12px;
-      background: #fff;
-      cursor: pointer;
-      transition: 0.18s;
-      text-align: left;
-      font-family: inherit;
-    }
-    .demo-card:hover { border-color: #f472b6; background: #fffafc; }
-    .demo-card.active {
-      border-color: var(--primary);
-      background: var(--soft);
-      box-shadow: 0 2px 8px rgba(225, 29, 116, 0.14);
-    }
-    .demo-card.spray-highlight {
-      border-left: 5px solid var(--secondary);
-    }
-    .demo-title { font-weight: 700; font-size: 0.9rem; color: var(--text); margin: 6px 0 4px; }
-    .demo-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
-
-    .output-box {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 12px;
-    }
-    .output-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 700;
-    }
-    .badge-pink { background: #fce7f3; color: #be185d; }
-    .badge-purple { background: #ede9fe; color: #5b21b6; }
-    .badge-blue { background: #dbeafe; color: #1d4ed8; }
-
-    .scene-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      background: #fff;
-      margin-bottom: 12px;
-    }
-    .scene-title {
-      font-weight: 700;
-      color: var(--secondary);
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .prompt-text {
-      background: #111827;
-      color: #f9fafb;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 0.82rem;
-      white-space: pre-wrap;
-      margin-top: 6px;
-      word-break: break-word;
-    }
-    .frame-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .frame-item { position: relative; }
-    .frame-grid img {
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid #e5e7eb;
-      aspect-ratio: 9/16;
-      object-fit: cover;
-      display: block;
-    }
-    .status-banner {
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 10px;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    .status-pass { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
-    .status-fail { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-    .status-warn { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-    .hidden { display: none; }
+    :root{--bg:#fff8fb;--card:#fff;--primary:#e11d74;--primary-dark:#b9145c;--secondary:#7c3aed;--text:#1f2937;--muted:#6b7280;--border:#f3d5e3;--soft:#fdf2f8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+    header{background:linear-gradient(135deg,#e11d74,#7c3aed);color:#fff;padding:20px 16px;text-align:center;box-shadow:0 4px 16px rgba(225,29,116,.2)}
+    header h1{margin:0 0 6px;font-size:1.45rem}
+    header p{margin:0;opacity:.94;font-size:.92rem}
+    .quick-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+    .quick-links a,.quick-links button{background:rgba(255,255,255,.18);color:#fff;text-decoration:none;padding:7px 12px;border-radius:999px;font-size:.82rem;font-weight:600;border:1px solid rgba(255,255,255,.35);cursor:pointer;font-family:inherit}
+    main{max-width:1120px;margin:18px auto;padding:0 12px 52px;display:grid;gap:16px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+    .card h2{margin:0 0 12px;font-size:1.08rem;color:var(--primary-dark);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+    .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    label{display:block;font-size:.86rem;font-weight:600;margin-bottom:5px}
+    input[type="text"],input[type="password"],select,textarea{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:.92rem;font-family:inherit;background:#fff}
+    textarea{resize:vertical;min-height:72px}
+    .hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:10px;padding:10px 14px;font-size:.88rem;font-weight:600;cursor:pointer;text-decoration:none;font-family:inherit}
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-secondary{background:var(--secondary);color:#fff}
+    .btn-success{background:#059669;color:#fff}
+    .btn-outline{background:#fff;color:var(--text);border:1px solid #d1d5db}
+    .btn-sm{padding:6px 10px;font-size:.78rem;border-radius:8px}
+    .btn-filter.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .upload-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-top:10px}
+    .thumb-box{position:relative;border:1px dashed #d1d5db;border-radius:10px;aspect-ratio:1;overflow:hidden;background:#fafafa;display:flex;align-items:center;justify-content:center;font-size:.76rem;color:var(--muted);text-align:center;padding:4px}
+    .thumb-box img{width:100%;height:100%;object-fit:cover}
+    .thumb-remove{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.68);color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:12px;line-height:1}
+    .presenter-card{border:2px solid #e5e7eb;border-radius:14px;padding:10px;background:#fff;display:flex;flex-direction:column;gap:8px}
+    .presenter-card.active{border-color:var(--primary);background:var(--soft)}
+    .presenter-preview{width:100%;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#f3f4f6;display:flex;align-items:center;justify-content:center}
+    .presenter-preview img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+    .presenter-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+    .demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:12px}
+    .demo-card{border:2px solid #e5e7eb;border-radius:12px;padding:11px;background:#fff;cursor:pointer;text-align:left;font-family:inherit}
+    .demo-card.active{border-color:var(--primary);background:var(--soft)}
+    .demo-card.spray-highlight{border-left:5px solid var(--secondary)}
+    .demo-title{font-weight:700;font-size:.88rem;color:var(--text);margin:6px 0 4px}
+    .demo-desc{font-size:.77rem;color:var(--muted);line-height:1.4}
+    .output-box{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin-bottom:12px}
+    .output-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+    .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.74rem;font-weight:700}
+    .badge-pink{background:#fce7f3;color:#be185d}
+    .badge-purple{background:#ede9fe;color:#5b21b6}
+    .badge-blue{background:#dbeafe;color:#1d4ed8}
+    .scene-card{border:1px solid var(--border);border-radius:12px;padding:13px;background:#fff;margin-bottom:12px}
+    .scene-title{font-weight:700;color:var(--secondary);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+    .prompt-text{background:#111827;color:#f9fafb;padding:10px 12px;border-radius:8px;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;white-space:pre-wrap;margin-top:6px;word-break:break-word}
+    .frame-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:8px;margin-top:10px}
+    .frame-item{position:relative;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;background:#111827}
+    .frame-grid img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+    .frame-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.65);color:#fff;font-size:.7rem;text-align:center;padding:2px 4px}
+    .video-preview-wrap{margin-top:12px;background:#111827;border-radius:12px;padding:10px;text-align:center}
+    .video-preview-wrap video{max-width:100%;max-height:360px;border-radius:8px;display:block;margin:0 auto}
+    .status-banner{padding:12px;border-radius:10px;margin-top:10px;font-weight:600;font-size:.88rem}
+    .status-pass{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+    .status-fail{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+    .status-warn{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+    .hidden{display:none}
   </style>
 </head>
 <body>
 <header>
   <h1>🛍️ ปักตะกร้า Shop Online — Beauty &amp; Skincare ASMR Studio</h1>
-  <p>สร้างสตอรี่บอร์ด, Prompt ต่อเนื่องสำหรับ Gemini, บทพูด ASMR, บันทึกลงเครื่อง และตรวจความตรงปก</p>
+  <p>สร้างสตอรี่บอร์ด, Prompt ต่อเนื่องสำหรับ Gemini, บทพูด ASMR, บันทึกลงเครื่อง และตรวจความตรงปกจากคลิปวิดีโอ</p>
   <div class="quick-links">
     <a href="https://gemini.google.com/" target="_blank" rel="noopener">✨ Gemini</a>
     <a href="https://www.capcut.com/editor" target="_blank" rel="noopener">🎬 CapCut</a>
@@ -321,37 +85,32 @@
 </header>
 
 <main>
-  <!-- แถบจัดการการบันทึกลงเครื่อง -->
-  <section class="card" style="background: #fdf2f8;">
+  <section class="card" style="background:#fdf2f8">
     <h2>💾 บันทึกโปรเจกต์ลงเครื่อง &amp; จัดการไฟล์</h2>
     <div class="toolbar">
-      <button class="btn btn-success" type="button" id="saveProjectBtn">💾 บันทึกโปรเจกต์ลงเครื่อง (.json)</button>
-      <label class="btn btn-outline" style="margin:0; cursor:pointer;">
-        📂 เปิดโปรเจกต์ที่บันทึกไว้ (.json)
-        <input type="file" id="loadProjectInput" accept=".json" style="display:none;" />
-      </label>
-      <button class="btn btn-outline" type="button" id="downloadTxtBtn">📄 ดาวน์โหลดสคริปต์ &amp; Prompt (.txt)</button>
-      <button class="btn btn-outline" type="button" id="resetAllBtn">🗑️ ล้างข้อมูลโปรเจกต์</button>
-      <a class="btn btn-secondary" href="https://app.netlify.com/drop" target="_blank" rel="noopener">🌐 นำไฟล์นี้ไปสร้างลิงก์เว็บฟรี (Netlify Drop) ↗</a>
+      <button class="btn btn-success" type="button" id="saveProjectBtn">💾 บันทึกโปรเจกต์ (.json)</button>
+      <label class="btn btn-outline" style="margin:0;cursor:pointer">📂 เปิดโปรเจกต์ (.json)<input type="file" id="loadProjectInput" accept=".json" style="display:none"/></label>
+      <button class="btn btn-outline" type="button" id="downloadTxtBtn">📄 ดาวน์โหลดสคริปต์ (.txt)</button>
+      <button class="btn btn-outline" type="button" id="resetAllBtn">🗑️ ล้างข้อมูล</button>
+      <a class="btn btn-secondary" href="https://app.netlify.com/drop" target="_blank" rel="noopener">🌐 สร้างลิงก์เว็บฟรี ↗</a>
     </div>
-    <div class="hint" id="saveStatusHint">ระบบบันทึกข้อมูลร่างอัตโนมัติในเบราว์เซอร์ (Auto-save) และสามารถกดบันทึกเป็นไฟล์ลงเครื่องเพื่อเก็บถาวรหรือเปิดข้ามอุปกรณ์ได้</div>
+    <div class="hint" id="saveStatusHint">ระบบบันทึกข้อมูลร่างอัตโนมัติในเบราว์เซอร์ (Auto-save)</div>
   </section>
 
-  <!-- 1. เชื่อมต่อ Gemini API -->
   <section class="card">
-    <h2>🔑 1. เชื่อมต่อ Gemini API (วิเคราะห์ภาพสินค้า 6 มุม &amp; ตรวจความตรงปกอัตโนมัติ)</h2>
+    <h2>🔑 1. เชื่อมต่อ Gemini API (วิเคราะห์สินค้า 6 มุม &amp; ตรวจความตรงปกจากคลิป)</h2>
     <div class="grid-2">
       <div>
-        <label for="apiKeyInput">Gemini API Key (เก็บเฉพาะในเครื่องคุณ — ใช้งานโหมดพื้นฐานฟรีโดยไม่ต้องใส่คีย์ก็ได้)</label>
-        <div style="display:flex; gap:8px;">
-          <input type="password" id="apiKeyInput" placeholder="วาง AIza... (ไม่ใส่ก็ใช้งานโหมดพื้นฐานได้)" />
+        <label for="apiKeyInput">Gemini API Key (ไม่ใส่ก็ใช้งานโหมดพื้นฐานฟรีได้)</label>
+        <div style="display:flex;gap:8px">
+          <input type="password" id="apiKeyInput" placeholder="วาง AIza..." />
           <button class="btn btn-outline" id="saveApiKeyBtn" type="button">บันทึกคีย์</button>
         </div>
-        <div class="hint">รับคีย์ฟรีได้ที่ <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> (รุ่น Flash มี Free Tier ไม่เสียค่าใช้จ่าย)</div>
+        <div class="hint">รับคีย์ฟรีได้ที่ <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a></div>
       </div>
       <div>
         <label>กฎเหล็กของระบบ (บังคับใช้อัตโนมัติ)</label>
-        <div class="hint" style="background:#f9fafb; padding:10px; border-radius:8px; color:#831843;">
+        <div class="hint" style="background:#f9fafb;padding:10px;border-radius:8px;color:#831843">
           • ไม่แสดงราคา โปรโมชั่น โค้ดส่วนลดเองโดยที่ผู้ใช้ไม่แจ้ง<br/>
           • ไม่โฆษณาคำว่า "ตรงปก 100%" ใน Hook และบทพูด<br/>
           • เน้นจุดเด่นและคุณสมบัติจริงเท่านั้น
@@ -360,13 +119,12 @@
     </div>
   </section>
 
-  <!-- 2. ข้อมูลสินค้า & อัปโหลดรูป 6 มุม -->
   <section class="card">
     <h2>🧴 2. ข้อมูลสินค้า &amp; ภาพอ้างอิงสินค้า (สูงสุด 6 มุม)</h2>
     <div class="grid-2">
       <div>
         <label for="productName">ชื่อสินค้า / แบรนด์</label>
-        <input type="text" id="productName" placeholder="เช่น สเปรย์น้ำแร่ล็อกเมคอัพ / เซรั่มวิตามินซี..." />
+        <input type="text" id="productName" placeholder="เช่น สเปรย์น้ำแร่ล็อกเมคอัพ / เซรั่ม..." />
       </div>
       <div>
         <label for="productCategory">หมวดหมู่สินค้า</label>
@@ -381,19 +139,17 @@
         </select>
       </div>
     </div>
-
-    <div class="grid-2" style="margin-top:12px;">
+    <div class="grid-2" style="margin-top:12px">
       <div>
-        <label for="productFeatures">จุดเด่นและคุณสมบัติจริง (ไม่มโนเกินจริง)</label>
-        <textarea id="productFeatures" placeholder="เช่น ละอองละเอียด หัวฉีดนุ่ม ไม่เป็นคราบ เติมความชุ่มชื้นระหว่างวัน เหมาะกับผิวแพ้ง่าย..."></textarea>
+        <label for="productFeatures">จุดเด่นและคุณสมบัติจริง</label>
+        <textarea id="productFeatures" placeholder="เช่น ละอองละเอียด หัวฉีดนุ่ม ไม่เป็นคราบ ชุ่มชื้น..."></textarea>
       </div>
       <div>
-        <label for="userPricePromo">ราคา / โปรโมชั่น (เว้นว่างไว้หากไม่ต้องการใส่ — ระบบจะไม่แต่งเติมเอง)</label>
-        <textarea id="userPricePromo" placeholder="เว้นว่างได้ (ถ้าไม่กรอก ระบบจะไม่ใส่ราคาหรือโปรโมชั่นลงในบทพูดเด็ดขาด)"></textarea>
+        <label for="userPricePromo">ราคา / โปรโมชั่น (เว้นว่างไว้หากไม่ต้องการใส่)</label>
+        <textarea id="userPricePromo" placeholder="เว้นว่างได้ — ระบบจะไม่แต่งเติมเอง"></textarea>
       </div>
     </div>
-
-    <div class="grid-3" style="margin-top:12px;">
+    <div class="grid-3" style="margin-top:12px">
       <div>
         <label for="voiceTone">โทนเสียง &amp; สไตล์ ASMR</label>
         <select id="voiceTone">
@@ -419,273 +175,121 @@
         </select>
       </div>
     </div>
-
-    <div style="margin-top:14px;">
-      <label>อัปโหลดรูปสินค้า (สูงสุด 6 มุม: หน้า, หลัง, ข้าง, ฝา/หัวปั๊ม, เนื้อสัมผัส, ฉลาก)</label>
+    <div style="margin-top:14px">
+      <label>อัปโหลดรูปสินค้าจริง (สูงสุด 6 มุม เพื่อใช้อ้างอิงและตรวจความตรงปก)</label>
       <div class="toolbar">
-        <label class="btn btn-outline btn-sm" style="margin:0; cursor:pointer;">
-          📷 เลือกรูปสินค้า (เลือกได้หลายรูป)
-          <input type="file" id="productImagesInput" accept="image/*" multiple style="display:none;" />
-        </label>
+        <label class="btn btn-outline btn-sm" style="margin:0;cursor:pointer">📷 เลือกรูปสินค้า<input type="file" id="productImagesInput" accept="image/*" multiple style="display:none"/></label>
         <button class="btn btn-secondary btn-sm" type="button" id="analyzeProductBtn">✨ ให้ Gemini วิเคราะห์รูปสินค้า 6 มุม</button>
         <span class="hint" id="productImgCountHint">0 / 6 รูป</span>
       </div>
       <div class="upload-grid" id="productUploadGrid"></div>
-      <div id="productAnalysisResult" class="status-banner status-pass hidden" style="font-weight:500;"></div>
+      <div id="productAnalysisResult" class="status-banner status-pass hidden" style="font-weight:500"></div>
     </div>
   </section>
 
-  <!-- 3. เลือกพรีเซนเตอร์ (หญิง 23/35 ปี · ชาย 23/35 ปี เปิดหน้าชัด หน้าใส ผิวขาว ผิวดี) -->
   <section class="card">
     <h2>👩🏻👨🏻 3. พรีเซนเตอร์คนจริง (หญิง 23/35 ปี · ชาย 23/35 ปี เปิดหน้าชัด หน้าใสผิวขาว)</h2>
-    <div class="toolbar" style="margin-bottom:10px;">
-      <label class="btn btn-outline btn-sm" style="margin:0; cursor:pointer;">
-        ➕ อัปโหลดรูปพรีเซนเตอร์ของคุณเอง
-        <input type="file" id="customPresenterInput" accept="image/*" style="display:none;" />
-      </label>
-      <span class="hint">เลือกพรีเซนเตอร์ 1 คน เพื่อล็อกใบหน้าเปิดชัด ผิวขาวใส และอายุให้ตรงกันทุกฉาก</span>
+    <div class="toolbar" style="margin-bottom:10px">
+      <label class="btn btn-outline btn-sm" style="margin:0;cursor:pointer">➕ เพิ่มพรีเซนเตอร์ใหม่<input type="file" id="customPresenterInput" accept="image/*" style="display:none"/></label>
+      <button type="button" class="btn btn-secondary btn-sm" id="copyPresenterPromptBtn">✨ คัดลอก Prompt สร้างรูปพรีเซนเตอร์ใน Gemini</button>
+      <button type="button" class="btn btn-outline btn-sm" id="resetPresentersBtn">🔄 คืนค่ารูปเริ่มต้น</button>
     </div>
+    <div class="hint" style="margin-bottom:10px">กดปุ่ม <b>"📷 เปลี่ยนรูป"</b> บนการ์ดแต่ละคนเพื่อใส่รูปที่คุณชอบจากมือถือได้ทันทีครับ</div>
+    <input type="file" id="replacePresenterInput" accept="image/*" style="display:none" />
     <div class="grid-4" id="presenterGrid"></div>
   </section>
 
-  <!-- 4. เลือกรูปแบบการสาธิต 18 แบบ -->
   <section class="card">
     <h2>🎬 4. รูปแบบการสาธิต <span class="badge badge-pink" id="demoCountBadge">ครบ 18 รูปแบบ</span></h2>
     <div class="toolbar">
       <button type="button" class="btn btn-outline btn-sm btn-filter active" data-filter="all">ทั้งหมด (18 แบบ)</button>
-      <button type="button" class="btn btn-outline btn-sm btn-filter" data-filter="spray">💨 เฉพาะแบบสเปรย์ฉีดหน้า (3 สไตล์)</button>
-      <button type="button" class="btn btn-outline btn-sm btn-filter" data-filter="skincare">💧 เซรั่ม / ครีม / กันแดด (8 แบบ)</button>
-      <button type="button" class="btn btn-outline btn-sm btn-filter" data-filter="makeup_test">💄 เมคอัพ / มาสก์ / ทดสอบผิว (7 แบบ)</button>
+      <button type="button" class="btn btn-outline btn-sm btn-filter" data-filter="spray">💨 แบบสเปรย์ฉีดหน้า (3 สไตล์)</button>
+      <button type="button" class="btn btn-outline btn-sm btn-filter" data-filter="skincare">💧 เซรั่ม/ครีม/กันแดด (8 แบบ)</button>
+      <button type="button" class="btn btn-outline btn-sm btn-filter" data-filter="makeup_test">💄 เมคอัพ/มาสก์/ทดสอบ (7 แบบ)</button>
     </div>
-    <div class="hint" style="margin-top:6px;">เลือกคลิก 1 รูปแบบ (แบบสเปรย์ฉีดหน้า 3 สไตล์อยู่ด้านบนสุด)</div>
     <div class="demo-grid" id="demoGrid"></div>
   </section>
 
-  <!-- 5. สร้างสตอรี่บอร์ด, Prompt & บทพูด -->
   <section class="card">
     <h2>✨ 5. สร้างสตอรี่บอร์ด, Prompt ต่อเนื่อง &amp; บทพูด ASMR</h2>
-    <div class="toolbar" style="margin-bottom:14px;">
-      <button type="button" class="btn btn-primary" id="generateBtn">🚀 สร้างสตอรี่บอร์ด &amp; Prompt (โหมดพื้นฐานฟรี)</button>
-      <button type="button" class="btn btn-secondary" id="generateAiBtn">🤖 สร้างด้วย Gemini AI (ละเอียดเฉพาะสินค้านี้)</button>
-      <span class="hint" id="genStatusHint">พร้อมสร้างตามรูปแบบการสาธิตที่เลือก (ฉากละ 10 วินาที)</span>
+    <div class="toolbar" style="margin-bottom:14px">
+      <button type="button" class="btn btn-primary" id="generateBtn">🚀 สร้างสตอรี่บอร์ด (โหมดพื้นฐานฟรี)</button>
+      <button type="button" class="btn btn-secondary" id="generateAiBtn">🤖 สร้างด้วย Gemini AI</button>
+      <span class="hint" id="genStatusHint">พร้อมสร้าง (ฉากละ 10 วินาที)</span>
     </div>
-
     <div id="outputSection" class="hidden">
       <div class="output-box">
         <div class="output-header">
-          <div><span class="badge badge-pink">🎙️ Hook &amp; บทพูด ASMR (ปลอดคำต้องห้าม &amp; ไม่แต่งราคาเอง)</span></div>
+          <span class="badge badge-pink">🎙️ Hook &amp; บทพูด ASMR</span>
           <button type="button" class="btn btn-outline btn-sm" onclick="copyById('scriptOutputText')">📋 คัดลอกบทพูด</button>
         </div>
-        <div id="scriptOutputText" style="white-space:pre-wrap; font-size:0.93rem;"></div>
+        <div id="scriptOutputText" style="white-space:pre-wrap;font-size:.92rem"></div>
       </div>
-
       <div class="output-box">
         <div class="output-header">
-          <div><span class="badge badge-purple">📌 Master Character &amp; Product Prompt (วางเริ่มต้นใน Gemini / AI Video)</span></div>
+          <span class="badge badge-purple">📌 Master Character &amp; Product Prompt</span>
           <button type="button" class="btn btn-outline btn-sm" onclick="copyById('masterPromptText')">📋 คัดลอก Master Prompt</button>
         </div>
         <div class="prompt-text" id="masterPromptText"></div>
       </div>
-
-      <h3 style="margin:14px 0 8px; font-size:1rem; color:var(--primary-dark);">🎞️ สตอรี่บอร์ดรายฉาก (ฉากละ 10 วินาที ต่อเนื่อง)</h3>
+      <h3 style="margin:12px 0 8px;font-size:1rem;color:var(--primary-dark)">🎞️ สตอรี่บอร์ดรายฉาก (ฉากละ 10 วินาที)</h3>
       <div id="scenesContainer"></div>
     </div>
   </section>
 
-  <!-- 6. ตรวจความตรงปก -->
   <section class="card">
-    <h2>🔍 6. ตรวจความตรงปก &amp; เช็กกฎเหล็กก่อนโพสต์</h2>
-    <p class="hint" style="margin-top:0;">อัปโหลดภาพหรือเฟรมที่ได้จากการเจน AI เพื่อตรวจสอบความตรงปกของขวด/ฉลาก/เนื้อสัมผัส และตรวจสคริปต์ก่อนลงคลิป</p>
+    <h2>🔍 6. นำเข้าคลิปวิดีโอ / ภาพ เพื่อตรวจความตรงปกของสินค้า &amp; กฎเหล็ก</h2>
+    <p class="hint" style="margin-top:0">เลือกคลิปวิดีโอที่เจนได้ ระบบจะดึงเฟรมสำคัญ 6 จุดจากคลิปให้อัตโนมัติ (หรือกดหยุดคลิปแล้วแคปเฟรมเพิ่มเองได้) เพื่อเทียบความตรงปกกับรูปสินค้าจริงในข้อ 2</p>
     <div class="toolbar">
-      <label class="btn btn-outline btn-sm" style="margin:0; cursor:pointer;">
-        🖼️ อัปโหลดภาพผลลัพธ์ที่เจนได้ (สูงสุด 6 ภาพ)
-        <input type="file" id="frameImagesInput" accept="image/*" multiple style="display:none;" />
+      <label class="btn btn-primary btn-sm" style="margin:0;cursor:pointer">
+        🎬 นำเข้าคลิปวิดีโอ (.mp4 / .mov)
+        <input type="file" id="videoFileInput" accept="video/*" style="display:none" />
       </label>
-      <button type="button" class="btn btn-success btn-sm" id="checkConsistencyBtn">✅ ตรวจความตรงปก &amp; กฎเหล็กทันที</button>
+      <label class="btn btn-outline btn-sm" style="margin:0;cursor:pointer">
+        🖼️ หรือเพิ่มภาพนิ่ง (สูงสุด 6 ภาพ)
+        <input type="file" id="frameImagesInput" accept="image/*" multiple style="display:none" />
+      </label>
+      <button type="button" class="btn btn-outline btn-sm hidden" id="clearFramesBtn">🧹 ล้างเฟรมทั้งหมด</button>
+      <button type="button" class="btn btn-success btn-sm" id="checkConsistencyBtn">✅ ตรวจความตรงปกจากคลิป &amp; กฎเหล็กทันที</button>
     </div>
+
+    <div id="videoPreviewWrap" class="video-preview-wrap hidden">
+      <video id="clipPreviewVideo" controls playsinline muted preload="auto"></video>
+      <div class="toolbar" style="justify-content:center;margin-top:8px">
+        <button type="button" class="btn btn-secondary btn-sm" id="captureVideoFrameBtn">📸 แคปเฟรมณจุดที่หยุดนี้เพิ่มเข้าตรวจ</button>
+        <span class="hint" id="videoExtractStatus" style="color:#f9fafb;margin:0"></span>
+      </div>
+    </div>
+
     <div class="frame-grid" id="frameGrid"></div>
     <div id="consistencyResult"></div>
   </section>
 </main>
 
 <script>
-// =========================
-// 1. ข้อมูลรูปแบบการสาธิตครบ 18 แบบ (แบบสเปรย์ 3 สไตล์อยู่บนสุด)
-// =========================
 const DEMO_MODES = [
-  {
-    id: 1,
-    category: "spray",
-    badge: "สเปรย์สไตล์ที่ 1",
-    title: "แบบที่ 1: ฉีดสเปรย์ละอองละเอียดใส่หน้า",
-    desc: "หลับตาพริ้ม เงยหน้า 15° ถือขวดห่างใบหน้า 15–20 ซม. กดฉีดละอองนุ่มสม่ำเสมอ",
-    promptAction: "Presenter gently tilts head up 15 degrees, eyes softly closed, holding the spray bottle 15-20cm from face, pressing nozzle to release ultra-fine mist onto skin with a serene ASMR expression.",
-    asmrCue: "เสียงหัวสเปรย์กดฉีด 'ฟู่...' นุ่มนวล ละอองละเอียดเย็นสบายผิว"
-  },
-  {
-    id: 2,
-    category: "spray",
-    badge: "สเปรย์สไตล์ที่ 2",
-    title: "แบบที่ 2: ฉีดสเปรย์ย้อนแสงโชว์ละอองฟุ้ง",
-    desc: "จัดแสง Rim Light ด้านข้าง/หลัง ฉีดแนวตัว X และ T เห็นละอองละเอียดฟุ้งชัดเจน",
-    promptAction: "Backlit rim-lighting studio shot, presenter sprays in an X and T motion in front of face, illuminating thousands of micro-mist droplets floating cleanly in the air without dripping.",
-    asmrCue: "เสียงละอองสเปรย์กระจายตัวชัดใสในแสงธรรมชาติ"
-  },
-  {
-    id: 3,
-    category: "spray",
-    badge: "สเปรย์สไตล์ที่ 3",
-    title: "แบบที่ 3: ฉีดสเปรย์ล็อกเมคอัพฉ่ำวาว",
-    desc: "ฉีดเฉียงขึ้นระดับคาง ให้ละอองตกกระทบผิวหน้าอย่างเบามือ โชว์ผิวโกลว์ฉ่ำวาว",
-    promptAction: "Close-up beauty shot after makeup, holding bottle slightly below chin level angled upward, mist settling evenly to create a dewy luminous finish without smudging makeup.",
-    asmrCue: "เสียงฉีดเบาๆ ต่อเนื่อง 2-3 จังหวะ โชว์ผิวดูฉ่ำโกลว์"
-  },
-  {
-    id: 4,
-    category: "skincare",
-    badge: "แบบที่ 4",
-    title: "แบบที่ 4: ดรอปเปอร์หยดเซรั่มลงแก้ม",
-    desc: "บีบหลอดหยดใกล้แก้ม หยดเนื้อเซรั่มใส/เข้มข้นทีละหยดให้ไหลลงผิวช้าๆ",
-    promptAction: "Extreme macro close-up of glass dropper releasing one glistening drop of serum onto presenter's smooth cheek, slow motion glide before gentle tapping.",
-    asmrCue: "เสียงหมุนเกลียวฝาขวด 'กริ๊ก' และเสียงหยดเซรั่มนุ่มๆ"
-  },
-  {
-    id: 5,
-    category: "skincare",
-    badge: "แบบที่ 5",
-    title: "แบบที่ 5: ปาดเนื้อครีมโชว์บนหลังมือ",
-    desc: "บีบ/ปาดเนื้อครีมบนหลังมือ เกลี่ยครึ่งหนึ่งโชว์ความเข้มข้นและอีกครึ่งโชว์ความซึมไว",
-    promptAction: "Macro top-down shot of product cream swatched on back of hand, finger smoothly gliding to show rich silky texture turning watery and absorbing cleanly.",
-    asmrCue: "เสียงเปิดกระปุกและเสียงปาดเนื้อครีมเนียนละมุน"
-  },
-  {
-    id: 6,
-    category: "skincare",
-    badge: "แบบที่ 6",
-    title: "แบบที่ 6: กดหัวปั๊มโชว์เนื้อเจล/โลชั่น",
-    desc: "กดหัวปั๊ม 1-2 ครั้งบนปลายนิ้ว โชว์กลไกหัวปั๊มและเนื้อผลิตภัณฑ์เด้งใส",
-    promptAction: "Clean studio close-up pressing the pump dispenser smoothly, clear gel-lotion ribbon curling onto clean fingertips with crisp tactile ASMR focus.",
-    asmrCue: "เสียงกดหัวปั๊ม 'ปึ๊ด' ชัดเจน น่าใช้"
-  },
-  {
-    id: 7,
-    category: "skincare",
-    badge: "แบบที่ 7",
-    title: "แบบที่ 7: ตีฟองโฟมล้างหน้าหนานุ่ม",
-    desc: "บีบโฟมใส่มือหรือตาข่ายตีฟอง นวดวนจนได้วิปโฟมหนานุ่มฟูละเอียดก่อนแตะแก้ม",
-    promptAction: "Hands whipping facial cleanser into thick marshmallow-like micro-foam bubbles, pressing fluffy foam gently onto cheek.",
-    asmrCue: "เสียงฟองอากาศนุ่มๆ 'ฟู่ฟ่า' ขณะตีวิปโฟม"
-  },
-  {
-    id: 8,
-    category: "skincare",
-    badge: "แบบที่ 8",
-    title: "แบบที่ 8: ตักเนื้อบาล์มด้วยไม้พาย",
-    desc: "ใช้ไม้พายตักเนื้อบาล์ม/สลีปปิ้งมาสก์จากกระปุก โชว์เนื้อละลายเมื่อสัมผัสผิวอุ่น",
-    promptAction: "Small cosmetic spatula scooping smooth balm/sleeping mask from jar, melting seamlessly upon touching warm skin.",
-    asmrCue: "เสียงไม้พายตักเนื้อบาล์มแน่นๆ นุ่มนวล"
-  },
-  {
-    id: 9,
-    category: "skincare",
-    badge: "แบบที่ 9",
-    title: "แบบที่ 9: ปาดกันแดด 2 ข้อนิ้วซึมไว",
-    desc: "บีบกันแดดเรียงบน 2 ข้อนิ้ว แล้วทาลงหน้าโชว์ว่าเกลี่ยง่าย ไม่วอก ไม่เป็นคราบ",
-    promptAction: "Presenter showing two-finger length sunscreen measure, applying evenly across face until invisible natural skin finish with zero white cast.",
-    asmrCue: "เสียงบีบหลอดกันแดดเบาๆ และเสียงลูบเกลี่ยผิว"
-  },
-  {
-    id: 10,
-    category: "makeup_test",
-    badge: "แบบที่ 10",
-    title: "แบบที่ 10: ทาลิป/กลอสโชว์ความฉ่ำ",
-    desc: "หมุนเปิดแปรงลิป ปาดลงริมฝีปากช้าๆ โชว์เม็ดสีและความฉ่ำวาวสะท้อนแสง",
-    promptAction: "Macro beauty shot of lip applicator gliding smoothly over lips, showing rich pigment and glossy mirror-like shine.",
-    asmrCue: "เสียงดึงแปรงลิปออกจากขวด 'ป๊อก' แบบ ASMR"
-  },
-  {
-    id: 11,
-    category: "makeup_test",
-    badge: "แบบที่ 11",
-    title: "แบบที่ 11: แกะกล่อง Unbox & เคาะขวด ASMR",
-    desc: "กรีดซีล เปิดกล่อง หยิบขวดมาแตะปลายเล็บเบาๆ โชว์ดีไซน์และวัสดุแพ็กเกจจิ้ง",
-    promptAction: "Aesthetic unboxing on clean pastel table, gentle nail tapping on bottle packaging, smooth lid opening revealing genuine product label.",
-    asmrCue: "เสียงแตะขวด 'ต๊อก ต๊อก' และเปิดกล่องคมชัด"
-  },
-  {
-    id: 12,
-    category: "makeup_test",
-    badge: "แบบที่ 12",
-    title: "แบบที่ 12: ตบคุชชั่น/แป้งพัฟเนียนกริบ",
-    desc: "กดพัฟลงตลับคุชชั่นแล้วแทปเบาๆ บนแก้ม โชว์ผิวเนียนละเอียดในแสงธรรมชาติ",
-    promptAction: "Presenter tapping cushion puff gently onto cheek in rhythmic motions, revealing smooth blurred pores and radiant natural coverage.",
-    asmrCue: "เสียงเปิดตลับ 'คลิก' และเสียงพัฟแตะแก้ม 'แทป แทป'"
-  },
-  {
-    id: 13,
-    category: "skincare",
-    badge: "แบบที่ 13",
-    title: "แบบที่ 13: สำลีเช็ดโทนเนอร์/คลีนซิ่ง",
-    desc: "เทผลิตภัณฑ์ลงสำลีแผ่นนุ่ม แล้วเช็ดเบาๆ ตามแนวรูขุมขน โชว์ผิวสะอาดสดชื่น",
-    promptAction: "Liquid poured onto soft cotton pad, gently wiping across cheek and jawline leaving fresh hydrated clean skin.",
-    asmrCue: "เสียงเทน้ำใสลงสำลีและเสียงเช็ดผิวนุ่มๆ"
-  },
-  {
-    id: 14,
-    category: "makeup_test",
-    badge: "แบบที่ 14",
-    title: "แบบที่ 14: แปะมาสก์หน้า/อายแพตช์ฉ่ำๆ",
-    desc: "ฉีกซองมาสก์ วางแผ่นมาสก์แนบสนิทกับรูปหน้า ลูบไล่ฟองอากาศให้ฉ่ำเอสเซนส์",
-    promptAction: "Opening essence-rich mask pouch, smoothing thin hydrogel sheet mask onto face seamlessly while relaxing.",
-    asmrCue: "เสียงฉีกซองฟอยล์และเสียงเอสเซนส์ฉ่ำๆ"
-  },
-  {
-    id: 15,
-    category: "skincare",
-    badge: "แบบที่ 15",
-    title: "แบบที่ 15: นวดกัวซา/โรลเลอร์คู่กับออยล์",
-    desc: "ลงออยล์หรือเซรั่มให้ผิวลื่น แล้วใช้หินกัวซา/โรลเลอร์นวดยกกระชับกรอบหน้า",
-    promptAction: "Applying nourishing facial oil then gliding smooth rose quartz gua sha upward along jawline and cheekbones.",
-    asmrCue: "เสียงลูบออยล์นุ่มลื่นและบรรยากาศผ่อนคลาย"
-  },
-  {
-    id: 16,
-    category: "makeup_test",
-    badge: "แบบที่ 16",
-    title: "แบบที่ 16: ทดสอบกันน้ำด้วยละอองน้ำ",
-    desc: "ทาสินค้าบนผิว แล้วฉีดน้ำสะอาดลงไป โชว์หยดน้ำเกาะกลมไม่ไหลเป็นคราบ",
-    promptAction: "Close-up skin swatch sprayed with clean water droplets, showing water beading cleanly on top without dissolving or streaking product.",
-    asmrCue: "เสียงฉีดน้ำทดสอบและภาพหยดน้ำเกาะผิวชัดเจน"
-  },
-  {
-    id: 17,
-    category: "makeup_test",
-    badge: "แบบที่ 17",
-    title: "แบบที่ 17: ทดสอบความเบาสบาย ไม่เหนอะหนะ",
-    desc: "หลังทาผลิตภัณฑ์ แตะกระดาษซับมัน/ทิชชู่บางเบาๆ แล้วยกออก โชว์ว่าไม่ติดผิว",
-    promptAction: "Pressing lightweight tissue paper gently against freshly moisturized cheek and pulling away cleanly to prove zero stickiness.",
-    asmrCue: "เสียงกระดาษบางๆ สัมผัสผิวเบาๆ แห้งสบาย"
-  },
-  {
-    id: 18,
-    category: "makeup_test",
-    badge: "แบบที่ 18",
-    title: "แบบที่ 18: โชว์ผิวโกลว์หน้ากระจก (Glass Skin)",
-    desc: "หลังลงสกินแคร์ครบขั้นตอน หันข้างรับแสงหน้าต่าง โชว์ผิวอิ่มน้ำเล่นแสงธรรมชาติ",
-    promptAction: "Final radiant glass-skin close-up turning slightly toward soft window daylight, holding the real product beside face with natural smile.",
-    asmrCue: "ดนตรี ASMR เบาๆ ปิดท้ายด้วยภาพผิวอิ่มน้ำชัดใส"
-  }
+  {id:1,category:"spray",badge:"สเปรย์สไตล์ที่ 1",title:"แบบที่ 1: ฉีดสเปรย์ละอองละเอียดใส่หน้า",desc:"หลับตาพริ้ม เงยหน้า 15° ถือขวดห่าง 15–20 ซม. กดฉีดละอองนุ่มสม่ำเสมอ",promptAction:"Presenter tilts head up 15 degrees, eyes softly closed, holding spray bottle 15-20cm from face, pressing nozzle to release ultra-fine mist onto skin.",asmrCue:"เสียงกดสเปรย์ 'ฟู่...' นุ่มนวล ละอองละเอียด"},
+  {id:2,category:"spray",badge:"สเปรย์สไตล์ที่ 2",title:"แบบที่ 2: ฉีดสเปรย์ย้อนแสงโชว์ละอองฟุ้ง",desc:"จัดแสง Rim Light ฉีดแนวตัว X และ T เห็นละอองละเอียดฟุ้งชัดเจน",promptAction:"Backlit rim-lighting studio shot, presenter sprays in X and T motion in front of face, illuminating thousands of fine micro-mist droplets clearly.",asmrCue:"เสียงละอองสเปรย์ฟุ้งกระจายชัดใส"},
+  {id:3,category:"spray",badge:"สเปรย์สไตล์ที่ 3",title:"แบบที่ 3: ฉีดสเปรย์ล็อกเมคอัพฉ่ำวาว",desc:"ฉีดเฉียงขึ้นระดับคาง ให้ละอองตกกระทบผิวหน้า โชว์ผิวโกลว์ฉ่ำวาว",promptAction:"Close-up beauty shot after makeup, bottle below chin angled upward, mist settling evenly for a dewy luminous finish without smudging.",asmrCue:"เสียงฉีดเบาๆ 2-3 จังหวะ โชว์ผิวฉ่ำโกลว์"},
+  {id:4,category:"skincare",badge:"แบบที่ 4",title:"แบบที่ 4: ดรอปเปอร์หยดเซรั่มลงแก้ม",desc:"บีบหลอดหยดใกล้แก้ม หยดเนื้อเซรั่มลงผิวช้าๆ",promptAction:"Extreme macro close-up of glass dropper releasing a glistening serum drop onto presenter's smooth cheek.",asmrCue:"เสียงหมุนฝาและหยดเซรั่มนุ่มๆ"},
+  {id:5,category:"skincare",badge:"แบบที่ 5",title:"แบบที่ 5: ปาดเนื้อครีมโชว์บนหลังมือ",desc:"ปาดเนื้อครีมบนหลังมือ เกลี่ยโชว์ความเข้มข้นและซึมไว",promptAction:"Macro top-down shot of cream swatched on back of hand, finger gliding to show silky absorbing texture.",asmrCue:"เสียงเปิดกระปุกและปาดเนื้อครีมละมุน"},
+  {id:6,category:"skincare",badge:"แบบที่ 6",title:"แบบที่ 6: กดหัวปั๊มโชว์เนื้อเจล/โลชั่น",desc:"กดหัวปั๊มบนปลายนิ้ว โชว์เนื้อผลิตภัณฑ์เด้งใส",promptAction:"Close-up pressing pump dispenser smoothly, clear gel-lotion curling onto clean fingertips.",asmrCue:"เสียงกดหัวปั๊ม 'ปึ๊ด' ชัดเจน"},
+  {id:7,category:"skincare",badge:"แบบที่ 7",title:"แบบที่ 7: ตีฟองโฟมล้างหน้าหนานุ่ม",desc:"ตีฟองโฟมจนหนานุ่มฟูละเอียดก่อนแตะแก้ม",promptAction:"Hands whipping cleanser into thick marshmallow micro-foam, pressing fluffy foam onto cheek.",asmrCue:"เสียงตีวิปโฟมนุ่มฟู"},
+  {id:8,category:"skincare",badge:"แบบที่ 8",title:"แบบที่ 8: ตักเนื้อบาล์มด้วยไม้พาย",desc:"ใช้ไม้พายตักเนื้อบาล์ม/มาสก์จากกระปุก โชว์เนื้อละลาย",promptAction:"Cosmetic spatula scooping smooth balm from jar, melting seamlessly on warm skin.",asmrCue:"เสียงไม้พายตักเนื้อบาล์มนุ่มๆ"},
+  {id:9,category:"skincare",badge:"แบบที่ 9",title:"แบบที่ 9: ปาดกันแดด 2 ข้อนิ้วซึมไว",desc:"บีบกันแดด 2 ข้อนิ้ว ทาโชว์เกลี่ยง่าย ไม่วอกไม่เป็นคราบ",promptAction:"Presenter showing two-finger sunscreen measure, applying smoothly until invisible zero-white-cast finish.",asmrCue:"เสียงบีบหลอดและลูบเกลี่ยผิว"},
+  {id:10,category:"makeup_test",badge:"แบบที่ 10",title:"แบบที่ 10: ทาลิป/กลอสโชว์ความฉ่ำ",desc:"ปาดลิปลงริมฝีปากช้าๆ โชว์เม็ดสีและความฉ่ำวาว",promptAction:"Macro beauty shot of lip applicator gliding smoothly over lips showing glossy mirror shine.",asmrCue:"เสียงดึงแปรงลิป 'ป๊อก' ASMR"},
+  {id:11,category:"makeup_test",badge:"แบบที่ 11",title:"แบบที่ 11: แกะกล่อง Unbox & เคาะขวด",desc:"กรีดซีลเปิดกล่อง แตะปลายเล็บเคาะขวดเบาๆ โชว์ดีไซน์",promptAction:"Aesthetic unboxing on pastel table, gentle nail tapping on bottle packaging showing genuine label.",asmrCue:"เสียงแตะขวด 'ต๊อก ต๊อก'"},
+  {id:12,category:"makeup_test",badge:"แบบที่ 12",title:"แบบที่ 12: ตบคุชชั่น/แป้งพัฟเนียนกริบ",desc:"กดพัฟแล้วแทปเบาๆ บนแก้ม โชว์ผิวเนียนละเอียด",promptAction:"Presenter tapping cushion puff gently onto cheek revealing smooth blurred pores and radiant finish.",asmrCue:"เสียงเปิดตลับ 'คลิก' และพัฟแตะแก้ม"},
+  {id:13,category:"skincare",badge:"แบบที่ 13",title:"แบบที่ 13: สำลีเช็ดโทนเนอร์/คลีนซิ่ง",desc:"เทลงสำลีแผ่นนุ่ม เช็ดเบาๆ โชว์ผิวสะอาดสดชื่น",promptAction:"Liquid poured onto soft cotton pad, gently wiping cheek leaving fresh hydrated clean skin.",asmrCue:"เสียงเทน้ำลงสำลีและเช็ดผิวนุ่มๆ"},
+  {id:14,category:"makeup_test",badge:"แบบที่ 14",title:"แบบที่ 14: แปะมาสก์หน้า/อายแพตช์ฉ่ำๆ",desc:"ฉีกซอง วางแผ่นมาสก์แนบสนิทผิวหน้าฉ่ำเอสเซนส์",promptAction:"Opening essence-rich mask pouch, smoothing thin hydrogel sheet mask onto face seamlessly.",asmrCue:"เสียงฉีกซองฟอยล์และเอสเซนส์ฉ่ำ"},
+  {id:15,category:"skincare",badge:"แบบที่ 15",title:"แบบที่ 15: นวดกัวซา/โรลเลอร์คู่กับออยล์",desc:"ลงออยล์ให้ผิวลื่น แล้วนวดกัวซายกกระชับกรอบหน้า",promptAction:"Applying facial oil then gliding rose quartz gua sha upward along jawline and cheekbones.",asmrCue:"เสียงลูบออยล์นุ่มลื่นผ่อนคลาย"},
+  {id:16,category:"makeup_test",badge:"แบบที่ 16",title:"แบบที่ 16: ทดสอบกันน้ำด้วยละอองน้ำ",desc:"ทาสินค้าบนผิวแล้วฉีดน้ำสะอาด โชว์หยดน้ำเกาะกลมไม่ไหล",promptAction:"Close-up skin swatch sprayed with water droplets, beading cleanly without streaking product.",asmrCue:"เสียงฉีดน้ำทดสอบกันน้ำ"},
+  {id:17,category:"makeup_test",badge:"แบบที่ 17",title:"แบบที่ 17: ทดสอบความเบาสบาย ไม่เหนอะหนะ",desc:"หลังทา แตะกระดาษซับมัน/ทิชชู่เบาๆ แล้วยกออก โชว์ไม่ติดผิว",promptAction:"Pressing thin tissue gently onto moisturized cheek and lifting cleanly proving zero stickiness.",asmrCue:"เสียงกระดาษบางๆ สัมผัสผิวแห้งสบาย"},
+  {id:18,category:"makeup_test",badge:"แบบที่ 18",title:"แบบที่ 18: โชว์ผิวโกลว์หน้ากระจก",desc:"หลังลงสกินแคร์ หันข้างรับแสงหน้าต่าง โชว์ผิวอิ่มน้ำ",promptAction:"Radiant glass-skin close-up turning toward soft window daylight holding real product beside face.",asmrCue:"ดนตรี ASMR เบาๆ ปิดท้ายผิวอิ่มน้ำ"}
 ];
 
-// =========================
-// 2. พรีเซนเตอร์คนจริง: หญิง 23/35 ปี + ชาย 23/35 ปี (เปิดหน้าชัด หน้าใส ผิวขาว ผิวดี)
-// =========================
 function makeFallbackSvg(label) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320">
-    <rect width="240" height="320" fill="#fdf2f8"/>
-    <text x="120" y="160" font-size="14" font-family="sans-serif" fill="#be185d" text-anchor="middle">${label}</text>
-  </svg>`;
-  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  return "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320"><rect width="240" height="320" fill="#fdf2f8"/><text x="120" y="150" font-size="13" font-family="sans-serif" fill="#be185d" text-anchor="middle" font-weight="bold">${label}</text><text x="120" y="175" font-size="11" font-family="sans-serif" fill="#6b7280" text-anchor="middle">แตะปุ่ม "เปลี่ยนรูป" ด้านล่าง</text></svg>`);
 }
 
 const DEFAULT_PRESENTERS = [
@@ -693,35 +297,32 @@ const DEFAULT_PRESENTERS = [
     id: "p1",
     genderBadge: "👩🏻 หญิง · อายุ 23 ปี",
     name: "น้องแพรว (23 ปี · สวยใสผิวขาวออร่า)",
-    desc: "Real attractive young Asian woman, exact age 23 years old, open clear face facing camera directly, fair porcelain glowing glass skin, smooth blemish-free bright complexion, natural clean beauty makeup, pastel top, bright soft beauty studio lighting",
-    img: "https://images.unsplash.com/photo-1695757002354-8bca71d087c7?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    desc: "Real attractive young Thai/East Asian woman, exact age 23 years old, open clear face facing camera directly, fair porcelain glowing glass skin, smooth blemish-free bright complexion, natural clean beauty makeup, bright soft skincare studio lighting",
+    img: "https://images.unsplash.com/photo-1695757002354-8bca71d087c7?w=600&auto=format&fit=crop&q=80"
   },
   {
     id: "p2",
     genderBadge: "👩🏻 หญิง · อายุ 35 ปี",
     name: "คุณเอวา (35 ปี · สวยดูดีผิวขาวใส)",
-    desc: "Real attractive Asian woman, exact age 35 years old, graceful youthful elegance, open clear face facing camera directly, fair bright luminous smooth skin, healthy radiant glass skin, long dark hair, crisp white shirt, bright clean beauty studio lighting",
-    img: "https://images.unsplash.com/photo-1758600587391-338f5376b7ed?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    desc: "Real attractive Asian woman, exact age 35 years old, graceful youthful elegance, open clear face facing camera directly, fair bright luminous smooth glass skin, healthy radiant complexion, long dark hair, crisp white shirt, bright beauty studio lighting",
+    img: "https://images.unsplash.com/photo-1758600587391-338f5376b7ed?w=600&auto=format&fit=crop&q=80"
   },
   {
     id: "p3",
     genderBadge: "👨🏻 ชาย · อายุ 23 ปี",
     name: "คุณภัทร (23 ปี · หล่อหน้าใสผิวขาวคลีน)",
     desc: "Real handsome young Asian man, exact age 23 years old, open clear face facing camera directly, fair bright clear glass skin, smooth blemish-free complexion, clean-shaven, neat dark hair, crisp white shirt, bright clean skincare studio lighting",
-    img: "https://images.unsplash.com/photo-1681097561932-36d0df02b379?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    img: "https://images.unsplash.com/photo-1681097561932-36d0df02b379?w=600&auto=format&fit=crop&q=80"
   },
   {
     id: "p4",
     genderBadge: "👨🏻 ชาย · อายุ 35 ปี",
-    name: "คุณธันวา (35 ปี · หล่อภูมิฐานผิวขาวดี)",
-    desc: "Real handsome Asian man, exact age 35 years old, open clear face facing camera directly, fair bright clear healthy skin, smooth well-cared-for complexion, clean-shaven, neat modern hairstyle, smart clean attire, bright skincare studio lighting",
-    img: "https://images.unsplash.com/photo-1752118464953-74e7ddb9c74f?fm=jpg&q=60&w=800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    name: "คุณธันวา (35 ปี · หล่อดูดีหน้าใสผิวขาว)",
+    desc: "Real handsome Asian man, exact age 35 years old, open clear face facing camera directly, fair bright clear healthy skin, smooth well-cared-for glass skin, clean-shaven, neat modern hair, smart casual light shirt, bright skincare studio lighting",
+    img: "https://images.unsplash.com/photo-1633177188754-980c2a6b6266?w=600&auto=format&fit=crop&q=80"
   }
 ];
 
-// =========================
-// 3. State หลักของแอป
-// =========================
 const STORAGE_KEY = "asmr_shop_studio_v1";
 const API_KEY_STORAGE = "asmr_shop_gemini_key";
 
@@ -734,7 +335,8 @@ let state = {
   targetPlatform: "TikTok Shop / Reels / Shorts (9:16)",
   sceneCount: "2",
   productImages: [],
-  presenters: [...DEFAULT_PRESENTERS],
+  presenterOverrides: {},
+  customPresenters: [],
   selectedPresenterId: "p1",
   selectedDemoId: 1,
   demoFilter: "all",
@@ -742,27 +344,32 @@ let state = {
   lastGenerated: null
 };
 
-// =========================
-// 4. Helper Functions
-// =========================
-function resizeImageToDataUrl(file, maxSize = 720, quality = 0.78) {
+let replacingPresenterId = null;
+let currentVideoUrl = null;
+
+function getAllPresenters() {
+  const defaults = DEFAULT_PRESENTERS.map(p => ({
+    ...p,
+    img: state.presenterOverrides?.[p.id] || p.img
+  }));
+  return [...defaults, ...(state.customPresenters || [])];
+}
+
+function resizeImageToDataUrl(file, maxSize = 540, quality = 0.72) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
       img.onload = () => {
-        let w = img.width;
-        let h = img.height;
+        let w = img.width, h = img.height;
         if (w > maxSize || h > maxSize) {
           if (w > h) { h = Math.round((h * maxSize) / w); w = maxSize; }
           else { w = Math.round((w * maxSize) / h); h = maxSize; }
         }
-        const canvas = document.createElement("canvas");
-        canvas.width = w;
-        canvas.height = h;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, w, h);
-        resolve(canvas.toDataURL("image/jpeg", quality));
+        const c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        c.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(c.toDataURL("image/jpeg", quality));
       };
       img.onerror = reject;
       img.src = e.target.result;
@@ -775,19 +382,10 @@ function resizeImageToDataUrl(file, maxSize = 720, quality = 0.78) {
 function saveStateAuto() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    const hint = document.getElementById("saveStatusHint");
-    const now = new Date().toLocaleTimeString("th-TH");
-    hint.textContent = `บันทึกอัตโนมัติในเบราว์เซอร์แล้ว (${now}) — แนะนำกด "บันทึกโปรเจกต์ลงเครื่อง (.json)" เพื่อสำรองถาวร`;
-  } catch (err) {
-    document.getElementById("saveStatusHint").textContent = "พื้นที่ Auto-save เต็ม (รูปเยอะเกินไป) แนะนำกดบันทึกเป็นไฟล์ .json ลงเครื่องแทนครับ";
+    document.getElementById("saveStatusHint").textContent = `บันทึกอัตโนมัติแล้ว (${new Date().toLocaleTimeString("th-TH")})`;
+  } catch {
+    document.getElementById("saveStatusHint").textContent = "ข้อมูลรูปเยอะเกินพื้นที่อัตโนมัติ แนะนำกด 'บันทึกโปรเจกต์ (.json)' ลงเครื่องครับ";
   }
-}
-
-function mergePresenters(savedList) {
-  const customOnly = Array.isArray(savedList)
-    ? savedList.filter(p => p && String(p.id).startsWith("custom_"))
-    : [];
-  return [...DEFAULT_PRESENTERS, ...customOnly];
 }
 
 function loadStateAuto() {
@@ -796,184 +394,178 @@ function loadStateAuto() {
     if (saved) {
       const parsed = JSON.parse(saved);
       state = { ...state, ...parsed };
-      state.presenters = mergePresenters(parsed.presenters);
-      if (!state.presenters.some(p => p.id === state.selectedPresenterId)) {
-        state.selectedPresenterId = "p1";
-      }
-      if (state.sceneCount !== "1" && state.sceneCount !== "2") {
-        state.sceneCount = "2";
-      }
+      if (!state.presenterOverrides) state.presenterOverrides = {};
+      if (!state.customPresenters) state.customPresenters = [];
+      if (state.sceneCount !== "1" && state.sceneCount !== "2") state.sceneCount = "2";
     }
-    const savedKey = localStorage.getItem(API_KEY_STORAGE);
-    if (savedKey) document.getElementById("apiKeyInput").value = savedKey;
-  } catch (e) {
-    console.warn("Load state error:", e);
-  }
+    const k = localStorage.getItem(API_KEY_STORAGE);
+    if (k) document.getElementById("apiKeyInput").value = k;
+  } catch {}
 }
 
 function copyText(text) {
   if (!text) return;
-  navigator.clipboard.writeText(text).then(() => {
-    alert("คัดลอกข้อความเรียบร้อยแล้ว!");
-  }).catch(() => {
+  navigator.clipboard.writeText(text).then(() => alert("คัดลอกเรียบร้อย!")).catch(() => {
     const ta = document.createElement("textarea");
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    document.body.removeChild(ta);
-    alert("คัดลอกข้อความเรียบร้อยแล้ว!");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta);
+    alert("คัดลอกเรียบร้อย!");
   });
 }
+window.copyById = (id) => { const el = document.getElementById(id); if (el) copyText(el.innerText); };
+window.copyAppLink = () => copyText(window.location.href);
+function sanitizeByGoldenRules(t) { return (t || "").replace(/ตรงปก\s*100\s*%/gi, "สวยละมุนเหมือนในรูป"); }
 
-window.copyById = function(id) {
-  const el = document.getElementById(id);
-  if (el) copyText(el.innerText);
-};
-
-window.copyAppLink = function() {
-  copyText(window.location.href);
-};
-
-function sanitizeByGoldenRules(text) {
-  if (!text) return "";
-  return text.replace(/ตรงปก\s*100\s*%/gi, "สวยละมุนเหมือนในรูป");
-}
-
-// =========================
-// 5. Render UI ต่างๆ
-// =========================
 function syncInputsFromState() {
-  if (state.sceneCount !== "1" && state.sceneCount !== "2") {
-    state.sceneCount = "2";
-  }
-  document.getElementById("productName").value = state.productName || "";
-  document.getElementById("productCategory").value = state.productCategory || "สเปรย์ฉีดหน้า / Setting Mist";
-  document.getElementById("productFeatures").value = state.productFeatures || "";
-  document.getElementById("userPricePromo").value = state.userPricePromo || "";
-  document.getElementById("voiceTone").value = state.voiceTone || "กระซิบนุ่มนวล สบายหู (Soft Whisper ASMR)";
-  document.getElementById("targetPlatform").value = state.targetPlatform || "TikTok Shop / Reels / Shorts (9:16)";
-  document.getElementById("sceneCount").value = state.sceneCount;
+  if (state.sceneCount !== "1" && state.sceneCount !== "2") state.sceneCount = "2";
+  ["productName","productCategory","productFeatures","userPricePromo","voiceTone","targetPlatform","sceneCount"].forEach(id => {
+    document.getElementById(id).value = state[id] || "";
+  });
 }
 
 function renderProductImages() {
   const grid = document.getElementById("productUploadGrid");
-  const hint = document.getElementById("productImgCountHint");
-  hint.textContent = `${state.productImages.length} / 6 รูป`;
-  grid.innerHTML = "";
-  if (state.productImages.length === 0) {
-    grid.innerHTML = `<div class="thumb-box">ยังไม่มีรูปสินค้า<br/>(ใส่ได้ 6 มุม)</div>`;
-    return;
-  }
+  document.getElementById("productImgCountHint").textContent = `${state.productImages.length} / 6 รูป`;
+  grid.innerHTML = state.productImages.length ? "" : `<div class="thumb-box">ยังไม่มีรูปสินค้า<br/>(ใส่ได้ 6 มุม)</div>`;
   state.productImages.forEach((img, idx) => {
     const box = document.createElement("div");
     box.className = "thumb-box";
-    box.innerHTML = `
-      <img src="${img.dataUrl}" alt="มุมที่ ${idx + 1}" />
-      <button type="button" class="thumb-remove" title="ลบรูป" onclick="removeProductImage('${img.id}')">×</button>
-    `;
+    box.innerHTML = `<img src="${img.dataUrl}" alt="มุมที่ ${idx+1}"/><button type="button" class="thumb-remove" onclick="removeProductImage('${img.id}')">×</button>`;
     grid.appendChild(box);
   });
 }
-
-window.removeProductImage = function(id) {
+window.removeProductImage = (id) => {
   state.productImages = state.productImages.filter(i => i.id !== id);
-  renderProductImages();
-  saveStateAuto();
+  renderProductImages(); saveStateAuto();
 };
 
 function renderPresenters() {
   const grid = document.getElementById("presenterGrid");
   grid.innerHTML = "";
-  state.presenters.forEach(p => {
+  const list = getAllPresenters();
+  list.forEach(p => {
     const isActive = p.id === state.selectedPresenterId;
-    const card = document.createElement("div");
-    card.className = "presenter-card" + (isActive ? " active" : "");
     const isCustom = String(p.id).startsWith("custom_");
     const isMale = p.id === "p3" || p.id === "p4";
     const badgeClass = isCustom ? "badge-purple" : (isMale ? "badge-blue" : "badge-pink");
-    const badgeText = p.genderBadge || "✨ พรีเซนเตอร์ของคุณ";
-
+    const card = document.createElement("div");
+    card.className = "presenter-card" + (isActive ? " active" : "");
     card.innerHTML = `
-      <div class="presenter-preview">
-        <img src="${p.img}" alt="${p.name}" onerror="this.onerror=null;this.src='${makeFallbackSvg(p.name)}';" />
-      </div>
-      <div><span class="badge ${badgeClass}">${badgeText}</span></div>
-      <div style="font-weight:700; font-size:0.88rem;">${p.name}</div>
-      <div class="hint" style="margin:0; font-size:0.75rem;">${p.desc}</div>
+      <div class="presenter-preview"><img src="${p.img}" alt="${p.name}" onerror="this.onerror=null;this.src='${makeFallbackSvg(p.name)}';"/></div>
+      <div><span class="badge ${badgeClass}">${p.genderBadge || "✨ พรีเซนเตอร์ของคุณ"}</span></div>
+      <div style="font-weight:700;font-size:.86rem">${p.name}</div>
+      <div class="hint" style="margin:0;font-size:.73rem">${p.desc}</div>
       <div class="presenter-actions">
-        <button type="button" class="btn btn-sm ${isActive ? "btn-primary" : "btn-outline"}" onclick="selectPresenter('${p.id}')">
-          ${isActive ? "✓ กำลังเลือกคนนี้" : "เลือกพรีเซนเตอร์"}
-        </button>
+        <button type="button" class="btn btn-sm ${isActive ? "btn-primary" : "btn-outline"}" onclick="selectPresenter('${p.id}')">${isActive ? "✓ เลือกอยู่" : "เลือกคนนี้"}</button>
+        <button type="button" class="btn btn-sm btn-outline" onclick="triggerReplacePresenter('${p.id}')">📷 เปลี่ยนรูป</button>
         ${isCustom ? `<button type="button" class="btn btn-sm btn-outline" onclick="deletePresenter('${p.id}')">ลบ</button>` : ""}
-      </div>
-    `;
+      </div>`;
     grid.appendChild(card);
   });
 }
-
-window.selectPresenter = function(id) {
-  state.selectedPresenterId = id;
-  renderPresenters();
-  saveStateAuto();
-};
-
-window.deletePresenter = function(id) {
-  state.presenters = state.presenters.filter(p => p.id !== id);
-  if (state.selectedPresenterId === id) state.selectedPresenterId = state.presenters[0]?.id || "p1";
-  renderPresenters();
-  saveStateAuto();
+window.selectPresenter = (id) => { state.selectedPresenterId = id; renderPresenters(); saveStateAuto(); };
+window.triggerReplacePresenter = (id) => { replacingPresenterId = id; document.getElementById("replacePresenterInput").click(); };
+window.deletePresenter = (id) => {
+  state.customPresenters = state.customPresenters.filter(p => p.id !== id);
+  if (state.selectedPresenterId === id) state.selectedPresenterId = "p1";
+  renderPresenters(); saveStateAuto();
 };
 
 function renderDemoModes() {
   const grid = document.getElementById("demoGrid");
-  const filterBtns = document.querySelectorAll(".btn-filter");
-  filterBtns.forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.filter === state.demoFilter);
-  });
-
+  document.querySelectorAll(".btn-filter").forEach(b => b.classList.toggle("active", b.dataset.filter === state.demoFilter));
   const filtered = DEMO_MODES.filter(d => state.demoFilter === "all" || d.category === state.demoFilter);
   document.getElementById("demoCountBadge").textContent = `แสดง ${filtered.length} / 18 รูปแบบ`;
-
   grid.innerHTML = "";
   filtered.forEach(d => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "demo-card" + (d.id === state.selectedDemoId ? " active" : "") + (d.category === "spray" ? " spray-highlight" : "");
-    btn.onclick = () => {
-      state.selectedDemoId = d.id;
-      renderDemoModes();
-      saveStateAuto();
-    };
-    const badgeClass = d.category === "spray" ? "badge-purple" : "badge-pink";
-    btn.innerHTML = `
-      <span class="badge ${badgeClass}">${d.badge}</span>
-      <div class="demo-title">${d.title}</div>
-      <div class="demo-desc">${d.desc}</div>
-    `;
+    btn.onclick = () => { state.selectedDemoId = d.id; renderDemoModes(); saveStateAuto(); };
+    btn.innerHTML = `<span class="badge ${d.category === "spray" ? "badge-purple" : "badge-pink"}">${d.badge}</span><div class="demo-title">${d.title}</div><div class="demo-desc">${d.desc}</div>`;
     grid.appendChild(btn);
   });
 }
 
 function renderFrames() {
   const grid = document.getElementById("frameGrid");
+  const clearBtn = document.getElementById("clearFramesBtn");
+  clearBtn.classList.toggle("hidden", state.frameImages.length === 0);
   grid.innerHTML = "";
-  state.frameImages.forEach((f) => {
+  state.frameImages.forEach((f, idx) => {
     const div = document.createElement("div");
     div.className = "frame-item";
-    div.innerHTML = `
-      <img src="${f.dataUrl}" alt="Frame" />
-      <button type="button" class="thumb-remove" onclick="removeFrameImage('${f.id}')">×</button>
-    `;
+    div.innerHTML = `<img src="${f.dataUrl}" alt="Frame ${idx+1}"/><div class="frame-label">${f.label || `ภาพที่ ${idx+1}`}</div><button type="button" class="thumb-remove" onclick="removeFrameImage('${f.id}')">×</button>`;
     grid.appendChild(div);
   });
 }
-
-window.removeFrameImage = function(id) {
+window.removeFrameImage = (id) => {
   state.frameImages = state.frameImages.filter(f => f.id !== id);
+  renderFrames(); saveStateAuto();
+};
+
+function formatSec(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function captureCanvasFromVideo(video, maxSize = 540, quality = 0.74) {
+  let w = video.videoWidth || 540, h = video.videoHeight || 960;
+  if (w > maxSize || h > maxSize) {
+    if (w > h) { h = Math.round((h * maxSize) / w); w = maxSize; }
+    else { w = Math.round((w * maxSize) / h); h = maxSize; }
+  }
+  const c = document.createElement("canvas");
+  c.width = w; c.height = h;
+  c.getContext("2d").drawImage(video, 0, 0, w, h);
+  return c.toDataURL("image/jpeg", quality);
+}
+
+async function handleVideoUpload(file) {
+  if (!file) return;
+  const wrap = document.getElementById("videoPreviewWrap");
+  const video = document.getElementById("clipPreviewVideo");
+  const statusEl = document.getElementById("videoExtractStatus");
+  wrap.classList.remove("hidden");
+  statusEl.textContent = "⏳ กำลังอ่านคลิปวิดีโอและดึงเฟรม...";
+
+  if (currentVideoUrl) URL.revokeObjectURL(currentVideoUrl);
+  currentVideoUrl = URL.createObjectURL(file);
+  video.src = currentVideoUrl;
+  video.muted = true;
+  video.playsInline = true;
+
+  await new Promise((resolve, reject) => {
+    const t = setTimeout(() => reject(new Error("โหลดวิดีโอไม่สำเร็จบนเบราว์เซอร์นี้")), 12000);
+    video.onloadeddata = () => { clearTimeout(t); resolve(); };
+    video.onerror = () => { clearTimeout(t); reject(new Error("ไม่รองรับไฟล์วิดีโอนี้")); };
+  });
+
+  const dur = isFinite(video.duration) && video.duration > 0 ? video.duration : 10;
+  const ratios = [0.05, 0.22, 0.40, 0.60, 0.78, 0.94];
+  const extracted = [];
+
+  for (const r of ratios) {
+    const targetTime = Math.min(Math.max(0.05, dur * r), Math.max(0.05, dur - 0.1));
+    await new Promise((resolve) => {
+      const timeout = setTimeout(resolve, 2500);
+      video.onseeked = () => { clearTimeout(timeout); resolve(); };
+      video.currentTime = targetTime;
+    });
+    const dataUrl = captureCanvasFromVideo(video);
+    extracted.push({
+      id: "vid_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+      dataUrl,
+      label: `คลิป ${formatSec(targetTime)}`
+    });
+  }
+
+  state.frameImages = extracted;
   renderFrames();
   saveStateAuto();
-};
+  statusEl.textContent = `✅ ดึงภาพจากคลิปสำเร็จ ${extracted.length} เฟรม (ความยาวคลิป ${formatSec(dur)})`;
+}
 
 function renderOutput(result) {
   if (!result) return;
@@ -981,7 +573,6 @@ function renderOutput(result) {
   document.getElementById("outputSection").classList.remove("hidden");
   document.getElementById("scriptOutputText").textContent = sanitizeByGoldenRules(result.script);
   document.getElementById("masterPromptText").textContent = result.masterPrompt;
-
   const container = document.getElementById("scenesContainer");
   container.innerHTML = "";
   result.scenes.forEach((s, i) => {
@@ -990,322 +581,263 @@ function renderOutput(result) {
     const copyId = `scenePrompt_${i}`;
     card.innerHTML = `
       <div class="scene-title">
-        <span>ฉากที่ ${i + 1}: ${s.title} (${s.duration})</span>
-        <button type="button" class="btn btn-outline btn-sm" onclick="copyById('${copyId}')">📋 คัดลอก Prompt ฉาก ${i + 1}</button>
+        <span>ฉากที่ ${i+1}: ${s.title} (${s.duration})</span>
+        <button type="button" class="btn btn-outline btn-sm" onclick="copyById('${copyId}')">📋 คัดลอก Prompt ฉาก ${i+1}</button>
       </div>
-      <div style="font-size:0.86rem; color:#374151;"><strong>ภาพ &amp; เสียง ASMR:</strong> ${s.visualTh}</div>
-      <div class="prompt-text" id="${copyId}">${s.promptEn}</div>
-    `;
+      <div style="font-size:.85rem;color:#374151"><strong>ภาพ &amp; เสียง ASMR:</strong> ${s.visualTh}</div>
+      <div class="prompt-text" id="${copyId}">${s.promptEn}</div>`;
     container.appendChild(card);
   });
   saveStateAuto();
 }
 
-// =========================
-// 6. สร้างสตอรี่บอร์ดโหมดพื้นฐาน (ฉากละ 10 วินาที: 1 ฉาก 10 วิ / 2 ฉาก 20 วิ)
-// =========================
 function generateOfflineStoryboard() {
   const name = state.productName.trim() || "สกินแคร์ตัวโปรด";
   const cat = state.productCategory;
   const feat = state.productFeatures.trim() || "เนื้อสัมผัสบางเบา สบายผิว ช่วยดูแลผิวให้ดูชุ่มชื้นสดใส";
   const pricePromo = state.userPricePromo.trim();
-  const presenter = state.presenters.find(p => p.id === state.selectedPresenterId) || state.presenters[0];
+  const presenter = getAllPresenters().find(p => p.id === state.selectedPresenterId) || getAllPresenters()[0];
   const demo = DEMO_MODES.find(d => d.id === state.selectedDemoId) || DEMO_MODES[0];
   const aspect = state.targetPlatform.includes("16:9") ? "16:9 horizontal" : "9:16 vertical";
   const count = state.sceneCount === "1" ? 1 : 2;
-
   const priceLine = pricePromo
     ? `ใครกำลังมองหา ${cat} ดีๆ แบบนี้ ${pricePromo} กดดูที่ตะกร้าได้เลยนะคะ`
     : `ใครอยากลอง ${name} กดดูรายละเอียดเพิ่มเติมที่ตะกร้าด้านล่างได้เลยนะคะ`;
 
   const masterPrompt = `CONSISTENCY LOCK (${aspect}, 10-second per clip, photorealistic commercial beauty & skincare ASMR video):
 - Real Human Presenter: ${presenter.desc}. Keep exact same open clear face, exact age appearance, fair clear glowing skin, hairstyle, and outfit across every 10-second scene.
-- Product: "${name}" (${cat}). Strictly match the exact bottle shape, cap, color, and label design from the uploaded reference photos (do NOT alter brand text or packaging).
-- Lighting & Mood: Soft bright natural beauty studio lighting, clean aesthetic, crisp ASMR audio focus, 4K realistic fair healthy skin texture.`;
+- Product: "${name}" (${cat}). Strictly match exact bottle shape, cap, color, and label design from uploaded reference photos.
+- Lighting: Bright natural beauty studio lighting, 4K realistic fair healthy skin texture.`;
 
-  let script = "";
-  let scenes = [];
-
+  let script = "", scenes = [];
   if (count === 1) {
-    script = sanitizeByGoldenRules(
-`[1 ฉาก · 0–10 วินาที · ${state.voiceTone}]
-"(0–3 วิ: ${demo.asmrCue}) ใครชอบฟีลผิวสบายๆ ต้องดูตัวนี้ค่ะ นี่คือ ${name}..."
-"(3–7 วิ: สาธิตใช้งานจริง) ${feat} เบาสบายผิวมากเลยค่ะ"
-"(7–10 วิ: ปิดคลิป) ${priceLine}"`
-    );
-
-    scenes = [
-      {
-        title: `ฉากเดียวจบครบ: เปิดตัว + ${demo.title} + ปิดตะกร้า`,
-        duration: "0–10 วินาที",
-        visualTh: `0–3 วิ โชว์ขวด ${name} ชัดๆ พร้อมเสียง ASMR -> 3–7 วิ ${demo.desc} -> 7–10 วิ โชว์ผิวใสหลังใช้และถือสินค้ายิ้มปิดคลิป`,
-        promptEn: `[10-Second Single Scene: 0s-10s] ${aspect}. Continuous 10-second photorealistic beauty ASMR video. (0-3s) Same real presenter (${presenter.desc}) with open clear face holds the exact reference "${name}" bottle cleanly near camera with gentle ASMR packaging tap. (3-7s) Smooth transition into main demo: ${demo.promptAction} (7-10s) Presenter turns slightly toward camera showing fair glowing hydrated skin while holding the exact "${name}" product beside face, natural warm smile, leaving lower-left clear for basket icon.`
-      }
-    ];
+    script = sanitizeByGoldenRules(`[1 ฉาก · 0–10 วินาที · ${state.voiceTone}]\n"(0–3 วิ: ${demo.asmrCue}) ใครชอบฟีลผิวสบายๆ ต้องดูตัวนี้ค่ะ นี่คือ ${name}..."\n"(3–7 วิ) ${feat} เบาสบายผิวมากเลยค่ะ"\n"(7–10 วิ) ${priceLine}"`);
+    scenes = [{
+      title: `ฉากเดียวจบครบ: เปิดตัว + ${demo.title} + ปิดตะกร้า`,
+      duration: "0–10 วินาที",
+      visualTh: `0–3 วิ โชว์ขวด ${name} ชัดๆ -> 3–7 วิ ${demo.desc} -> 7–10 วิ โชว์ผิวใสและยิ้มปิดคลิป`,
+      promptEn: `[10-Second Single Scene: 0s-10s] ${aspect}. Continuous 10s beauty ASMR video. (0-3s) ${presenter.desc} holds exact "${name}" bottle cleanly near camera. (3-7s) ${demo.promptAction} (7-10s) Presenter turns toward camera showing fair glowing hydrated skin while holding "${name}" beside face, leaving lower-left clear for basket icon.`
+    }];
   } else {
-    script = sanitizeByGoldenRules(
-`[ฉากที่ 1 · 0–10 วินาที · Hook + สาธิตหลัก (${state.voiceTone})]
-"(${demo.asmrCue}) ใครที่กำลังมองหา ${cat} สบายผิว ต้องลอง ${name} ตัวนี้เลยค่ะ ดูจังหวะใช้งานจริงได้เลย..."
-
-[ฉากที่ 2 · 10–20 วินาที · โชว์ผิวจริง + ปิดตะกร้า]
-"หลังใช้คือสัมผัสได้ว่า ${feat} ไม่หนักหน้าเลยค่ะ ${priceLine}"`
-    );
-
+    script = sanitizeByGoldenRules(`[ฉากที่ 1 · 0–10 วินาที · Hook + สาธิตหลัก]\n"(${demo.asmrCue}) ใครที่กำลังมองหา ${cat} สบายผิว ต้องลอง ${name} ตัวนี้เลยค่ะ ดูจังหวะใช้งานจริงได้เลย..."\n\n[ฉากที่ 2 · 10–20 วินาที · โชว์ผิวจริง + ปิดตะกร้า]\n"หลังใช้สัมผัสได้ว่า ${feat} ไม่หนักหน้าเลยค่ะ ${priceLine}"`);
     scenes = [
       {
         title: `Hook โชว์สินค้า & สาธิตหลัก: ${demo.title}`,
         duration: "0–10 วินาที",
-        visualTh: `0–3 วิ พรีเซนเตอร์ถือ ${name} ชัดเจนพร้อมเสียง ASMR -> 3–10 วิ ${demo.desc} (${demo.asmrCue})`,
-        promptEn: `[Scene 1: 0s-10s] ${aspect}, 10-second continuous clip. (0-3s) Same real presenter (${presenter.desc}) with open clear face holding the exact reference "${name}" bottle cleanly near camera in bright soft daylight, sharp focus on real product label with crisp ASMR sound. (3-10s) Smoothly transitions into demo: ${demo.promptAction} Keep exact same presenter face, age, fair clear skin, and exact "${name}" packaging.`
+        visualTh: `0–3 วิ ถือ ${name} ชัดเจนพร้อมเสียง ASMR -> 3–10 วิ ${demo.desc}`,
+        promptEn: `[Scene 1: 0s-10s] ${aspect}, 10-second clip. (0-3s) ${presenter.desc} holds exact reference "${name}" bottle near camera in bright studio daylight. (3-10s) ${demo.promptAction} Keep exact same presenter face and "${name}" packaging.`
       },
       {
-        title: "โคลสอัพผิวจริงหลังใช้ & ปิดคลิปชวนกดตะกร้า (CTA)",
+        title: "โคลสอัพผิวจริงหลังใช้ & ปิดตะกร้า (CTA)",
         duration: "10–20 วินาที",
-        visualTh: `10–15 วิ ซูมใกล้โชว์ผิวขาวใสหลังใช้ (${feat}) -> 15–20 วิ พรีเซนเตอร์ถือ ${name} คู่ใบหน้ายิ้มปิดคลิป`,
-        promptEn: `[Scene 2: 10s-20s] ${aspect}, 10-second continuous clip seamlessly continuing from Scene 1. (10-15s) Macro close-up on the same presenter's fair, clear, healthy glowing skin showing natural hydrated finish after applying "${name}", soft daylight reflection. (15-20s) Pull back slightly to presenter facing camera clearly with a warm smile while holding the exact "${name}" product beside face, leaving lower-left area clear for TikTok/Shopee basket icon.`
+        visualTh: `10–15 วิ โชว์ผิวขาวใสหลังใช้ (${feat}) -> 15–20 วิ ถือ ${name} ยิ้มปิดคลิป`,
+        promptEn: `[Scene 2: 10s-20s] ${aspect}, 10-second clip continuing from Scene 1. (10-15s) Macro close-up on presenter's fair clear glowing skin showing hydrated finish after "${name}". (15-20s) Presenter faces camera smiling warmly holding exact "${name}" beside face, lower-left clear for basket icon.`
       }
     ];
   }
-
   renderOutput({ script, masterPrompt, scenes });
 }
 
-// =========================
-// 7. เชื่อมต่อ Gemini API
-// =========================
 async function callGemini(parts, expectJson = false) {
   const apiKey = document.getElementById("apiKeyInput").value.trim();
-  if (!apiKey) {
-    throw new Error("กรุณากรอก Gemini API Key ในข้อ 1 ก่อนใช้งานฟังก์ชัน AI (หรือใช้ปุ่ม 'โหมดพื้นฐานฟรี' แทนได้ครับ)");
-  }
-  const models = ["gemini-3.8-flash", "gemini-2.5-flash"];
-  let lastError = null;
-
-  for (const model of models) {
+  if (!apiKey) throw new Error("กรุณากรอก Gemini API Key ในข้อ 1 ก่อนใช้งานฟังก์ชัน AI");
+  for (const model of ["gemini-3.8-flash", "gemini-2.5-flash"]) {
     try {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
-      const body = {
-        contents: [{ parts }],
-        generationConfig: expectJson ? { responseMimeType: "application/json", temperature: 0.4 } : { temperature: 0.5 }
-      };
-      const res = await fetch(url, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          contents: [{ parts }],
+          generationConfig: expectJson ? { responseMimeType: "application/json", temperature: 0.4 } : { temperature: 0.5 }
+        })
       });
       const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error?.message || `HTTP ${res.status}`);
-      }
+      if (!res.ok) throw new Error(data.error?.message || `HTTP ${res.status}`);
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
       if (text) return text;
-    } catch (err) {
-      lastError = err;
-    }
+    } catch (e) { var lastErr = e; }
   }
-  throw lastError || new Error("ไม่สามารถเชื่อมต่อ Gemini API ได้");
+  throw lastErr || new Error("เชื่อมต่อ Gemini API ไม่สำเร็จ");
 }
 
 function dataUrlToInlinePart(dataUrl) {
   const [meta, base64] = dataUrl.split(",");
-  const mimeType = meta.match(/data:(.*?);/)?.[1] || "image/jpeg";
-  return { inlineData: { mimeType, data: base64 } };
+  return { inlineData: { mimeType: meta.match(/data:(.*?);/)?.[1] || "image/jpeg", data: base64 } };
 }
 
 async function analyzeProductWithGemini() {
   const box = document.getElementById("productAnalysisResult");
-  if (state.productImages.length === 0) {
-    alert("กรุณาอัปโหลดรูปสินค้าอย่างน้อย 1 รูปก่อนครับ");
-    return;
-  }
-  box.className = "status-banner status-warn";
-  box.classList.remove("hidden");
+  if (!state.productImages.length) return alert("กรุณาอัปโหลดรูปสินค้าอย่างน้อย 1 รูปก่อนครับ");
+  box.className = "status-banner status-warn"; box.classList.remove("hidden");
   box.textContent = "⏳ กำลังให้ Gemini วิเคราะห์ภาพสินค้า...";
-
   try {
-    const parts = [
-      {
-        text: `วิเคราะห์ภาพสินค้าความงาม/สกินแคร์เหล่านี้เป็นภาษาไทยแบบกระชับ 3 ข้อ:
-1. ลักษณะขวด/บรรจุภัณฑ์ สี ฝา/หัวฉีด และข้อความบนฉลากที่อ่านได้จริง
-2. จุดเด่นของผลิตภัณฑ์ที่เหมาะนำไปทำคลิปปักตะกร้า ASMR (ห้ามแต่งราคา โปรโมชั่น และห้ามใช้คำว่า 'ตรงปก 100%')
-3. คำแนะนำการจัดแสงและมุมกล้องที่โชว์สินค้าชัดที่สุด`
-      },
-      ...state.productImages.map(img => dataUrlToInlinePart(img.dataUrl))
-    ];
-    const reply = await callGemini(parts, false);
-    box.className = "status-banner status-pass";
-    box.style.whiteSpace = "pre-wrap";
-    box.textContent = "✅ ผลการวิเคราะห์สินค้าจาก Gemini:\n\n" + sanitizeByGoldenRules(reply);
+    const reply = await callGemini([
+      { text: "วิเคราะห์ภาพสินค้าความงาม/สกินแคร์นี้เป็นภาษาไทย 3 ข้อ: 1) ลักษณะขวด สี หัวฉีด/ฝา และฉลากที่เห็นจริง 2) จุดเด่นจริงสำหรับทำคลิป ASMR (ห้ามแต่งราคา/โปร และห้ามใช้คำว่า 'ตรงปก 100%') 3) คำแนะนำมุมกล้อง" },
+      ...state.productImages.map(i => dataUrlToInlinePart(i.dataUrl))
+    ]);
+    box.className = "status-banner status-pass"; box.style.whiteSpace = "pre-wrap";
+    box.textContent = "✅ ผลการวิเคราะห์สินค้า:\n\n" + sanitizeByGoldenRules(reply);
     if (!state.productFeatures.trim()) {
-      state.productFeatures = reply.split("\n").slice(0, 4).join(" ").slice(0, 260);
-      syncInputsFromState();
-      saveStateAuto();
+      state.productFeatures = reply.split("\n").slice(0, 4).join(" ").slice(0, 240);
+      syncInputsFromState(); saveStateAuto();
     }
-  } catch (err) {
-    box.className = "status-banner status-fail";
-    box.textContent = "❌ " + err.message;
-  }
+  } catch (e) { box.className = "status-banner status-fail"; box.textContent = "❌ " + e.message; }
 }
 
 async function generateWithGeminiAI() {
   const hint = document.getElementById("genStatusHint");
-  hint.textContent = "⏳ กำลังให้ Gemini AI ออกแบบสตอรี่บอร์ดและ Prompt...";
-  const presenter = state.presenters.find(p => p.id === state.selectedPresenterId) || state.presenters[0];
+  hint.textContent = "⏳ กำลังสร้างด้วย Gemini AI...";
+  const presenter = getAllPresenters().find(p => p.id === state.selectedPresenterId) || getAllPresenters()[0];
   const demo = DEMO_MODES.find(d => d.id === state.selectedDemoId) || DEMO_MODES[0];
   const count = state.sceneCount === "1" ? 1 : 2;
   const totalSec = count * 10;
-  const timingInstruction = count === 1
-    ? `จำนวนฉาก: 1 ฉากเท่านั้น (ความยาว 10 วินาทีเต็ม: "0–10 วินาที") ให้รวม Hook + สาธิตหลัก + โชว์ผลลัพธ์ + ปิดตะกร้าไว้ในฉากเดียว 10 วินาทีอย่างลื่นไหล`
-    : `จำนวนฉาก: 2 ฉากเท่านั้น (ฉากละ 10 วินาที รวม ${totalSec} วินาที: ฉากที่ 1 = "0–10 วินาที", ฉากที่ 2 = "10–20 วินาที")`;
-
-  const prompt = `คุณคือผู้กำกับคลิปปักตะกร้า Beauty & Skincare ASMR มืออาชีพ
-ข้อมูลสินค้า:
-- ชื่อสินค้า: ${state.productName || "สินค้าสกินแคร์"}
-- หมวดหมู่: ${state.productCategory}
-- จุดเด่นจริง: ${state.productFeatures || "ชุ่มชื้น ซึมไว อ่อนโยน"}
-- ราคา/โปรโมชั่นที่ผู้ใช้อนุญาต: ${state.userPricePromo.trim() ? state.userPricePromo : "ไม่มี (ห้ามแต่งราคา โปรโมชั่น หรือโค้ดส่วนลดเองเด็ดขาด!)"}
-- โทนเสียง ASMR: ${state.voiceTone}
-- สัดส่วน: ${state.targetPlatform}
-- ${timingInstruction}
-- พรีเซนเตอร์คนจริงที่ล็อกไว้ (เปิดหน้าชัด หน้าตาสวย/หล่อ หน้าใส ผิวขาว ผิวดี): ${presenter.desc}
-- รูปแบบการสาธิตที่เลือก: ${demo.title} (${demo.desc})
-
-กฎเหล็ก:
-1. ห้ามใช้คำว่า "ตรงปก 100%" ใน Hook และบทพูดเด็ดขาด
-2. ห้ามคิดราคา/โปร/โค้ดส่วนลดขึ้นมาเอง ถ้าผู้ใช้ไม่ได้ระบุ
-3. ความยาวบทพูดต้องพอดีกับเวลา ${totalSec} วินาที และใน "scenes" ต้องมีจำนวนพอดี ${count} ฉาก (ฉากละ 10 วินาที)
-4. ให้ตอบเป็น JSON ตามโครงสร้างนี้เท่านั้น:
-{
-  "script": "Hook และบทพูด ASMR ภาษาไทยแบ่งจังหวะเวลาให้พอดี ${totalSec} วินาที",
-  "masterPrompt": "English consistency lock prompt for real human presenter (open clear face, fair clear glowing skin) & product (10-second per scene)",
-  "scenes": [
-    { "title": "ชื่อฉากภาษาไทย", "duration": "0–10 วินาที", "visualTh": "คำอธิบายภาพและเสียง ASMR ภาษาไทยภายใน 10 วินาที", "promptEn": "Detailed 10-second English video prompt maintaining exact real presenter and product packaging" }
-  ]
-}`;
+  const prompt = `คุณคือผู้กำกับคลิปปักตะกร้า Beauty & Skincare ASMR
+สินค้า: ${state.productName || "สินค้าสกินแคร์"} (${state.productCategory})
+จุดเด่นจริง: ${state.productFeatures || "ชุ่มชื้น ซึมไว อ่อนโยน"}
+ราคา/โปรโมชั่นที่อนุญาต: ${state.userPricePromo.trim() || "ไม่มี (ห้ามแต่งราคา โปร หรือโค้ดส่วนลดเองเด็ดขาด!)"}
+โทนเสียง: ${state.voiceTone} | สัดส่วน: ${state.targetPlatform}
+จำนวนฉาก: ${count} ฉาก (ฉากละ 10 วินาที รวม ${totalSec} วิ: ${count===1 ? "0–10 วินาที" : "ฉาก 1 = 0–10 วินาที, ฉาก 2 = 10–20 วินาที"})
+พรีเซนเตอร์คนจริง (เปิดหน้าชัด หน้าใส ผิวขาว): ${presenter.desc}
+รูปแบบสาธิต: ${demo.title} (${demo.desc})
+กฎเหล็ก: ห้ามมีคำว่า "ตรงปก 100%", ห้ามแต่งราคา/โปรเอง, scenes ต้องมีพอดี ${count} ฉาก
+ตอบเป็น JSON เท่านั้น: {"script":"...","masterPrompt":"...","scenes":[{"title":"...","duration":"0–10 วินาที","visualTh":"...","promptEn":"..."}]}`;
 
   try {
-    const parts = [{ text: prompt }, ...state.productImages.slice(0, 3).map(i => dataUrlToInlinePart(i.dataUrl))];
-    const raw = await callGemini(parts, true);
-    const parsed = JSON.parse(raw);
-    renderOutput(parsed);
-    hint.textContent = `✅ สร้างสตอรี่บอร์ด ${count} ฉาก (${totalSec} วิ) ด้วย Gemini AI สำเร็จ!`;
-  } catch (err) {
-    hint.textContent = "⚠️ " + err.message;
-    alert(err.message);
-  }
+    const raw = await callGemini([{ text: prompt }, ...state.productImages.slice(0, 3).map(i => dataUrlToInlinePart(i.dataUrl))], true);
+    renderOutput(JSON.parse(raw));
+    hint.textContent = `✅ สร้าง ${count} ฉาก (${totalSec} วิ) สำเร็จ!`;
+  } catch (e) { hint.textContent = "⚠️ " + e.message; alert(e.message); }
 }
 
 async function checkConsistency() {
   const resultDiv = document.getElementById("consistencyResult");
   const scriptText = document.getElementById("scriptOutputText")?.textContent || "";
-
   const ruleIssues = [];
-  if (/ตรงปก\s*100\s*%/i.test(scriptText)) {
-    ruleIssues.push('พบบทพูดมีคำต้องห้าม "ตรงปก 100%"');
-  }
+  if (/ตรงปก\s*100\s*%/i.test(scriptText)) ruleIssues.push('พบบทพูดมีคำต้องห้าม "ตรงปก 100%"');
   if (!state.userPricePromo.trim() && /(บาท|ลดราคา|โค้ดส่วนลด|โปรโมชั่น|ส่งฟรี)/i.test(scriptText)) {
     ruleIssues.push("พบคำเกี่ยวกับราคา/โปรโมชั่น ทั้งที่ผู้ใช้ไม่ได้แจ้งไว้");
   }
 
   const apiKey = document.getElementById("apiKeyInput").value.trim();
-  if (!apiKey || state.productImages.length === 0 || state.frameImages.length === 0) {
+  if (!apiKey || !state.productImages.length || !state.frameImages.length) {
     const passRules = ruleIssues.length === 0;
-    resultDiv.innerHTML = `
-      <div class="status-banner ${passRules ? "status-pass" : "status-fail"}">
-        ${passRules ? "✅ ผ่านกฎเหล็กของสคริปต์ (ไม่พบคำต้องห้าม และไม่แต่งราคาเอง)" : "❌ พบจุดควรแก้ไขในสคริปต์: " + ruleIssues.join(" / ")}
-        <div style="font-weight:400; font-size:0.84rem; margin-top:6px;">
-          *หมายเหตุ: หากต้องการให้ AI ตรวจเทียบภาพสินค้าจริงกับเฟรมที่ได้แบบอัตโนมัติ กรุณาใส่ Gemini API Key (ข้อ 1), อัปโหลดรูปสินค้า (ข้อ 2) และอัปโหลดภาพผลลัพธ์ (ข้อ 6) ครับ
-        </div>
-      </div>
-    `;
+    resultDiv.innerHTML = `<div class="status-banner ${passRules ? "status-pass" : "status-fail"}">
+      ${passRules ? "✅ ผ่านกฎเหล็กของสคริปต์" : "❌ พบปัญหาสคริปต์: " + ruleIssues.join(" / ")}
+      <div style="font-weight:400;font-size:.82rem;margin-top:6px">
+        ดึงเฟรมจากคลิปแล้ว ${state.frameImages.length} เฟรม — หากต้องการให้ AI ตรวจเทียบความตรงปกกับรูปสินค้าจริงอัตโนมัติ กรุณาใส่ Gemini API Key (ข้อ 1), อัปโหลดรูปสินค้า (ข้อ 2) และนำเข้าคลิปวิดีโอหรือภาพ (ข้อ 6) ครับ
+      </div></div>`;
     return;
   }
 
-  resultDiv.innerHTML = `<div class="status-banner status-warn">⏳ กำลังให้ Gemini ตรวจเทียบภาพสินค้าจริงกับภาพที่เจนได้...</div>`;
+  resultDiv.innerHTML = `<div class="status-banner status-warn">⏳ กำลังให้ Gemini ตรวจเทียบสินค้าจริงกับเฟรมจากคลิปวิดีโอ (${state.frameImages.length} เฟรม)...</div>`;
   try {
-    const parts = [
-      { text: `เปรียบเทียบ "รูปสินค้าจริง" (ชุดแรก ${state.productImages.length} รูป) กับ "ภาพผลลัพธ์ที่เจนได้" (ชุดหลัง ${state.frameImages.length} รูป)
-ตรวจเช็ก 3 เรื่องเป็นภาษาไทย:
-1. รูปทรงขวด/กระปุก สี และหัวฉีด/ฝา ตรงปกหรือไม่
-2. ฉลาก/โลโก้ เพี้ยนหรือไม่
-3. ผิวพรีเซนเตอร์และท่าทางสาธิตดูสมจริงไหม
-สรุปท้ายว่า "ผ่าน (PASS)" หรือ "ควรแก้ใหม่ (FAIL)" พร้อมคำแนะนำสั้นๆ` },
+    const labels = state.frameImages.map((f, i) => `${i + 1}) ${f.label || "ภาพที่ " + (i + 1)}`).join(", ");
+    const reply = await callGemini([
+      { text: `เปรียบเทียบ "รูปสินค้าจริง" (ชุดแรก ${state.productImages.length} รูป) กับ "เฟรมจากคลิปวิดีโอผลลัพธ์" (ชุดหลัง ${state.frameImages.length} เฟรม ได้แก่: ${labels})
+ตรวจเช็ก 4 ข้อเป็นภาษาไทย:
+1. รูปทรงขวด/กระปุก สี และหัวฉีด/ฝาในคลิป ตรงปกกับสินค้าจริงทุกเฟรมไหม (ระบุเฟรม/วินาทีถ้ามีจุดเพี้ยน)
+2. ฉลาก/โลโก้ในคลิปตรงปกหรือเพี้ยน
+3. ใบหน้าพรีเซนเตอร์เปิดชัด ผิวขาวใส และต่อเนื่องกันทุกเฟรมไหม
+4. สรุปผล: "ผ่าน (PASS)" หรือ "ควรแก้ใหม่ (FAIL)" พร้อมคำแนะนำ` },
       ...state.productImages.map(i => dataUrlToInlinePart(i.dataUrl)),
       ...state.frameImages.map(f => dataUrlToInlinePart(f.dataUrl))
-    ];
-    const reply = await callGemini(parts, false);
+    ]);
     const isFail = /FAIL|ควรแก้|ไม่ตรง/i.test(reply) || ruleIssues.length > 0;
-    resultDiv.innerHTML = `
-      <div class="status-banner ${isFail ? "status-fail" : "status-pass"}" style="white-space:pre-wrap; font-weight:500;">
-        ${ruleIssues.length ? "⚠️ กฎเหล็กสคริปต์: " + ruleIssues.join(" / ") + "\n\n" : ""}🔍 ผลการตรวจความตรงปกจาก Gemini:\n${reply}
-      </div>
-    `;
-  } catch (err) {
-    resultDiv.innerHTML = `<div class="status-banner status-fail">❌ ${err.message}</div>`;
+    resultDiv.innerHTML = `<div class="status-banner ${isFail ? "status-fail" : "status-pass"}" style="white-space:pre-wrap;font-weight:500">
+      ${ruleIssues.length ? "⚠️ กฎเหล็กสคริปต์: " + ruleIssues.join(" / ") + "\n\n" : ""}🎬 ผลการตรวจความตรงปกจากคลิปวิดีโอ:\n${reply}</div>`;
+  } catch (e) {
+    resultDiv.innerHTML = `<div class="status-banner status-fail">❌ ${e.message}</div>`;
   }
 }
 
-// =========================
-// 8. Event Listeners & Init
-// =========================
 function bindEvents() {
-  ["productName", "productCategory", "productFeatures", "userPricePromo", "voiceTone", "targetPlatform", "sceneCount"].forEach(id => {
-    document.getElementById(id).addEventListener("input", (e) => {
-      state[id] = e.target.value;
-      saveStateAuto();
-    });
+  ["productName","productCategory","productFeatures","userPricePromo","voiceTone","targetPlatform","sceneCount"].forEach(id => {
+    document.getElementById(id).addEventListener("input", e => { state[id] = e.target.value; saveStateAuto(); });
   });
 
   document.getElementById("saveApiKeyBtn").addEventListener("click", () => {
     const k = document.getElementById("apiKeyInput").value.trim();
     localStorage.setItem(API_KEY_STORAGE, k);
-    alert(k ? "บันทึก API Key ในเบราว์เซอร์เครื่องนี้แล้ว!" : "ล้าง API Key เรียบร้อย");
+    alert(k ? "บันทึก API Key แล้ว!" : "ล้าง API Key เรียบร้อย");
   });
 
   document.getElementById("productImagesInput").addEventListener("change", async (e) => {
-    const files = Array.from(e.target.files || []);
-    for (const file of files) {
+    for (const file of Array.from(e.target.files || [])) {
       if (state.productImages.length >= 6) break;
-      const dataUrl = await resizeImageToDataUrl(file, 720, 0.78);
-      state.productImages.push({ id: "img_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6), dataUrl, name: file.name });
+      state.productImages.push({ id: "img_" + Date.now() + "_" + Math.random().toString(36).slice(2,6), dataUrl: await resizeImageToDataUrl(file) });
     }
-    e.target.value = "";
-    renderProductImages();
-    saveStateAuto();
+    e.target.value = ""; renderProductImages(); saveStateAuto();
+  });
+
+  document.getElementById("replacePresenterInput").addEventListener("change", async (e) => {
+    const file = e.target.files?.[0];
+    if (!file || !replacingPresenterId) return;
+    const dataUrl = await resizeImageToDataUrl(file, 540, 0.78);
+    if (String(replacingPresenterId).startsWith("custom_")) {
+      const target = state.customPresenters.find(p => p.id === replacingPresenterId);
+      if (target) target.img = dataUrl;
+    } else {
+      state.presenterOverrides[replacingPresenterId] = dataUrl;
+    }
+    state.selectedPresenterId = replacingPresenterId;
+    replacingPresenterId = null;
+    e.target.value = ""; renderPresenters(); saveStateAuto();
   });
 
   document.getElementById("customPresenterInput").addEventListener("change", async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const dataUrl = await resizeImageToDataUrl(file, 640, 0.8);
-    const name = prompt("ตั้งชื่อพรีเซนเตอร์คนนี้ (เช่น น้องมายด์):", "พรีเซนเตอร์ของฉัน") || "พรีเซนเตอร์ของฉัน";
-    const desc = prompt("อธิบายลักษณะสั้นๆ เป็นภาษาอังกฤษ (เพื่อใช้ใน Prompt):", "Real Thai presenter matching uploaded reference photo, open clear face, fair clear glowing skin") || "Real presenter matching reference photo, open clear face, fair clear glowing skin";
-    const newId = "custom_" + Date.now();
-    state.presenters.push({ id: newId, genderBadge: "✨ พรีเซนเตอร์ของคุณ", name, desc, img: dataUrl });
-    state.selectedPresenterId = newId;
-    e.target.value = "";
-    renderPresenters();
-    saveStateAuto();
+    const file = e.target.files?.[0]; if (!file) return;
+    const dataUrl = await resizeImageToDataUrl(file, 540, 0.78);
+    const name = prompt("ตั้งชื่อพรีเซนเตอร์:", "พรีเซนเตอร์ของฉัน") || "พรีเซนเตอร์ของฉัน";
+    const desc = prompt("ลักษณะภาษาอังกฤษ (สำหรับ Prompt):", "Real Thai presenter matching reference photo, open clear face, fair glowing clear skin") || "Real Thai presenter matching reference photo";
+    const id = "custom_" + Date.now();
+    state.customPresenters.push({ id, genderBadge: "✨ พรีเซนเตอร์ของคุณ", name, desc, img: dataUrl });
+    state.selectedPresenterId = id;
+    e.target.value = ""; renderPresenters(); saveStateAuto();
+  });
+
+  document.getElementById("copyPresenterPromptBtn").addEventListener("click", () => {
+    const p = getAllPresenters().find(x => x.id === state.selectedPresenterId) || getAllPresenters()[0];
+    copyText(`Ultra-realistic commercial beauty & skincare studio portrait photo, ${p.desc}, 8K sharp focus on flawless glowing skin, looking directly at camera, clean pastel minimalist background, 3:4 portrait.`);
+  });
+
+  document.getElementById("resetPresentersBtn").addEventListener("click", () => {
+    if (!confirm("ต้องการคืนค่ารูปพรีเซนเตอร์เริ่มต้นทั้ง 4 คนใช่ไหมครับ?")) return;
+    state.presenterOverrides = {};
+    renderPresenters(); saveStateAuto();
   });
 
   document.querySelectorAll(".btn-filter").forEach(btn => {
-    btn.addEventListener("click", () => {
-      state.demoFilter = btn.dataset.filter;
-      renderDemoModes();
-      saveStateAuto();
+    btn.addEventListener("click", () => { state.demoFilter = btn.dataset.filter; renderDemoModes(); saveStateAuto(); });
+  });
+
+  document.getElementById("videoFileInput").addEventListener("change", async (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    try { await handleVideoUpload(file); } catch (err) { alert(err.message); }
+  });
+
+  document.getElementById("captureVideoFrameBtn").addEventListener("click", () => {
+    const video = document.getElementById("clipPreviewVideo");
+    if (!video.src) return;
+    if (state.frameImages.length >= 8) return alert("เก็บเฟรมได้สูงสุด 8 ภาพครับ กด × ลบบางภาพออกก่อนได้");
+    state.frameImages.push({
+      id: "cap_" + Date.now(),
+      dataUrl: captureCanvasFromVideo(video),
+      label: `แคป ${formatSec(video.currentTime || 0)}`
     });
+    renderFrames(); saveStateAuto();
   });
 
   document.getElementById("frameImagesInput").addEventListener("change", async (e) => {
-    const files = Array.from(e.target.files || []);
-    for (const file of files) {
-      if (state.frameImages.length >= 6) break;
-      const dataUrl = await resizeImageToDataUrl(file, 720, 0.78);
-      state.frameImages.push({ id: "frm_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6), dataUrl, name: file.name });
+    for (const file of Array.from(e.target.files || [])) {
+      if (state.frameImages.length >= 8) break;
+      state.frameImages.push({ id: "frm_" + Date.now() + "_" + Math.random().toString(36).slice(2,6), dataUrl: await resizeImageToDataUrl(file), label: "ภาพนิ่ง" });
     }
-    e.target.value = "";
-    renderFrames();
-    saveStateAuto();
+    e.target.value = ""; renderFrames(); saveStateAuto();
+  });
+
+  document.getElementById("clearFramesBtn").addEventListener("click", () => {
+    state.frameImages = []; renderFrames(); saveStateAuto();
   });
 
   document.getElementById("analyzeProductBtn").addEventListener("click", analyzeProductWithGemini);
@@ -1317,64 +849,44 @@ function bindEvents() {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    const safeName = (state.productName || "asmr-project").replace(/[^a-zA-Z0-9ก-๙_-]/g, "_");
-    a.download = `${safeName}.json`;
-    a.click();
-    URL.revokeObjectURL(a.href);
+    a.download = `${(state.productName || "asmr-project").replace(/[^a-zA-Z0-9ก-๙_-]/g, "_")}.json`;
+    a.click(); URL.revokeObjectURL(a.href);
   });
 
   document.getElementById("loadProjectInput").addEventListener("change", (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const file = e.target.files?.[0]; if (!file) return;
     const reader = new FileReader();
     reader.onload = (ev) => {
       try {
         const loaded = JSON.parse(ev.target.result);
         state = { ...state, ...loaded };
-        state.presenters = mergePresenters(loaded.presenters);
-        syncInputsFromState();
-        renderProductImages();
-        renderPresenters();
-        renderDemoModes();
-        renderFrames();
+        if (!state.presenterOverrides) state.presenterOverrides = {};
+        if (!state.customPresenters) state.customPresenters = [];
+        syncInputsFromState(); renderProductImages(); renderPresenters(); renderDemoModes(); renderFrames();
         if (state.lastGenerated) renderOutput(state.lastGenerated);
-        saveStateAuto();
-        alert("เปิดโปรเจกต์เรียบร้อยแล้ว!");
-      } catch {
-        alert("ไฟล์ .json ไม่ถูกต้องครับ");
-      }
+        saveStateAuto(); alert("เปิดโปรเจกต์เรียบร้อย!");
+      } catch { alert("ไฟล์ .json ไม่ถูกต้องครับ"); }
     };
-    reader.readAsText(file);
-    e.target.value = "";
+    reader.readAsText(file); e.target.value = "";
   });
 
   document.getElementById("downloadTxtBtn").addEventListener("click", () => {
-    if (!state.lastGenerated) {
-      alert("กรุณากดปุ่ม 'สร้างสตอรี่บอร์ด & Prompt' ในข้อ 5 ก่อนดาวน์โหลดครับ");
-      return;
-    }
+    if (!state.lastGenerated) return alert("กรุณากดสร้างสตอรี่บอร์ดในข้อ 5 ก่อนครับ");
     const g = state.lastGenerated;
-    let txt = `=== ปักตะกร้า Shop Online — Beauty & Skincare ASMR Studio ===\nสินค้า: ${state.productName || "-"}\n\n`;
-    txt += `--- บทพูด ASMR ---\n${g.script}\n\n--- Master Prompt ---\n${g.masterPrompt}\n\n--- สตอรี่บอร์ดรายฉาก ---\n`;
-    g.scenes.forEach((s, i) => {
-      txt += `\n[ฉากที่ ${i + 1}: ${s.title} (${s.duration})]\nภาพ/เสียง: ${s.visualTh}\nPrompt: ${s.promptEn}\n`;
-    });
+    let txt = `=== ปักตะกร้า Beauty & Skincare ASMR Studio ===\nสินค้า: ${state.productName || "-"}\n\n--- บทพูด ASMR ---\n${g.script}\n\n--- Master Prompt ---\n${g.masterPrompt}\n\n--- สตอรี่บอร์ด ---\n`;
+    g.scenes.forEach((s, i) => { txt += `\n[ฉากที่ ${i+1}: ${s.title} (${s.duration})]\nภาพ/เสียง: ${s.visualTh}\nPrompt: ${s.promptEn}\n`; });
     const blob = new Blob([txt], { type: "text/plain;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
     a.download = `script-${(state.productName || "asmr").replace(/[^a-zA-Z0-9ก-๙_-]/g, "_")}.txt`;
-    a.click();
-    URL.revokeObjectURL(a.href);
+    a.click(); URL.revokeObjectURL(a.href);
   });
 
   document.getElementById("resetAllBtn").addEventListener("click", () => {
-    if (!confirm("ต้องการล้างข้อมูลโปรเจกต์ปัจจุบันทั้งหมดใช่ไหมครับ? (API Key จะยังอยู่)")) return;
-    localStorage.removeItem(STORAGE_KEY);
-    location.reload();
+    if (!confirm("ล้างข้อมูลโปรเจกต์ปัจจุบันทั้งหมดใช่ไหมครับ?")) return;
+    localStorage.removeItem(STORAGE_KEY); location.reload();
   });
 }
 
-// Start App
 loadStateAuto();
 syncInputsFromState();
 renderProductImages();
