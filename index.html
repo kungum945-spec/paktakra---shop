@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ปักตะกร้า Shop Online — Beauty & Skincare ASMR Studio</title>
+  <style>
+    :root {
+      --bg: #fff8fb;
+      --card: #ffffff;
+      --primary: #e11d74;
+      --primary-dark: #b9145c;
+      --secondary: #7c3aed;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #f3d5e3;
+      --soft: #fdf2f8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(135deg, #e11d74, #7c3aed);
+      color: #fff;
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(225, 29, 116, 0.2);
+    }
+    header h1 { margin: 0 0 6px; font-size: 1.55rem; }
+    header p { margin: 0; opacity: 0.94; font-size: 0.94rem; }
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .quick-links a, .quick-links button {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.35);
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+    .quick-links a:hover, .quick-links button:hover { background: rgba(255,255,255,0.32); }
+
+    main {
+      max-width: 1120px;
+      margin: 20px auto;
+      padding: 0 14px 52px;
+      display: grid;
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 1.12rem;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+
+    label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 5px; }
+    input[type="text"], input[type="password"], select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      background: #fff;
+    }
+    .hint { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: var(--secondary); color: #fff; }
+    .btn-success { background: #059669; color: #fff; }
+    .btn-outline {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #d1d5db;
+    }
+    .btn-outline:hover { background: #f9fafb; }
+    .btn-sm { padding: 6px 10px; font-size: 0.8rem; border-radius: 8px; }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .upload-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .thumb-box {
+      position: relative;
+      border: 1px dashed #d1d5db;
+      border-radius: 10px;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 4px;
+    }
+    .thumb-box img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .presenter-card {
+      border: 2px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .presenter-card.active {
+      border-color: var(--primary);
+      background: var(--soft);
+    }
+    .presenter-preview {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f3f4f6;
+    }
+    .presenter-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .presenter-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .output-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      gap: 8px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .badge-pink { background: #fce7f3; color: #be185d; }
+    .badge-purple { background: #ede9fe; color: #5b21b6; }
+
+    .scene-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fff;
+      margin-bottom: 12px;
+    }
+    .scene-title {
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .prompt-text {
+      background: #111827;
+      color: #f9fafb;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      white-space: pre-wrap;
+      margin-top: 6px;
+    }
+    .frame-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .frame-grid img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+    }
+    .status-banner {
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    .status-pass { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .status-fail { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .status-warn { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛍️ ปักตะกร้า Shop Online — Beauty &amp; Skincare ASMR Studio</h1>
+  <p>สร้างสตอรี่บอร์ด, Prompt ต่อเนื่องสำหรับ Gemini, บทพูด ASMR, บันทึกลงเครื่อง และตรวจความตรงปก</p>
+  <div class="quick-links">
+    <a href="https://gemini.google.com/" target="_blank">✨ Gemini</a>
+    <a href="https://www.capcut.com/editor" target="_blank">🎬 CapCut</a>
+    <a href="https://www.canva.com/create/videos/" target="_blank">🎨 Canva</a>
+    <a href="https://klingai.com" target="_blank">🎥 Kling AI</a>
+    <a href="https://runwayml.com" target="_blank">⚡ Runway</a>
+    <a href="https://www.tiktok.com/upload" target="_blank">🎵 TikTok</a>
+    <a href="https://studio.youtube.com/" target="_blank">▶️ YouTube</a>
+    <button type="button" onclick="copyAppLink()">🔗 คัดลอกลิงก์แอปนี้</button>
+  </div>
+</header>
+
+<main>
+  <!-- แถบจัดการการบันทึกลงเครื่อง -->
+  <section class="card" style="background: #fdf2f8;">
+    <h2>💾 บันทึกโปรเจกต์ลงเครื่อง &amp; จัดการไฟล์</h2>
+    <div class="toolbar">
+      <button class="btn btn-success" type="button" id="saveProjectBtn">💾 บันทึกโปรเจกต์ลงเครื่อง (.json)</button>
+      <label class="btn btn-outline" style="margin:0; cursor:pointer;">
+        📂 เปิดโปรเจกต์ที่บันทึกไว้ (.json)
+        <input type="file" id="loadProjectInput" accept=".json" style="display:none;" />
+      </label>
+      <button class="btn btn-outline" type="button" id="downloadTxtBtn">📄 ดาวน์โหลดสคริปต์ &amp; Prompt (.txt)</button>
+      <a class="btn btn-secondary" href="https://app.netlify.com/drop" target="_blank">🌐 นำไฟล์นี้ไปสร้างลิงก์เว็บฟรี (Netlify Drop) ↗</a>
+    </div>
+    <div class="hint" id="saveStatusHint">ระบบบันทึกข้อมูลร่างอัตโนมัติในเบราว์เซอร์ (Auto-save) และสามารถกดบันทึกเป็นไฟล์ลงเครื่องเพื่อเก็บถาวรหรือเปิดข้ามอุปกรณ์ได้</div>
+  </section>
+
+  <!-- 1. การตั้งค่า AI -->
+  <section class="card">
+    <h2>🔑 1. เชื่อมต่อ Gemini API (วิเคราะห์ภาพสินค้า 6 มุม &amp; ตรวจความตรงปกอัตโนมัติ)</h2>
+    <div class="grid-2">
+      <div>
+        <label for="apiKeyInput">Gemini API Key (เก็บเฉพาะในเครื่องคุณ)</label>
+        <div style="display:flex; gap:8px;">
+          <input type="password" id="apiKeyInput" placeholder="วาง AIza... (ไม่ใส่ก็ใช้งานโหมดพื้นฐานได้)" />
+          <button class="btn btn-outline" id="saveApiKeyBtn" type="button">บันทึกคีย์</button>
+        </div>
+        <div class="hint">รับคีย์ฟรีได้ที่ <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a></div>
+      </div>
+      <div>
+        <label>กฎเหล็กของระบบ (บังคับใช้อัตโนมัติ)</label>
+        <div class="hint" style="background:#f9fafb; padding:10px; border-radius:8px; color:#831843;">
+          • ไม่แสดงราคา โปรโมชั่น โค้ดส่วนลดเองโดยที่ผู้ใช้ไม่แจ้ง<br/>
+          • ไม่โฆษณาคำว่า "ตรงปก 100%" ใน Hook และบทพูด<br/>
+          • เน้นจุดเด่นและคุณสมบัติจริงเท่านั้น + คงรูปลักษณ์พรีเซนเตอร์และสินค้าทุกมิติ
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ข้อมูลสินค้าและรูปสินค้าสูงสุด 6 รูป -->
+  <section class="card">
+    <h2>🧴 2. ข้อมูลสินค้าและอัปโหลดรูปสินค้า (สูงสุด 6 รูป)</h2>
+    <div class="grid-2">
+      <div>
+        <label for="productName">ชื่อสินค้า / แบรนด์ (ความงามและสกินแคร์)</label>
+        <input type="text" id="productName" placeholder="เช่น เซรั่มไฮยาบูสต์ผิวฉ่ำ / ลิปกลอสฉ่ำวาว / กันแดดเนื้อน้ำ" />
+      </div>
+      <div>
+        <label for="productNotes">ข้อมูลเพิ่มเติมจากผู้ใช้ (เช่น ส่วนผสมหลัก หรือราคาเฉพาะถ้าต้องการใส่)</label>
+        <input type="text" id="productNotes" placeholder="เช่น ไฮยาลูรอน 8 โมเลกุล, ซึมไวไม่เหนอะ (ระบบไม่เดาราคาเอง)" />
+      </div>
+    </div>
+    <div style="margin-top:12px;">
+      <label for="productImagesInput">อัปโหลดรูปสินค้าได้สูงสุด 6 รูป</label>
+      <input type="file" id="productImagesInput" accept="image/*" multiple />
+      <div class="upload-grid" id="productPreviewGrid"></div>
+    </div>
+  </section>
+
+  <!-- 3. ตั้งค่าคลิป & รูปแบบสาธิต 16 แบบ -->
+  <section class="card">
+    <h2>🎬 3. ตั้งค่าขนาด ความละเอียด ความยาว และรูปแบบการสาธิต (ASMR 16 แบบ)</h2>
+    <div class="grid-4">
+      <div>
+        <label for="aspectRatio">ขนาดคลิป</label>
+        <select id="aspectRatio">
+          <option value="9:16">9:16 (TikTok / Reels / Shorts)</option>
+          <option value="1:1">1:1 (สี่เหลี่ยมจัตุรัส)</option>
+          <option value="16:9">16:9 (แนวนอน YouTube)</option>
+        </select>
+      </div>
+      <div>
+        <label for="resolution">ความละเอียด</label>
+        <select id="resolution">
+          <option value="1080p">1080p (Full HD)</option>
+          <option value="720p">720p (HD)</option>
+        </select>
+      </div>
+      <div>
+        <label for="durationSelect">ความยาวคลิป &amp; จำนวนฉาก</label>
+        <select id="durationSelect">
+          <option value="10">10 วินาที (1 ฉาก × 10 วินาที)</option>
+          <option value="20" selected>20 วินาที (2 ฉาก × 10 วินาที)</option>
+        </select>
+      </div>
+      <div>
+        <label for="demoStyle">รูปแบบการสาธิตสินค้า (16 แบบ)</label>
+        <select id="demoStyle">
+          <optgroup label="สกินแคร์ทั่วไป (10 แบบหลัก)">
+            <option value="1">1. หยดเซรั่ม/ครีมลงหลังมือ &amp; เกลี่ยโชว์เนื้อสัมผัส (Texture Swatch)</option>
+            <option value="2">2. ทาลงแก้ม/ผิวหน้าโชว์ความฉ่ำวาวทันที (Glowing Skin Application)</option>
+            <option value="3">3. เปิดกล่อง Unbox &amp; หมุนฝาขวดเสียงใสคมชัด (ASMR Unboxing)</option>
+            <option value="4">4. กดหัวปั๊ม/บีบหลอดระยะใกล้ Macro โชว์ความเข้มข้น (Macro Pump Drop)</option>
+            <option value="5">5. เปรียบเทียบผิวฝั่งที่ทากับฝั่งไม่ทาโชว์ความชุ่มชื้น (Split-Face Glow)</option>
+            <option value="6">6. ทดสอบความบางเบาซึมไวไม่เหนอะหนะ (Fast Absorption Test)</option>
+            <option value="7">7. พรีเซนเตอร์ถือโชว์ผลิตภัณฑ์คู่ผิวหน้าใส (Hero Close-up)</option>
+            <option value="8">8. แตะบำรุงเฉพาะจุด รอบดวงตา/ลำคออย่างอ่อนโยน (Gentle Spot Care)</option>
+            <option value="9">9. เรียงขั้นตอน Skincare Routine เช้า-เย็น (Routine Layering)</option>
+            <option value="10">10. จัดวางบนแท่นหิน/หยดน้ำท่ามกลางแสงธรรมชาติ (Aesthetic Tabletop)</option>
+          </optgroup>
+          <optgroup label="สินค้าความงามเฉพาะทาง (เพิ่มใหม่ 6 แบบ)">
+            <option value="11">11. ลิปสติก/ลิปกลอส: ปาดสีลงแขน &amp; ทาริมฝีปากฉ่ำวาวติดทน (ASMR Lip Swatch)</option>
+            <option value="12">12. คุชชั่น/รองพื้น: กดพัฟเสียงแท็บ ASMR เกลี่ยงานผิวเนียนบางเบา (Cushion Puff Tap)</option>
+            <option value="13">13. มาสก์หน้า: แกะซองวางแผ่นมาสก์/ปาดมาสก์โคลนเย็นฉ่ำผิว (Soothing Mask ASMR)</option>
+            <option value="14">14. คลีนซิ่ง/โฟมล้างหน้า: ตีฟองนุ่มฟู &amp; ล้างน้ำสะอาดไม่แห้งตึง (Foaming Cleanser ASMR)</option>
+            <option value="15">15. ครีมกันแดด: บีบ 2 ข้อนิ้ว เกลี่ยโชว์เนื้อแตกตัวเป็นน้ำไม่วอก (2-Finger Sunscreen Test)</option>
+            <option value="16">16. สครับ/บอดี้โลชั่น: ปาดเกลี่ยบนผิวกายโชว์ความเนียนนุ่มฉ่ำโกลว์ (Body Care ASMR)</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. เลือกพรีเซนเตอร์ 4 คน -->
+  <section class="card">
+    <h2>🧑🏻 4. เลือกพรีเซนเตอร์ (ชาย 2 คน / หญิง 2 คน • มือว่างเปล่าทั้ง 2 ข้าง)</h2>
+    <p class="hint">
+      กด <strong>"Prompt รูปนี้"</strong> เพื่อเจนภาพสมจริงใน Gemini แล้วอัปโหลดกลับมาเก็บในช่อง หรือกด <strong>"ดาวน์โหลดรูป"</strong> เพื่อนำไปใช้ในแอปอื่น
+    </p>
+    <div class="grid-4" id="presenterGrid"></div>
+  </section>
+
+  <!-- ปุ่มสร้าง -->
+  <div style="display:flex; flex-wrap:wrap; gap:10px;">
+    <button class="btn btn-primary" id="generateBtn" type="button" style="flex:1; min-width:240px; padding:14px;">
+      ✨ วิเคราะห์สินค้า &amp; สร้าง Hook / บทพูด / สตอรี่บอร์ด / Prompt
+    </button>
+    <button class="btn btn-secondary" id="exportAsmrBtn" type="button" style="padding:14px;">
+      🎞️ ส่งออกคลิป ASMR ลงเครื่อง (.webm ไปใส่เสียงพากย์ต่อ)
+    </button>
+  </div>
+  <div id="generateStatus" class="hint"></div>
+
+  <!-- 5. ผลลัพธ์ -->
+  <section class="card hidden" id="resultSection">
+    <h2>📋 5. ผลวิเคราะห์สินค้า, Hook 3 วินาที, บทพูด และสตอรี่บอร์ดสำหรับ Gemini</h2>
+
+    <div class="output-box">
+      <div class="output-header">
+        <strong>🔍 ผลวิเคราะห์คุณสมบัติจริงของสินค้า</strong>
+        <button class="btn btn-outline btn-sm" type="button" onclick="copyById('analysisText')">คัดลอก</button>
+      </div>
+      <div id="analysisText" style="white-space:pre-line;"></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="output-box">
+        <div class="output-header">
+          <strong>⚡ Hook ดึงดูดความสนใจ (3 วินาที)</strong>
+          <button class="btn btn-outline btn-sm" type="button" onclick="copyById('hookText')">คัดลอก Hook</button>
+        </div>
+        <div id="hookText" style="font-weight:700; color:#be185d;"></div>
+      </div>
+
+      <div class="output-box">
+        <div class="output-header">
+          <strong>🏷️ แคปชั่นและแฮชแท็ก</strong>
+          <button class="btn btn-outline btn-sm" type="button" onclick="copyById('captionText')">คัดลอกแคปชั่น</button>
+        </div>
+        <div id="captionText" style="white-space:pre-line;"></div>
+      </div>
+    </div>
+
+    <h3 style="margin:14px 0 8px;">🎞️ สตอรี่บอร์ด &amp; Prompt ทีละฉาก (ฉากละ 10 วินาที • ภาพต่อเนื่องกัน)</h3>
+    <div id="scenesContainer"></div>
+  </section>
+
+  <!-- 6. ตรวจความตรงปก -->
+  <section class="card">
+    <h2>🔎 6. นำเข้าวิดีโอที่สร้างเสร็จแล้วเพื่อตรวจสอบความตรงปก</h2>
+    <p class="hint">
+      อัปโหลดวิดีโอที่สร้างจาก Gemini หรือแอปอื่น ระบบจะสกัดเฟรมภาพมาเทียบกับรูปสินค้าทั้ง 6 รูปทุกมิติ
+    </p>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+      <input type="file" id="verifyVideoInput" accept="video/*" />
+      <button class="btn btn-primary" id="runVerifyBtn" type="button">🛡️ ตรวจสอบความตรงปกของวิดีโอ</button>
+    </div>
+    <div class="frame-grid" id="videoFramesGrid"></div>
+    <div id="verifyResult"></div>
+  </section>
+</main>
+
+<script>
+  const PRESENTERS = [
+    {
+      id: "m1",
+      name: "นนท์ (ชาย 1)",
+      gender: "ชาย",
+      desc: "หนุ่มเอเชียอายุ 25 ปี ผิวขาวเหลืองสุขภาพดี ผมรองทรงสั้นเรียบร้อย เสื้อยืดสีขาว หน้าตาสดใส มือว่างเปล่าทั้ง 2 ข้าง",
+      enLock: "25-year-old Southeast Asian man, short neat dark hair, clear glowing skin, bright friendly smile, wearing a clean plain white crewneck t-shirt, BOTH HANDS COMPLETELY EMPTY, natural soft studio daylight",
+      color: "#dbeafe"
+    },
+    {
+      id: "m2",
+      name: "ภีม (ชาย 2)",
+      gender: "ชาย",
+      desc: "หนุ่มเอเชียอายุ 28 ปี ผิวสองสีเนียนละเอียด คมเข้มสะอาดตา เสื้อเชิ้ตลินินสีเบจ หน้าตาสดใส มือว่างเปล่าทั้ง 2 ข้าง",
+      enLock: "28-year-old Thai man, warm tan healthy skin, clean modern hairstyle, warm confident smile, wearing a light beige linen shirt, BOTH HANDS COMPLETELY EMPTY, natural soft window light",
+      color: "#e0e7ff"
+    },
+    {
+      id: "f1",
+      name: "มินท์ (หญิง 1)",
+      gender: "หญิง",
+      desc: "สาวเอเชียอายุ 23 ปี ผิวขาวอมชมพูฉ่ำโกลว์ ผมยาวมัดครึ่งศีรษะ เสื้อพาสเทลเรียบหรู หน้าตาสดใส มือว่างเปล่าทั้ง 2 ข้าง",
+      enLock: "23-year-old Southeast Asian woman, dewy luminous skin, neat half-up dark hair, fresh radiant smile, wearing a minimalist pastel cream top, BOTH HANDS COMPLETELY EMPTY, soft beauty lighting",
+      color: "#fce7f3"
+    },
+    {
+      id: "f2",
+      name: "ลินิน (หญิง 2)",
+      gender: "หญิง",
+      desc: "สาวเอเชียอายุ 27 ปี ผิวน้ำผึ้งเนียนใส ผมประบ่าแสกกลาง เสื้อเชิ้ตซาตินขาว หน้าตาสดใส มือว่างเปล่าทั้ง 2 ข้าง",
+      enLock: "27-year-old Thai woman, smooth honey-toned glowing skin, sleek shoulder-length dark hair, bright cheerful expression, wearing a crisp white satin blouse, BOTH HANDS COMPLETELY EMPTY, editorial beauty lighting",
+      color: "#fae8ff"
+    }
+  ];
+
+  const SPECIALIZED_SCENE_HINTS = {
+    "11": {
+      enDemo: "macro lip swatch on inner wrist and smooth glide onto lips, showing rich pigment and glossy non-sticky finish",
+      thAction: "เปิดปลอกลิปเสียงคลิก ปาดสีลงบนท้องแขนและทาริมฝีปากโชว์เม็ดสีชัดฉ่ำวาว",
+      thAsmr: "เสียงหมุนเปิดปลอกลิปคลิกคมชัด และเสียงแตะเนื้อลิปนุ่มละมุน",
+      hook: "ลิปเนื้อฉ่ำสีชัดเบาสบายปาก ไม่ตกร่องระหว่างวัน"
+    },
+    "12": {
+      enDemo: "pressing cushion puff gently onto compact sponge and rhythmic soft tapping onto cheek for natural airbrushed skin coverage",
+      thAction: "เปิดตลับคุชชั่น กดพัฟลงฟองน้ำแล้วแท็บเบาๆ ลงบนแก้มโชว์งานผิวเนียนละเอียด",
+      thAsmr: "เสียงเปิดตลับคลิก เสียงกดพัฟนุ่มๆ และเสียงแท็บลงผิว ASMR ชัดเจน",
+      hook: "งานผิวเนียนใสดูเป็นธรรมชาติในไม่กี่แท็บ ไม่หนักหน้า"
+    },
+    "13": {
+      enDemo: "tearing foil mask pouch cleanly or scooping silky clay mask, gently smoothing across face showing cooling hydration",
+      thAction: "ฉีกซอง/เปิดกระปุกมาสก์ วางแผ่นมาสก์หรือปาดเนื้อมาสก์เนียนละเอียดลงบนผิวหน้า",
+      thAsmr: "เสียงฉีกซอง/เสียงเนื้อเอสเซนส์ชุ่มฉ่ำ และเสียงเกลี่ยมาสก์ผ่อนคลาย",
+      hook: "เติมความเย็นฉ่ำปลอบประโลมผิวเหนื่อยล้าให้กลับมาดูสดใสอิ่มน้ำ"
+    },
+    "14": {
+      enDemo: "whipping rich micro-bubble foam in clean palms, gently massaging onto damp skin and rinsing cleanly with clear water",
+      thAction: "บีบคลีนซิ่งตีฟองหนานุ่ม นวดวนเบาๆ บนผิวหน้าแล้วล้างออกด้วยน้ำใสสะอาด",
+      thAsmr: "เสียงตีฟองนุ่มฟูและเสียงน้ำไหลล้างผิวใสสะอาดแบบ ASMR",
+      hook: "ฟองหนานุ่มช่วยทำความสะอาดผิวหมดจด โดยไม่ทำให้ผิวรู้สึกแห้งตึง"
+    },
+    "15": {
+      enDemo: "dispensing two-finger length sunscreen onto fingers, blending smoothly onto face showing water-break lightweight absorption with zero white cast",
+      thAction: "บีบกันแดดปริมาณ 2 ข้อนิ้ว เกลี่ยลงผิวหน้าโชว์เนื้อแตกตัวบางเบาไม่วอกไม่เป็นคราบ",
+      thAsmr: "เสียงบีบหลอดนุ่มๆ และเสียงเกลี่ยเนื้อกันแดดบางเบาซึมไว",
+      hook: "กันแดดเนื้อบางเบาเกลี่ยง่าย ไม่วอก ไม่เป็นคราบระหว่างวัน"
+    },
+    "16": {
+      enDemo: "scooping fine body scrub or silky lotion onto arm/shoulder, gentle circular massage revealing luminous soft skin",
+      thAction: "ตักเนื้อสครับ/โลชั่นปาดลงบนผิวแขนหรือไหล่ ลูบไล้โชว์ผิวเนียนนุ่มฉ่ำโกลว์",
+      thAsmr: "เสียงเนื้อสครับ/โลชั่นสัมผัสผิวเนียนนุ่มต่อเนื่องแบบ ASMR",
+      hook: "ปลุกผิวกายให้ดูเนียนนุ่มชุ่มชื้น เปล่งปลั่งสัมผัสได้ตั้งแต่ครั้งแรก"
+    }
+  };
+
+  let selectedPresenterId = "f1";
+  let productImages = [];
+  let customPresenterPhotos = JSON.parse(localStorage.getItem("pak_presenters") || "{}");
+  let extractedVideoFrames = [];
+  let lastGeneratedPlan = null;
+
+  function escapeHtml(str) {
+    return String(str ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  window.copyAppLink = () => {
+    const url = window.location.href;
+    if (url.startsWith("file://")) {
+      alert("ตอนนี้คุณกำลังเปิดไฟล์จากในเครื่อง (file://)\nหากต้องการลิงก์ https:// สำหรับแชร์ให้คนอื่น กดปุ่ม 'นำไฟล์นี้ไปสร้างลิงก์เว็บฟรี (Netlify Drop)' แล้วลากไฟล์ index.html ไปวางได้เลยครับ!");
+      return;
+    }
+    navigator.clipboard.writeText(url).then(() => alert("คัดลอกลิงก์เว็บเรียบร้อยแล้ว:\n" + url));
+  };
+
+  const apiKeyInput = document.getElementById("apiKeyInput");
+  apiKeyInput.value = localStorage.getItem("pak_gemini_key") || "";
+  document.getElementById("saveApiKeyBtn").addEventListener("click", () => {
+    localStorage.setItem("pak_gemini_key", apiKeyInput.value.trim());
+    alert("บันทึก Gemini API Key ในเครื่องเรียบร้อยแล้ว");
+  });
+
+  function autoSaveDraft() {
+    const draft = {
+      productName: document.getElementById("productName").value,
+      productNotes: document.getElementById("productNotes").value,
+      aspectRatio: document.getElementById("aspectRatio").value,
+      resolution: document.getElementById("resolution").value,
+      durationSelect: document.getElementById("durationSelect").value,
+      demoStyle: document.getElementById("demoStyle").value,
+      selectedPresenterId,
+      lastGeneratedPlan
+    };
+    try {
+      localStorage.setItem("pak_draft_v1", JSON.stringify(draft));
+    } catch (e) {}
+  }
+
+  ["productName", "productNotes", "aspectRatio", "resolution", "durationSelect", "demoStyle"].forEach(id => {
+    document.getElementById(id).addEventListener("change", autoSaveDraft);
+    document.getElementById(id).addEventListener("input", autoSaveDraft);
+  });
+
+  document.getElementById("saveProjectBtn").addEventListener("click", () => {
+    const payload = {
+      version: 3,
+      savedAt: new Date().toISOString(),
+      productName: document.getElementById("productName").value,
+      productNotes: document.getElementById("productNotes").value,
+      aspectRatio: document.getElementById("aspectRatio").value,
+      resolution: document.getElementById("resolution").value,
+      durationSelect: document.getElementById("durationSelect").value,
+      demoStyle: document.getElementById("demoStyle").value,
+      selectedPresenterId,
+      productImages,
+      customPresenterPhotos,
+      lastGeneratedPlan
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const safeName = (payload.productName || "skincare-project").replace(/[^a-zA-Z0-9ก-๙_-]/g, "_");
+    a.href = url;
+    a.download = `paktakra-${safeName}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    document.getElementById("saveStatusHint").textContent = "✅ บันทึกไฟล์โปรเจกต์ลงเครื่องเรียบร้อยแล้ว!";
+  });
+
+  document.getElementById("loadProjectInput").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        document.getElementById("productName").value = data.productName || "";
+        document.getElementById("productNotes").value = data.productNotes || "";
+        if (data.aspectRatio) document.getElementById("aspectRatio").value = data.aspectRatio;
+        if (data.resolution) document.getElementById("resolution").value = data.resolution;
+        if (data.durationSelect) document.getElementById("durationSelect").value = data.durationSelect;
+        if (data.demoStyle) document.getElementById("demoStyle").value = data.demoStyle;
+        if (data.selectedPresenterId) selectedPresenterId = data.selectedPresenterId;
+        if (Array.isArray(data.productImages)) productImages = data.productImages.slice(0, 6);
+        if (data.customPresenterPhotos) customPresenterPhotos = data.customPresenterPhotos;
+        lastGeneratedPlan = data.lastGeneratedPlan || null;
+
+        renderProductThumbs();
+        renderPresenters();
+        if (lastGeneratedPlan) renderResults(lastGeneratedPlan);
+        autoSaveDraft();
+        document.getElementById("saveStatusHint").textContent = "✅ เปิดไฟล์โปรเจกต์จากเครื่องเรียบร้อยแล้ว!";
+      } catch (err) {
+        alert("ไม่สามารถอ่านไฟล์โปรเจกต์นี้ได้ กรุณาเลือกไฟล์ .json ที่บันทึกจากแอปนี้");
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  });
+
+  document.getElementById("downloadTxtBtn").addEventListener("click", () => {
+    if (!lastGeneratedPlan) {
+      alert("กรุณากดสร้างสตอรี่บอร์ดและ Prompt ในปุ่มสีชมพูก่อนดาวน์โหลดครับ");
+      return;
+    }
+    const pName = document.getElementById("productName").value.trim() || "สินค้าความงาม";
+    let text = `=== ปักตะกร้า Shop Online: ${pName} ===\n\n`;
+    text += `[วิเคราะห์คุณสมบัติจริง]\n${lastGeneratedPlan.analysis}\n\n`;
+    text += `[Hook 3 วินาที]\n${lastGeneratedPlan.hook}\n\n`;
+    text += `[แคปชั่นและแฮชแท็ก]\n${lastGeneratedPlan.caption}\n\n`;
+    text += `=== สตอรี่บอร์ด & Prompt ทีละฉาก (ฉากละ 10 วินาที) ===\n`;
+    lastGeneratedPlan.scenes.forEach(s => {
+      text += `\n--- ฉากที่ ${s.sceneNumber} (${s.duration}) ---\n`;
+      text += `ภาพ: ${s.visual}\n`;
+      text += `เสียง ASMR: ${s.asmrAudio}\n`;
+      text += `ข้อความบนจอ: ${s.onScreenText}\n`;
+      text += `บทพูด (<= 5 วิ เพื่อเว้นจังหวะ ASMR): ${s.voiceover}\n`;
+      text += `Gemini Prompt:\n${s.geminiPrompt}\n`;
+    });
+
+    const blob = new Blob(["\uFEFF" + text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `paktakra-script-${Date.now()}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function drawPresenterCardCanvas(p) {
+    const canvas = document.createElement("canvas");
+    canvas.width = 450;
+    canvas.height = 600;
+    const ctx = canvas.getContext("2d");
+    const grad = ctx.createLinearGradient(0, 0, 0, 600);
+    grad.addColorStop(0, p.color);
+    grad.addColorStop(1, "#ffffff");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 450, 600);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(225, 200, 95, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#1f2937";
+    ctx.font = "bold 76px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(p.gender === "ชาย" ? "👨🏻" : "👩🏻", 225, 225);
+
+    ctx.font = "bold 28px sans-serif";
+    ctx.fillStyle = "#111827";
+    ctx.fillText(p.name, 225, 345);
+
+    ctx.font = "18px sans-serif";
+    ctx.fillStyle = "#4b5563";
+    ctx.fillText("มือว่างเปล่าทั้ง 2 ข้าง (Empty Hands)", 225, 385);
+    ctx.fillText("เหมาะสำหรับรีวิวสกินแคร์/ความงาม", 225, 415);
+
+    ctx.fillStyle = "#e11d74";
+    ctx.font = "bold 16px sans-serif";
+    ctx.fillText("กดคัดลอก Prompt เพื่อเจนรูปสมจริงใน Gemini", 225, 480);
+    ctx.fillText("แล้วอัปโหลดหรือดาวน์โหลดเก็บลงเครื่องได้เลย", 225, 508);
+    return canvas.toDataURL("image/png");
+  }
+
+  function getPresenterImageSrc(p) {
+    return customPresenterPhotos[p.id] || drawPresenterCardCanvas(p);
+  }
+
+  function renderPresenters() {
+    const grid = document.getElementById("presenterGrid");
+    grid.innerHTML = "";
+    PRESENTERS.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "presenter-card" + (selectedPresenterId === p.id ? " active" : "");
+      const imgSrc = getPresenterImageSrc(p);
+      const genPrompt = `Photorealistic portrait photo of a ${p.enLock}, waist-up shot facing camera, natural glowing skincare look, clean minimalist light background, 8k, ultra realistic, no text, no products in hands.`;
+
+      card.innerHTML = `
+        <div class="presenter-preview" onclick="selectPresenter('${p.id}')" style="cursor:pointer;">
+          <img src="${imgSrc}" alt="${escapeHtml(p.name)}" />
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <strong>${escapeHtml(p.name)}</strong>
+          <button class="btn btn-sm ${selectedPresenterId === p.id ? 'btn-primary' : 'btn-outline'}" type="button" onclick="selectPresenter('${p.id}')">
+            ${selectedPresenterId === p.id ? '✓ เลือกอยู่' : 'เลือกคนนี้'}
+          </button>
+        </div>
+        <div class="hint" style="margin:0;">${escapeHtml(p.desc)}</div>
+        <div class="presenter-actions">
+          <label class="btn btn-outline btn-sm" style="margin:0; cursor:pointer;">
+            📷 อัปโหลดรูปจริง
+            <input type="file" accept="image/*" style="display:none" onchange="uploadPresenterPhoto('${p.id}', this)" />
+          </label>
+          <button class="btn btn-outline btn-sm" type="button" onclick="downloadPresenter('${p.id}')">⬇️ ดาวน์โหลดรูป</button>
+          <button class="btn btn-outline btn-sm" type="button" onclick='copyText(${JSON.stringify(genPrompt)})'>📋 Prompt รูปนี้</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  window.selectPresenter = (id) => {
+    selectedPresenterId = id;
+    renderPresenters();
+    autoSaveDraft();
+  };
+
+  window.uploadPresenterPhoto = (id, input) => {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      customPresenterPhotos[id] = e.target.result;
+      try {
+        localStorage.setItem("pak_presenters", JSON.stringify(customPresenterPhotos));
+      } catch (err) {}
+      renderPresenters();
+    };
+    reader.readAsDataURL(file);
+  };
+
+  window.downloadPresenter = (id) => {
+    const p = PRESENTERS.find(x => x.id === id);
+    const a = document.createElement("a");
+    a.href = getPresenterImageSrc(p);
+    a.download = `presenter-${p.id}-empty-hands.png`;
+    a.click();
+  };
+
+  document.getElementById("productImagesInput").addEventListener("change", (e) => {
+    const files = Array.from(e.target.files);
+    const remaining = 6 - productImages.length;
+    if (remaining <= 0) {
+      alert("อัปโหลดรูปสินค้าได้สูงสุด 6 รูปครับ");
+      return;
+    }
+    files.slice(0, remaining).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        const [meta, base64] = dataUrl.split(",");
+        const mimeType = meta.match(/:(.*?);/)[1];
+        productImages.push({ dataUrl, base64, mimeType, name: file.name });
+        renderProductThumbs();
+      };
+      reader.readAsDataURL(file);
+    });
+    e.target.value = "";
+  });
+
+  function renderProductThumbs() {
+    const grid = document.getElementById("productPreviewGrid");
+    grid.innerHTML = "";
+    for (let i = 0; i < 6; i++) {
+      const box = document.createElement("div");
+      box.className = "thumb-box";
+      if (productImages[i]) {
+        box.innerHTML = `<img src="${productImages[i].dataUrl}" alt="รูปสินค้า ${i+1}" />
+          <button class="thumb-remove" type="button" onclick="removeProductImg(${i})">×</button>`;
+      } else {
+        box.textContent = `รูปที่ ${i + 1}`;
+      }
+      grid.appendChild(box);
+    }
+  }
+  window.removeProductImg = (idx) => {
+    productImages.splice(idx, 1);
+    renderProductThumbs();
+  };
+
+  window.copyText = (txt) => {
+    navigator.clipboard.writeText(txt).then(() => alert("คัดลอกข้อความเรียบร้อยแล้ว"));
+  };
+  window.copyById = (id) => {
+    copyText(document.getElementById(id).innerText);
+  };
+
+  async function callGemini(promptText, imageList = []) {
+    const key = document.getElementById("apiKeyInput").value.trim();
+    if (!key) return null;
+    const parts = [{ text: promptText }];
+    imageList.forEach(img => {
+      parts.push({ inline_data: { mime_type: img.mimeType || "image/jpeg", data: img.base64 } });
+    });
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts }],
+          generationConfig: { responseMimeType: "application/json" }
+        })
+      }
+    );
+    if (!res.ok) throw new Error(await res.text());
+    const data = await res.json();
+    return JSON.parse(data.candidates?.[0]?.content?.parts?.[0]?.text || "{}");
+  }
+
+  document.getElementById("generateBtn").addEventListener("click", async () => {
+    const productName = document.getElementById("productName").value.trim() || "ผลิตภัณฑ์ความงามและสกินแคร์";
+    const productNotes = document.getElementById("productNotes").value.trim();
+    const aspectRatio = document.getElementById("aspectRatio").value;
+    const resolution = document.getElementById("resolution").value;
+    const duration = parseInt(document.getElementById("durationSelect").value, 10);
+    const numScenes = duration === 10 ? 1 : 2;
+    const demoVal = document.getElementById("demoStyle").value;
+    const demoText = document.getElementById("demoStyle").selectedOptions[0].text;
+    const presenter = PRESENTERS.find(p => p.id === selectedPresenterId);
+    const statusEl = document.getElementById("generateStatus");
+
+    statusEl.textContent = "⏳ กำลังวิเคราะห์สินค้าและสร้างสตอรี่บอร์ด ASMR...";
+    const hasKey = !!document.getElementById("apiKeyInput").value.trim();
+    let resultData = null;
+
+    if (hasKey) {
+      try {
+        const aiPrompt = `คุณคือผู้เชี่ยวชาญสร้างคอนเทนต์ปักตะกร้าความงามและสกินแคร์แบบ ASMR
+ข้อมูลจากผู้ใช้:
+- ชื่อสินค้า: ${productName}
+- ข้อมูลเพิ่มเติม: ${productNotes || "ไม่มี (วิเคราะห์จากภาพที่แนบมาเท่านั้น)"}
+- รูปแบบการสาธิต: ${demoText}
+- ขนาด: ${aspectRatio}, ความละเอียด: ${resolution}
+- ความยาวคลิป: ${duration} วินาที แบ่งเป็น ${numScenes} ฉาก (ฉากละ 10 วินาทีเป๊ะ: ${numScenes === 1 ? "ฉาก 1 = 00:00 - 00:10" : "ฉาก 1 = 00:00 - 00:10, ฉาก 2 = 00:10 - 00:20"})
+- พรีเซนเตอร์: ${presenter.name} (${presenter.enLock})
+
+กฎเหล็กที่ห้ามฝ่าฝืน:
+1. ห้ามแสดงหรือแต่งเติม ราคา โปรโมชั่น โค้ดส่วนลด เองโดยเด็ดขาด หากผู้ใช้ไม่ได้ระบุไว้
+2. ห้ามใช้คำว่า "ตรงปก 100%" ใน Hook และบทพูด
+3. Hook (3 วินาที) และบทพูดทุกฉาก (กระชับไม่เกิน 5 วินาที/ฉาก เพื่อเว้นจังหวะเสียง ASMR) ต้องพูดถึงแต่จุดเด่นและคุณสมบัติจริงของสินค้าเท่านั้น
+4. คงรูปลักษณ์พรีเซนเตอร์และสินค้าให้เหมือนกันทุกฉาก และสร้าง Prompt ให้ภาพต่อเนื่องกัน
+5. สไตล์เป็น ASMR และเว้นจังหวะให้นำคลิปไปใส่เสียงพากย์ต่อในแอปตัดต่อได้
+
+ตอบเป็น JSON เท่านั้น:
+{
+  "analysis": "...",
+  "hook": "...",
+  "caption": "...",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "duration": "00:00 - 00:10 (10 วินาที)",
+      "visual": "...",
+      "asmrAudio": "...",
+      "onScreenText": "...",
+      "voiceover": "...",
+      "geminiPrompt": "..."
+    }
+  ]
+}`;
+        resultData = await callGemini(aiPrompt, productImages);
+      } catch (err) {
+        statusEl.textContent = "⚠️ เชื่อมต่อ Gemini ไม่สำเร็จ (" + err.message + ") ระบบใช้โหมดสร้างมาตรฐานแทน";
+      }
+    }
+
+    if (!resultData) {
+      const spec = SPECIALIZED_SCENE_HINTS[demoVal];
+      const featureText = productNotes || "เนื้อสัมผัสเบาสบาย เกลี่ยง่าย ให้ผิวแลดูเรียบเนียนสุขภาพดี";
+      const productLock = `exact "${productName}" packaging matching the ${productImages.length || 1} reference image(s), identical bottle/compact/tube shape, label typography, color, and cap`;
+      const enDemoAction = spec ? spec.enDemo : `macro close-up demonstration following ${demoText}, showing real smooth texture absorption on skin with dewy finish`;
+      const thDemoAction = spec ? spec.thAction : `สาธิต "${demoText}" เปิดฝา/หยดเนื้อผลิตภัณฑ์โชว์ความเข้มข้นและเกลี่ยให้เห็นความซึมไว`;
+      const thAsmrSound = spec ? spec.thAsmr : "เสียงวางขวดเบาๆ ต่อด้วยเสียงเปิดฝาคลิกและเสียงเกลี่ยเนื้อสัมผัสแบบ ASMR คมชัด";
+      const hookLine = spec ? spec.hook : `กู้ผิวโทรมให้ดูฉ่ำโกลว์ในขั้นตอนเดียว ด้วยสัมผัสเบาสบายที่ซึมไวระดับ ASMR`;
+
+      const baseScenes = [
+        {
+          sceneNumber: 1,
+          duration: "00:00 - 00:10 (10 วินาที)",
+          visual: `ช่วง 0-4 วิ: พรีเซนเตอร์ (${presenter.name}) ยิ้มสดใส มือว่างเปล่าทั้ง 2 ข้าง ก่อนกล้องแพนเข้าหา ${productName} | ช่วง 4-10 วิ: ${thDemoAction}`,
+          asmrAudio: `${thAsmrSound} พื้นหลังเงียบเหมาะสำหรับลงเสียงพากย์ทับ`,
+          onScreenText: `${productName} • ${featureText.slice(0, 28)}`,
+          voiceover: `สัมผัสเนื้อบางเบา เกลี่ยง่าย ตอบโจทย์การดูแลผิวในทุกวัน`,
+          geminiPrompt: `ASMR beauty commercial Scene 1 (10 seconds continuous shot), ${aspectRatio} ${resolution}. First 4s: ${presenter.enLock} smiling naturally with both hands completely empty, then smooth cinematic camera push-in to ${productLock} on a clean travertine stone surface in soft sunlight. Remaining 6s: ${enDemoAction}. Ultra photorealistic, crisp ASMR mood, no on-screen text, consistent character and exact product.`
+        },
+        {
+          sceneNumber: 2,
+          duration: "00:10 - 00:20 (10 วินาที)",
+          visual: `ต่อเนื่องจากฉาก 1: ${presenter.name} โชว์ผลลัพธ์ผิว/ลุคหลังใช้จริงในแสงธรรมชาติ แล้วจบด้วยมุม Hero Shot คู่กับ ${productName} ที่คมชัดทุกมิติ`,
+          asmrAudio: "เสียงสัมผัสผิวแผ่วเบาและเสียงปิดฝา/ตลับแบบ ASMR สะอาดตา เว้นช่วงท้าย 2 วินาทีสำหรับใส่เสียงพากย์และปิดคลิป",
+          onScreenText: `ใช้ได้ทุกวัน • ${featureText.slice(0, 30)}`,
+          voiceover: `ช่วยให้ผิวแลดูเรียบเนียน สดใสอย่างเป็นธรรมชาติตลอดวัน`,
+          geminiPrompt: `ASMR beauty commercial Scene 2 (10 seconds continuous shot), seamless visual continuation from Scene 1, ${aspectRatio} ${resolution}. Same presenter (${presenter.enLock}) revealing the natural healthy finished result in soft daylight, smoothly transitioning into a clean Hero beauty close-up alongside ${productLock} in sharp focus. Identical label, colors, packaging proportions, and facial identity. Soft calm ASMR outro, no text.`
+        }
+      ];
+
+      resultData = {
+        analysis: `สินค้า: ${productName}\nรูปแบบสาธิต: ${demoText}\nคุณสมบัติอ้างอิง: ${featureText}\nอัปโหลดภาพอ้างอิง: ${productImages.length}/6 รูป\nตั้งค่า: ${aspectRatio} | ${resolution} | ${duration} วินาที (${numScenes} ฉาก × 10 วินาที) | พรีเซนเตอร์: ${presenter.name}`,
+        hook: hookLine,
+        caption: `สัมผัสผลลัพธ์ที่ลงตัวกับ ${productName} ✨ ${featureText}\nตอบโจทย์การดูแลตัวเองในทุกวัน\n\n#ความงาม #สกินแคร์ #รีวิวบิวตี้ #ASMRบิวตี้ #ปักตะกร้า`,
+        scenes: baseScenes.slice(0, numScenes)
+      };
+    }
+
+    lastGeneratedPlan = resultData;
+    renderResults(resultData);
+    autoSaveDraft();
+    statusEl.textContent = "✅ สร้างสตอรี่บอร์ดและ Prompt ต่อเนื่องเรียบร้อยแล้ว! (กดบันทึกโปรเจกต์ลงเครื่องได้ด้านบน)";
+  });
+
+  function renderResults(data) {
+    document.getElementById("resultSection").classList.remove("hidden");
+    document.getElementById("analysisText").innerText = data.analysis;
+    document.getElementById("hookText").innerText = data.hook;
+    document.getElementById("captionText").innerText = data.caption;
+
+    const container = document.getElementById("scenesContainer");
+    container.innerHTML = "";
+    data.scenes.forEach(s => {
+      const div = document.createElement("div");
+      div.className = "scene-card";
+      div.innerHTML = `
+        <div class="scene-title">
+          <span>🎬 ฉากที่ ${s.sceneNumber} (${escapeHtml(s.duration)})</span>
+          <span class="badge badge-purple">ASMR 10 วิ + พร้อมใส่เสียงพากย์</span>
+        </div>
+        <div><strong>ภาพในฉาก:</strong> ${escapeHtml(s.visual)}</div>
+        <div><strong>เสียง ASMR:</strong> ${escapeHtml(s.asmrAudio)}</div>
+        <div style="margin-top:6px;">
+          <strong>ข้อความบนจออัตโนมัติ:</strong> <span class="badge badge-pink">${escapeHtml(s.onScreenText)}</span>
+          <button class="btn btn-outline btn-sm" type="button" onclick='copyText(${JSON.stringify(s.onScreenText)})'>คัดลอกข้อความจอ</button>
+        </div>
+        <div style="margin-top:6px;">
+          <strong>บทพูด (≤ 5 วินาที เพื่อเว้นจังหวะ ASMR):</strong> "${escapeHtml(s.voiceover)}"
+          <button class="btn btn-outline btn-sm" type="button" onclick='copyText(${JSON.stringify(s.voiceover)})'>คัดลอกบทพูด</button>
+        </div>
+        <div style="margin-top:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
+            <strong>🤖 Prompt สำหรับนำไปสร้างคลิปต่อที่ Gemini:</strong>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-primary btn-sm" type="button" onclick='copyText(${JSON.stringify(s.geminiPrompt)})'>คัดลอก Prompt</button>
+              <a class="btn btn-outline btn-sm" href="https://gemini.google.com/" target="_blank">เปิด Gemini ↗</a>
+            </div>
+          </div>
+          <div class="prompt-text">${escapeHtml(s.geminiPrompt)}</div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  document.getElementById("exportAsmrBtn").addEventListener("click", async () => {
+    if (productImages.length === 0) {
+      alert("กรุณาอัปโหลดรูปสินค้าอย่างน้อย 1 รูปก่อนส่งออกคลิปครับ");
+      return;
+    }
+    const aspect = document.getElementById("aspectRatio").value;
+    const res = document.getElementById("resolution").value;
+    const duration = parseInt(document.getElementById("durationSelect").value, 10);
+    const numScenes = duration === 10 ? 1 : 2;
+
+    const sizes = {
+      "9:16": res === "1080p" ? [1080, 1920] : [720, 1280],
+      "1:1":  res === "1080p" ? [1080, 1080] : [720, 720],
+      "16:9": res === "1080p" ? [1920, 1080] : [1280, 720]
+    };
+    const [W, H] = sizes[aspect];
+
+    const canvas = document.createElement("canvas");
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext("2d");
+
+    const loadedImgs = await Promise.all(productImages.map(item => new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.src = item.dataUrl;
+    })));
+
+    const stream = canvas.captureStream(30);
+    const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9")
+      ? "video/webm;codecs=vp9"
+      : "video/webm";
+    const recorder = new MediaRecorder(stream, { mimeType: mime });
+    const chunks = [];
+    recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: "video/webm" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `asmr-base-${aspect.replace(":","x")}-${res}-${duration}s.webm`;
+      a.click();
+      URL.revokeObjectURL(url);
+      document.getElementById("generateStatus").textContent = "✅ บันทึกคลิป ASMR พื้นฐานลงเครื่องเรียบร้อย! นำไปใส่เสียงพากย์ต่อใน CapCut ได้เลย";
+    };
+
+    document.getElementById("generateStatus").textContent = `⏳ กำลังเรนเดอร์คลิป ASMR (${duration} วินาที / ${numScenes} ฉาก)...`;
+    recorder.start();
+
+    const startTime = performance.now();
+    const totalMs = duration * 1000;
+
+    function drawFrame(now) {
+      const elapsed = now - startTime;
+      if (elapsed >= totalMs) {
+        recorder.stop();
+        return;
+      }
+      const sceneIdx = Math.min(numScenes - 1, Math.floor(elapsed / 10000));
+      const sceneProgress = (elapsed % 10000) / 10000;
+      const imgIndex = Math.min(loadedImgs.length - 1, Math.floor((elapsed / totalMs) * loadedImgs.length));
+      const img = loadedImgs[imgIndex];
+
+      ctx.fillStyle = "#fff8fb";
+      ctx.fillRect(0, 0, W, H);
+
+      const scale = 1 + sceneProgress * 0.08;
+      const ratio = Math.max(W / img.width, H / img.height) * scale;
+      const nw = img.width * ratio;
+      const nh = img.height * ratio;
+      ctx.drawImage(img, (W - nw) / 2, (H - nh) / 2, nw, nh);
+
+      const overlayText = lastGeneratedPlan?.scenes?.[sceneIdx]?.onScreenText
+        || (document.getElementById("productName").value.trim() || "Beauty & Skincare ASMR");
+      ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
+      const boxH = Math.round(H * 0.08);
+      ctx.fillRect(W * 0.08, H * 0.8, W * 0.84, boxH);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = `bold ${Math.round(W * 0.036)}px sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(overlayText, W / 2, H * 0.8 + boxH / 2, W * 0.8);
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  });
+
+  document.getElementById("verifyVideoInput").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const grid = document.getElementById("videoFramesGrid");
+    grid.innerHTML = "<div class='hint'>⏳ กำลังสกัดเฟรมภาพจากวิดีโอ...</div>";
+    extractedVideoFrames = [];
+
+    const video = document.createElement("video");
+    video.muted = true;
+    video.playsInline = true;
+    video.src = URL.createObjectURL(file);
+
+    video.onloadedmetadata = async () => {
+      const dur = video.duration || 5;
+      const samplePoints = [0.1, 0.35, 0.6, 0.85].map(r => Math.min(dur - 0.1, Math.max(0, dur * r)));
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      grid.innerHTML = "";
+
+      for (const t of samplePoints) {
+        await new Promise(resolve => {
+          video.currentTime = t;
+          video.onseeked = () => {
+            canvas.width = 480;
+            canvas.height = Math.round((video.videoHeight / video.videoWidth) * 480) || 854;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+            extractedVideoFrames.push({ dataUrl, base64: dataUrl.split(",")[1], mimeType: "image/jpeg" });
+
+            const img = document.createElement("img");
+            img.src = dataUrl;
+            grid.appendChild(img);
+            resolve();
+          };
+        });
+      }
+      URL.revokeObjectURL(video.src);
+    };
+  });
+
+  document.getElementById("runVerifyBtn").addEventListener("click", async () => {
+    const out = document.getElementById("verifyResult");
+    if (extractedVideoFrames.length === 0) {
+      alert("กรุณาอัปโหลดไฟล์วิดีโอก่อนตรวจสอบครับ");
+      return;
+    }
+    if (productImages.length === 0) {
+      alert("กรุณาอัปโหลดรูปสินค้าต้นฉบับในข้อ 2 อย่างน้อย 1 รูปครับ");
+      return;
+    }
+    const key = document.getElementById("apiKeyInput").value.trim();
+    if (!key) {
+      out.innerHTML = `
+        <div class="status-banner status-warn">
+          ⚠️ ยังไม่ได้ใส่ Gemini API Key — กรุณาเทียบเฟรมวิดีโอด้านบนกับรูปสินค้าทั้ง ${productImages.length} รูป หรือใส่ API Key ในข้อ 1 เพื่อให้ AI ตรวจสอบให้อัตโนมัติทุกมิติ
+        </div>`;
+      return;
+    }
+
+    out.innerHTML = `<div class="hint">⏳ AI กำลังตรวจสอบความตรงปกของสินค้าในวิดีโอทุกมิติ...</div>`;
+    try {
+      const combined = [
+        ...productImages.map(p => ({ base64: p.base64, mimeType: p.mimeType })),
+        ...extractedVideoFrames.map(f => ({ base64: f.base64, mimeType: f.mimeType }))
+      ];
+      const verifyPrompt = `ภาพชุดแรก ${productImages.length} รูปคือ "รูปสินค้าจริงต้นฉบับ" ส่วนภาพชุดหลัง ${extractedVideoFrames.length} รูปคือ "เฟรมภาพจากวิดีโอ"
+จงวิเคราะห์ความตรงปกทุกมิติ (รูปทรงบรรจุภัณฑ์ สี วัสดุ โลโก้/ฉลาก สัดส่วน รูปลักษณ์พรีเซนเตอร์/มือ) ตอบเป็น JSON เท่านั้น:
+{
+  "isAccurate": true หรือ false,
+  "scorePercent": 0-100,
+  "summary": "...",
+  "mismatches": ["..."],
+  "recommendation": "..."
+}`;
+      const res = await callGemini(verifyPrompt, combined);
+      const cls = res.isAccurate ? "status-pass" : "status-fail";
+      const icon = res.isAccurate ? "✅ ผ่านเกณฑ์ตรงปก" : "❌ ไม่ตรงปก — แนะนำให้สร้างคลิปใหม่";
+      out.innerHTML = `
+        <div class="status-banner ${cls}">
+          ${icon} (ความเหมือน: ${escapeHtml(res.scorePercent)}%)
+          <div style="font-weight:400; margin-top:6px;">${escapeHtml(res.summary)}</div>
+          ${res.mismatches?.length ? `<ul style="margin:6px 0; font-weight:400;">${res.mismatches.map(m => `<li>${escapeHtml(m)}</li>`).join("")}</ul>` : ""}
+          <div style="margin-top:6px;"><strong>คำแนะนำ:</strong> ${escapeHtml(res.recommendation)}</div>
+        </div>`;
+    } catch (err) {
+      out.innerHTML = `<div class="status-banner status-fail">เกิดข้อผิดพลาด: ${escapeHtml(err.message)}</div>`;
+    }
+  });
+
+  (function init() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("pak_draft_v1") || "null");
+      if (saved) {
+        document.getElementById("productName").value = saved.productName || "";
+        document.getElementById("productNotes").value = saved.productNotes || "";
+        if (saved.aspectRatio) document.getElementById("aspectRatio").value = saved.aspectRatio;
+        if (saved.resolution) document.getElementById("resolution").value = saved.resolution;
+        if (saved.durationSelect) document.getElementById("durationSelect").value = saved.durationSelect;
+        if (saved.demoStyle) document.getElementById("demoStyle").value = saved.demoStyle;
+        if (saved.selectedPresenterId) selectedPresenterId = saved.selectedPresenterId;
+        if (saved.lastGeneratedPlan) {
+          lastGeneratedPlan = saved.lastGeneratedPlan;
+          renderResults(lastGeneratedPlan);
+        }
+      }
+    } catch (e) {}
+    renderPresenters();
+    renderProductThumbs();
+  })();
+</script>
+</body>
+</html>
