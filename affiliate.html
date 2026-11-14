@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Affiliate Studio</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f6fa;color:#24243a;font-family:Arial,sans-serif}
+header{background:#252344;color:white;padding:22px 16px}
+header h1{margin:0 0 6px;font-size:25px}
+header p{margin:0;color:#deddf1;font-size:14px}
+main{max-width:850px;margin:20px auto;padding:0 14px}
+.card{background:white;border-radius:14px;padding:17px;margin-bottom:16px;box-shadow:0 2px 10px #0000000c}
+h2{font-size:18px;margin:0 0 14px}
+label{display:block;font-size:14px;font-weight:bold;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d8d8e2;border-radius:9px;font-size:15px;background:white}
+textarea{min-height:85px;resize:vertical}
+button{border:0;border-radius:9px;padding:12px 15px;font-size:14px;font-weight:bold;cursor:pointer;margin:5px 4px 5px 0}
+.primary{background:#5146bd;color:white}
+.secondary{background:#ecebfa;color:#332c83}
+.danger{background:#ffe9e9;color:#a32626}
+.product{border:1px solid #e3e3ec;padding:12px;border-radius:10px;margin:10px 0}
+.product strong{display:block;margin-bottom:6px}
+.output{white-space:pre-wrap;background:#f7f7fb;border:1px solid #e5e5ef;border-radius:9px;padding:12px;min-height:50px;font-size:14px}
+small{color:#777}
+</style>
+</head>
+<body>
+<header>
+<h1>Affiliate Studio</h1>
+<p>ผู้ช่วยสร้างคอนเทนต์ Shopee และ TikTok Shop</p>
+</header>
+<main>
+<section class="card">
+<h2>เพิ่มสินค้า</h2>
+<label>แพลตฟอร์ม</label>
+<select id="platform">
+<option>Shopee</option>
+<option>TikTok Shop</option>
+</select>
+<label>ลิงก์สินค้า</label>
+<input id="link" placeholder="วางลิงก์สินค้า">
+<label>ชื่อสินค้า</label>
+<input id="name" placeholder="ชื่อสินค้าตามหน้าร้าน">
+<label>หมวดหมู่</label>
+<input id="category" placeholder="เช่น สกินแคร์ เสื้อผ้า อุปกรณ์">
+<label>ข้อมูลและจุดเด่นจากร้าน</label>
+<textarea id="features" placeholder="คัดลอกข้อมูลจริงจากหน้าร้านมาใส่"></textarea>
+<label>ราคา (ถ้าต้องการ)</label>
+<input id="price" placeholder="ใส่ตามข้อมูลร้าน">
+<label>ลิงก์ Affiliate</label>
+<input id="affiliate" placeholder="วางลิงก์ Affiliate ของคุณ">
+<button class="primary" onclick="saveProduct()">บันทึกสินค้า</button>
+<button class="secondary" onclick="clearForm()">ล้างช่องกรอก</button>
+<small>ข้อมูลสินค้าจะบันทึกไว้ในเบราว์เซอร์เครื่องนี้</small>
+</section>
+
+<section class="card">
+<h2>คลังสินค้าของฉัน</h2>
+<div id="products">ยังไม่มีสินค้า</div>
+</section>
+
+<section class="card">
+<h2>สร้างคอนเทนต์สินค้า</h2>
+<label>เลือกสินค้า</label>
+<select id="choose" onchange="generate()">
+<option value="">-- เลือกสินค้า --</option>
+</select>
+<button class="primary" onclick="generate()">สร้างบทพูดและคอนเทนต์</button>
+
+<label>Hook เปิดคลิป</label>
+<div class="output" id="hook">รอเลือกสินค้า</div>
+<button class="secondary" onclick="copyText('hook')">คัดลอก Hook</button>
+
+<label>บทพูดรีวิว</label>
+<div class="output" id="script">รอเลือกสินค้า</div>
+<button class="secondary" onclick="copyText('script')">คัดลอกบทพูด</button>
+
+<label>แคปชัน</label>
+<div class="output" id="caption">รอเลือกสินค้า</div>
+<button class="secondary" onclick="copyText('caption')">คัดลอกแคปชัน</button>
+
+<label>แฮชแท็ก</label>
+<div class="output" id="hashtags">รอเลือกสินค้า</div>
+<button class="secondary" onclick="copyText('hashtags')">คัดลอกแฮชแท็ก</button>
+
+<label>Prompt สร้างคลิป</label>
+<div class="output" id="prompt">รอเลือกสินค้า</div>
+<button class="secondary" onclick="copyText('prompt')">คัดลอก Prompt</button>
+</section>
+</main>
+<script>
+const KEY='affiliate_studio_products_v1';
+let products=[];
+try{products=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){products=[]}
+
+function persist(){
+ localStorage.setItem(KEY,JSON.stringify(products));
+ render();
+}
+function val(id){return document.getElementById(id).value.trim()}
+function saveProduct(){
+ const p={
+ id:Date.now(),
+ platform:val('platform'),
+ link:val('link'),
+ name:val('name'),
+ category:val('category'),
+ features:val('features'),
+ price:val('price'),
+ affiliate:val('affiliate')
+ };
+ if(!p.name){alert('กรุณากรอกชื่อสินค้า');return}
+ if(!p.features){alert('กรุณากรอกข้อมูลสินค้าจากหน้าร้าน');return}
+ products.push(p);
+ persist();
+ clearForm();
+ alert('บันทึกสินค้าแล้ว');
+}
+function clearForm(){
+ ['link','name','category','features','price','affiliate'].forEach(id=>document.getElementById(id).value='');
+}
+function render(){
+ const box=document.getElementById('products');
+ const select=document.getElementById('choose');
+ select.innerHTML='<option value="">-- เลือกสินค้า --</option>';
+ if(!products.length){box.textContent='ยังไม่มีสินค้า';return}
+ box.innerHTML='';
+ products.forEach(p=>{
+  const option=document.createElement('option');
+  option.value=p.id;
+  option.textContent=p.name+' ('+p.platform+')';
+  select.appendChild(option);
+  const div=document.createElement('div');
+  div.className='product';
+  const title=document.createElement('strong');
+  title.textContent=p.name+' · '+p.platform;
+  const info=document.createElement('small');
+  info.textContent=p.category||'ไม่ระบุหมวดหมู่';
+  const edit=document.createElement('button');
+  edit.className='secondary';
+  edit.textContent='เปิดลิงก์สินค้า';
+  edit.onclick=()=>{if(p.link)window.open(p.link,'_blank')};
+  const del=document.createElement('button');
+  del.className='danger';
+  del.textContent='ลบสินค้า';
+  del.onclick=()=>{if(confirm('ต้องการลบสินค้านี้หรือไม่?')){products=products.filter(x=>x.id!==p.id);persist()}};
+  div.append(title,info,document.createElement('br'),edit,del);
+  box.appendChild(div);
+ });
+}
+function generate(){
+ const p=products.find(x=>String(x.id)===val('choose'));
+ if(!p){alert('กรุณาเลือกสินค้าก่อน');return}
+ const feature=p.features;
+ document.getElementById('hook').textContent='กำลังมองหา '+p.name+' อยู่หรือเปล่า?';
+ document.getElementById('script').textContent=
+ 'วันนี้มาแนะนำ '+p.name+' ค่ะ '+feature+' สนใจดูรายละเอียดเพิ่มเติมได้ที่ตะกร้าสินค้านะคะ';
+ document.getElementById('caption').textContent=
+ p.name+'\n'+feature+'\nดูรายละเอียดสินค้าได้ที่ตะกร้าค่ะ';
+ const tags='#'+p.name.replace(/\s+/g,'')+' #รีวิวสินค้า #Affiliate #'+(p.platform==='Shopee'?'Shopee':'TikTokShop');
+ document.getElementById('hashtags').textContent=tags;
+ document.getElementById('prompt').textContent=
+ 'สร้างคลิปรีวิวสินค้า '+p.name+
+ ' โดยใช้ภาพสินค้าจริงเป็นข้อมูลอ้างอิงหลัก รักษาสี รูปร่าง วัสดุ ฉลาก และรายละเอียดสินค้าให้ตรงกับภาพต้นฉบับทุกประการ ห้ามเปลี่ยนแปลงหรือเพิ่มคุณสมบัติที่ไม่มีในข้อมูลร้าน ใช้ข้อมูลสินค้าเท่านี้: '+feature+
+ ' วิดีโอแนวตั้ง 9:16 กล้องค่อย ๆ ซูมเข้าหาสินค้า';
+}
+function copyText(id){
+ const text=document.getElementById(id).textContent;
+ if(!text||text==='รอเลือกสินค้า')return;
+ if(navigator.clipboard&&navigator.clipboard.writeText){
+  navigator.clipboard.writeText(text).then(()=>alert('คัดลอกแล้ว')).catch(()=>fallbackCopy(text));
+ }else fallbackCopy(text);
+}
+function fallbackCopy(text){
+ const area=document.createElement('textarea');
+ area.value=text;document.body.appendChild(area);
+ area.select();
+ try{document.execCommand('copy');alert('คัดลอกแล้ว')}catch(e){alert('คัดลอกไม่สำเร็จ กรุณาเลือกข้อความเอง')}
+ area.remove();
+}
+render();
+</script>
+</body>
+</html>
