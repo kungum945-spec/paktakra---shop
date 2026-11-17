@@ -1,14 +1,15 @@
-8<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ปักตะกร้า สกินแคร์และความงาม Shopee & Tiktok shop</title>
+  <title>ปักตะกร้า สกินแคร์และความงาม Shopee & TikTok Shop</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Prompt', sans-serif;
       background: #f8fafc;
@@ -22,118 +23,139 @@
       color: white;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       border: 1px solid #e2e8f0;
       box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
     }
-    .copy-toast {
-      transition: all 0.25s ease;
-    }
   </style>
 </head>
-<body class="min-h-screen pb-16">
+<body class="min-h-screen pb-20">
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-2 text-sm copy-toast">
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 text-sm border border-white/10">
     <span class="text-emerald-400 font-bold">✓</span>
-    <span id="toast-msg">คัดลอกข้อความเรียบร้อยแล้ว</span>
+    <span id="toast-msg">ดำเนินการเรียบร้อยแล้ว</span>
   </div>
 
-  <!-- Header -->
   <header class="gradient-brand text-white shadow-lg sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       <div>
-        <div class="flex items-center gap-2">
-          <span class="bg-white/20 backdrop-blur px-2.5 py-0.5 rounded-full text-xs font-medium">Shopee & TikTok Shop Affiliate AI</span>
-          <span class="bg-emerald-500/90 px-2.5 py-0.5 rounded-full text-xs font-medium">Anti-Overclaim Guard</span>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="bg-white/20 backdrop-blur px-2.5 py-0.5 rounded-full text-[11px] font-medium">Shopee & TikTok Shop Affiliate</span>
+          <span class="bg-emerald-500/90 px-2.5 py-0.5 rounded-full text-[11px] font-medium">Strict Anti-Overclaim Guard</span>
+          <span id="header-apl-status" class="bg-slate-900/60 px-2.5 py-0.5 rounded-full text-[11px] font-medium">โหมดวิเคราะห์ในเบราว์เซอร์ (ยังไม่ใส่ APL)</span>
         </div>
-        <h1 class="text-lg md:text-2xl font-bold mt-1 tracking-tight">
-          ปักตะกร้า สกินแคร์และความงาม Shopee & Tiktok shop
+        <h1 class="text-base md:text-xl font-bold mt-1 tracking-tight">
+          ระบบผลิตคลิปปักตะกร้า สกินแคร์และความงาม (Shopee & TikTok Shop)
         </h1>
       </div>
       <div class="flex flex-wrap items-center gap-2">
-        <button onclick="loadDemoProduct()" class="bg-white/15 hover:bg-white/25 text-white text-xs md:text-sm px-3.5 py-2 rounded-lg font-medium transition border border-white/20">
+        <button type="button" onclick="loadDemoProduct()" class="bg-white/15 hover:bg-white/25 text-white text-xs px-3.5 py-2 rounded-lg font-medium transition border border-white/25">
           ✨ ใส่ข้อมูลสินค้าตัวอย่าง
         </button>
-        <button onclick="resetAll()" class="bg-black/30 hover:bg-black/45 text-white text-xs md:text-sm px-3.5 py-2 rounded-lg font-medium transition">
-          ล้างข้อมูลทั้งหมด
+        <button type="button" onclick="resetAll()" class="bg-black/35 hover:bg-black/55 text-white text-xs px-3.5 py-2 rounded-lg font-medium transition">
+          🗑️ ล้างข้อมูลทั้งหมด
         </button>
       </div>
     </div>
 
-    <!-- Real Workflow Stepper -->
     <div class="bg-white/95 text-slate-700 border-b border-slate-200">
-      <div class="max-w-6xl mx-auto px-4 py-2.5 overflow-x-auto">
-        <div class="flex items-center gap-2 min-w-max text-xs font-medium">
-          <a href="#step1" class="px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100">1. รูปสินค้า & ข้อมูลร้าน</a>
+      <div class="max-w-6xl mx-auto px-4 py-2 overflow-x-auto">
+        <div class="flex items-center gap-1.5 min-w-max text-xs font-medium">
+          <a href="#step1" class="px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100">1. รหัส APL • รูปสินค้า (6 รูป) • ข้อมูลร้าน</a>
           <span class="text-slate-300">→</span>
-          <a href="#step2" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200">2. ตั้งค่าคลิป & พรีเซนเตอร์</a>
+          <a href="#step2" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200">2. ตั้งค่าคลิป • สไตล์สาธิต • พรีเซนเตอร์</a>
           <span class="text-slate-300">→</span>
-          <a href="#step3" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200">3. Hook บทพูด & ASMR</a>
+          <a href="#step3" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200">3. Hook 3 วิ • บทพูด 10 วิ • ASMR</a>
           <span class="text-slate-300">→</span>
           <a href="#step4" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200">4. AI Prompt ทีละฉาก</a>
           <span class="text-slate-300">→</span>
           <a href="#step5" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200">5. แคปชั่น & แฮชแท็ก</a>
           <span class="text-slate-300">→</span>
-          <a href="#step6" class="px-3 py-1.5 rounded-full bg-slate-900 text-white hover:bg-slate-800">6. นำเข้าคลิปตรวจความตรงปก</a>
+          <a href="#step6" class="px-3 py-1.5 rounded-full bg-slate-900 text-white hover:bg-slate-800">6. นำเข้าคลิปตรวจ QC (720p+)</a>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+  <main class="max-w-6xl mx-auto px-4 mt-5 space-y-6">
 
-    <!-- Compliance Notice Banner -->
-    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-start gap-3 text-xs md:text-sm text-amber-900">
-      <div class="text-xl">🛡️</div>
+    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-start gap-3 text-xs md:text-sm text-amber-950">
+      <div class="text-xl shrink-0">🛡️</div>
       <div>
-        <p class="font-semibold">ระบบควบคุมความถูกต้องตามกฎ Shopee & TikTok Shop (Strict Compliance)</p>
-        <p class="text-amber-800 mt-0.5">
-          ระบบจะยึดตามข้อมูลร้านค้าจริงเท่านั้น <strong>ห้ามแต่งเติม อวดอ้างสรรพคุณเกินจริง ไม่รับประกันผล ไม่ตั้งราคา/ส่วนลดเอง และห้ามพูดหรือพิมพ์คำว่า "สินค้าตรงปก 100%"</strong>
-          และในทุก AI Prompt จะกำกับคำสั่งให้คงรูปทรง ฉลาก โลโก้ สี เนื้อสัมผัส และตัวอักษรตามจริงทุกครั้ง
+        <p class="font-bold">ข้อกำหนดความถูกต้องตามกฎ Shopee & TikTok Shop (Strict Compliance)</p>
+        <p class="text-amber-900 mt-0.5 leading-relaxed">
+          อ้างอิงเฉพาะข้อมูลสินค้าจริงจากร้านค้าเท่านั้น • <strong>ห้ามแต่งเติม อวดอ้างสรรพคุณเกินจริง ไม่รับประกันผล ไม่ตั้งราคา/ส่วนลดเอง และห้ามพูดหรือพิมพ์คำว่า "สินค้าตรงปก 100%"</strong> •
+          ทุก Prompt จะล็อก <strong>รูปทรง ฉลาก โลโก้ สี ขนาด เนื้อสัมผัส และตัวอักษร</strong> ตามจริงห้ามเปลี่ยนแปลงเด็ดขาด
         </p>
       </div>
     </div>
 
-    <!-- ==================== STEP 1 ==================== -->
-    <section id="step1" class="glass-card rounded-2xl p-5 md:p-6">
-      <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-5">
+    <!-- STEP 1 -->
+    <section id="step1" class="glass-card rounded-2xl p-5 md:p-6 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
         <div class="flex items-center gap-3">
-          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm">1</span>
+          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">1</span>
           <div>
-            <h2 class="text-base md:text-lg font-bold">อัปโหลดรูปสินค้า (สูงสุด 6 รูป) & ข้อมูลสินค้าจากร้านค้า</h2>
-            <p class="text-xs text-slate-500">เพื่อให้ AI วิเคราะห์รูปทรง สี ฉลาก และเนื้อสัมผัสสินค้าตามจริงได้อย่างแม่นยำ</p>
+            <h2 class="text-base md:text-lg font-bold">ใส่รหัส APL • อัปโหลดรูปสินค้า (สูงสุด 6 รูป) • ข้อมูลสินค้าจากร้าน</h2>
+            <p class="text-xs text-slate-500">วิเคราะห์รูปทรง สี ขนาด ฉลาก เนื้อสัมผัส และคุณสมบัติสินค้าตามจริงจากข้อมูลร้าน</p>
           </div>
         </div>
-        <span id="img-count-badge" class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-700">0 / 6 รูป</span>
+        <span id="img-count-badge" class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-700 self-start sm:self-center">0 / 6 รูป</span>
+      </div>
+
+      <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 space-y-3">
+        <div>
+          <h3 class="text-sm font-bold flex items-center gap-2">
+            <span>🔑 ช่องใส่รหัส APL (Gemini API Key)</span>
+            <span id="apl-badge" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 font-normal">ยังไม่ใส่รหัส APL</span>
+          </h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">ใส่รหัส APL เพื่อใช้ AI Vision วิเคราะห์รูปสินค้า 6 รูป, เขียนสคริปต์และตรวจคลิป Step 6 อัตโนมัติ (หากไม่ใส่ ระบบจะใช้การวิเคราะห์ในเบราว์เซอร์แทน)</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-2.5 items-center">
+          <div class="md:col-span-6 relative">
+            <input id="apl-key" type="password" autocomplete="off" placeholder="วางรหัส APL / Gemini API Key ที่นี่ (เช่น AIzaSy...)" class="w-full pl-3 pr-16 py-2.5 text-xs md:text-sm rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:ring-2 focus:ring-rose-500 outline-none" />
+            <button type="button" onclick="toggleAplVisibility()" id="apl-eye-btn" class="absolute right-2 top-1/2 -translate-y-1/2 text-[11px] bg-slate-700 hover:bg-slate-600 px-2 py-1 rounded-lg text-slate-200">แสดง</button>
+          </div>
+          <div class="md:col-span-3">
+            <select id="apl-model" class="w-full px-3 py-2.5 text-xs rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+              <option value="auto">เลือกโมเดลอัตโนมัติ (แนะนำ)</option>
+              <option value="gemini-3.5-flash">gemini-3.5-flash</option>
+              <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+              <option value="gemini-3-flash-preview">gemini-3-flash-preview</option>
+            </select>
+          </div>
+          <div class="md:col-span-3 flex gap-1.5">
+            <button type="button" onclick="saveAplKey()" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold py-2.5 px-2 rounded-xl transition">บันทึก</button>
+            <button type="button" onclick="testAplKey()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold py-2.5 px-2 rounded-xl transition">ทดสอบ</button>
+            <button type="button" onclick="clearAplKey()" class="bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold py-2.5 px-2.5 rounded-xl transition">ล้าง</button>
+          </div>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Upload 6 images -->
         <div class="lg:col-span-6 space-y-3">
-          <label class="block text-sm font-semibold text-slate-700">อัปโหลดรูปสินค้าจริง (1 - 6 รูป: หน้าตรง, ด้านข้าง, ฉลาก, เนื้อสัมผัส)</label>
+          <label class="block text-sm font-semibold text-slate-700">อัปโหลดรูปสินค้าจริง (1 - 6 รูป เพื่อให้ AI วิเคราะห์รูปทรงได้แม่นยำ)</label>
           <div id="dropzone" class="border-2 border-dashed border-rose-300 bg-rose-50/40 hover:bg-rose-50 rounded-2xl p-5 text-center cursor-pointer transition" onclick="document.getElementById('product-images-input').click()">
             <input type="file" id="product-images-input" accept="image/*" multiple class="hidden" onchange="handleProductImages(event)" />
             <div class="text-3xl mb-1">📸</div>
-            <p class="text-sm font-semibold text-rose-700">คลิกเพื่อเลือกรูปสินค้า (เลือกได้หลายรูป สูงสุด 6 รูป)</p>
-            <p class="text-xs text-slate-500 mt-1">แนะนำ: รูปขวด/บรรจุภัณฑ์ชัดเจน + รูปเนื้อครีม/เซรั่ม + รูปฉลากด้านหลัง</p>
+            <p class="text-sm font-semibold text-rose-700">คลิกเพื่อเลือกรูปสินค้า (สูงสุด 6 รูป)</p>
+            <p class="text-xs text-slate-500 mt-1">หน้าตรง, ด้านข้าง, ฉลาก/โลโก้, หัวปั๊ม/ฝา, ขนาดเทียบมือ, เนื้อสัมผัส</p>
           </div>
 
           <div id="product-image-grid" class="grid grid-cols-3 gap-2.5"></div>
 
           <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-slate-700">🔍 ผลวิเคราะห์ภาพสินค้าอัตโนมัติ (Visual Analysis)</span>
-              <button onclick="analyzeProductAll()" class="text-rose-600 hover:underline font-semibold">วิเคราะห์ซ้ำ</button>
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-bold text-slate-700">🔍 ผลวิเคราะห์รูปทรงและคุณสมบัติสินค้า</span>
+              <button type="button" onclick="analyzeProductAll(true)" class="text-rose-600 hover:underline font-semibold">วิเคราะห์ซ้ำ</button>
             </div>
             <div id="visual-analysis-box" class="text-slate-600 leading-relaxed">
-              ยังไม่มีรูปภาพสินค้า กรุณาอัปโหลดอย่างน้อย 1 รูปเพื่อวิเคราะห์สี รูปทรง และเนื้อสัมผัส
+              ยังไม่มีรูปภาพสินค้า กรุณาอัปโหลดอย่างน้อย 1 รูปเพื่อวิเคราะห์รูปทรง สี ขนาด และเนื้อสัมผัส
             </div>
             <div id="detected-colors-row" class="flex flex-wrap gap-1.5 pt-1"></div>
           </div>
         </div>
 
-        <!-- Store Info -->
         <div class="lg:col-span-6 space-y-3.5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
@@ -141,65 +163,75 @@
               <input id="product-name" type="text" placeholder="เช่น เซรั่มวิตามินซี ไฮยา 30 ml" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">หมวดหมู่สกินแคร์/ความงาม</label>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">หมวดหมู่สกินแคร์และความงาม (ทุกประเภท)</label>
               <select id="product-category" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none bg-white">
-                <option value="เซรั่มบำรุงผิวหน้า">เซรั่มบำรุงผิวหน้า</option>
+                <option value="เซรั่ม/เอสเซนส์บำรุงผิวหน้า">เซรั่ม/เอสเซนส์บำรุงผิวหน้า</option>
                 <option value="ครีมบำรุง/มอยส์เจอไรเซอร์">ครีมบำรุง/มอยส์เจอไรเซอร์</option>
                 <option value="ครีมกันแดด">ครีมกันแดด</option>
                 <option value="โฟม/เจลล้างหน้า/คลีนซิ่ง">โฟม/เจลล้างหน้า/คลีนซิ่ง</option>
                 <option value="โทนเนอร์/น้ำตบ">โทนเนอร์/น้ำตบ</option>
-                <option value="มาส์กหน้า/สครับ">มาส์กหน้า/สครับ</option>
-                <option value="ลิปสติก/คุชชั่น/เมคอัพ">ลิปสติก/คุชชั่น/เมคอัพ</option>
-                <option value="โลชั่น/บำรุงผิวกาย">โลชั่น/บำรุงผิวกาย</option>
+                <option value="มาส์กหน้า/สครับ/พีลลิ่ง">มาส์กหน้า/สครับ/พีลลิ่ง</option>
+                <option value="อายครีม/บำรุงรอบดวงตา">อายครีม/บำรุงรอบดวงตา</option>
+                <option value="ลิปสติก/ลิปทินท์/ลิปบาล์ม">ลิปสติก/ลิปทินท์/ลิปบาล์ม</option>
+                <option value="คุชชั่น/รองพื้น/แป้งพัฟ">คุชชั่น/รองพื้น/แป้งพัฟ</option>
+                <option value="บลัชออน/อายแชโดว์/มาสคาร่า/เขียนคิ้ว">บลัชออน/อายแชโดว์/มาสคาร่า/เขียนคิ้ว</option>
+                <option value="โลชั่น/ครีมบำรุงผิวกาย">โลชั่น/ครีมบำรุงผิวกาย</option>
+                <option value="แชมพู/เซรั่มบำรุงผมและหนังศีรษะ">แชมพู/เซรั่มบำรุงผมและหนังศีรษะ</option>
+                <option value="น้ำหอม/บอดี้มิสต์">น้ำหอม/บอดี้มิสต์</option>
               </select>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">รูปทรงบรรจุภัณฑ์</label>
-              <select id="packaging-shape" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl bg-white outline-none">
-                <option value="ขวดแก้วหัวดรอปเปอร์ (Dropper)">ขวดแก้วหัวดรอปเปอร์ (Dropper)</option>
-                <option value="ขวดหัวปั๊ม (Pump Bottle)">ขวดหัวปั๊ม (Pump Bottle)</option>
-                <option value="หลอดบีบ (Squeeze Tube)">หลอดบีบ (Squeeze Tube)</option>
-                <option value="กระปุกครีม (Cream Jar)">กระปุกครีม (Cream Jar)</option>
-                <option value="ขวดสเปรย์/มิสต์ (Spray)">ขวดสเปรย์/มิสต์ (Spray)</option>
-                <option value="ตลับคุชชั่น/แป้ง (Compact Case)">ตลับคุชชั่น/แป้ง (Compact Case)</option>
-                <option value="แท่งลิป/อายไลเนอร์ (Stick/Wand)">แท่งลิป/เมคอัพ (Stick/Wand)</option>
-                <option value="ซอง/แผ่นมาส์ก (Sachet/Mask)">ซอง/แผ่นมาส์ก (Sachet/Mask)</option>
+              <select id="packaging-shape" class="w-full px-2.5 py-2 text-xs md:text-sm border border-slate-300 rounded-xl bg-white outline-none">
+                <option value="ขวดแก้วหัวดรอปเปอร์ (Dropper)">ขวดหัวดรอปเปอร์</option>
+                <option value="ขวดหัวปั๊ม (Pump Bottle)">ขวดหัวปั๊ม</option>
+                <option value="หลอดบีบ (Squeeze Tube)">หลอดบีบ</option>
+                <option value="กระปุกครีม (Cream Jar)">กระปุกครีม</option>
+                <option value="ขวดสเปรย์/มิสต์ (Spray)">ขวดสเปรย์/มิสต์</option>
+                <option value="ตลับคุชชั่น/แป้ง (Compact Case)">ตลับคุชชั่น/แป้ง</option>
+                <option value="แท่งลิป/ด้ามแปรง (Stick/Wand)">แท่งลิป/เมคอัพ</option>
+                <option value="ซอง/แผ่นมาส์ก (Sachet/Sheet)">ซอง/แผ่นมาส์ก</option>
               </select>
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">เนื้อสัมผัสสินค้าตามจริง</label>
-              <select id="product-texture" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl bg-white outline-none">
+              <label class="block text-xs font-semibold text-slate-700 mb-1">เนื้อสัมผัสตามจริง</label>
+              <select id="product-texture" class="w-full px-2.5 py-2 text-xs md:text-sm border border-slate-300 rounded-xl bg-white outline-none">
                 <option value="เนื้อเซรั่มใสบางเบา">เนื้อเซรั่มใสบางเบา</option>
                 <option value="เนื้อเจลใสชุ่มชื้น">เนื้อเจลใสชุ่มชื้น</option>
-                <option value="เนื้อครีมสีขาวเนียนนุ่ม">เนื้อครีมสีขาวเนียนนุ่ม</option>
+                <option value="เนื้อครีมเนียนนุ่ม">เนื้อครีมเนียนนุ่ม</option>
                 <option value="เนื้อโลชั่นน้ำนม">เนื้อโลชั่นน้ำนม</option>
-                <option value="เนื้อกันแดดบางเบาเกลี่ยง่าย">เนื้อกันแดดบางเบาเกลี่ยง่าย</option>
+                <option value="เนื้อกันแดดบางเบาเกลี่ยง่าย">เนื้อกันแดดบางเบา</option>
                 <option value="เนื้อออยล์/บาล์ม">เนื้อออยล์/บาล์ม</option>
-                <option value="เนื้อลิปเวลเวท/กลอส">เนื้อลิปเวลเวท/กลอส</option>
+                <option value="เนื้อลิปเวลเวท/กลอส/ทินท์">เนื้อลิปเวลเวท/กลอส</option>
+                <option value="เนื้อแป้ง/คุชชั่นละเอียด">เนื้อแป้ง/คุชชั่น</option>
                 <option value="เนื้อโฟมฟองละเอียด">เนื้อโฟมฟองละเอียด</option>
               </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">ขนาด/ปริมาณตามจริง</label>
+              <input id="product-size" type="text" placeholder="เช่น 30 ml / 50 g" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl outline-none" />
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">
-              รายละเอียด / จุดเด่น / ส่วนผสม / วิธีใช้ (คัดลอกจากร้านค้า Shopee / TikTok Shop เท่านั้น) *
+              รายละเอียด / จุดเด่น / ส่วนผสม / วิธีใช้ (คัดลอกจากข้อมูลร้านค้าจริงเท่านั้น) *
             </label>
-            <textarea id="store-description" rows="4" placeholder="วางข้อมูลจริงจากหน้าร้าน เช่น มีส่วนผสม Niacinamide 5%, Hyaluronic Acid เนื้อบางเบา ซึมไว ช่วยเติมความชุ่มชื้นให้ผิว ใช้ทาบำรุงเช้า-เย็น ปริมาณ 30 ml เลขที่จดแจ้ง 10-1-xxxxxxx" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none"></textarea>
-            <div id="overclaim-warning" class="hidden mt-1.5 text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2"></div>
+            <textarea id="store-description" rows="4" placeholder="วางข้อมูลจริงจากร้านค้า เช่น มีส่วนผสม Niacinamide 5%, Hyaluronic Acid เนื้อบางเบา ซึมไว ช่วยเติมความชุ่มชื้น ใช้ทาบำรุงเช้า-เย็น เลขที่จดแจ้ง 10-1-xxxxxxx" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none"></textarea>
+            <div id="overclaim-warning" class="hidden mt-1.5 text-xs text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2"></div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">ราคา/โปรโมชั่นที่ร้านระบุ (ถ้ามี - เว้นว่างได้)</label>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">ราคา/โปรโมชั่นที่ร้านระบุ (เว้นว่างได้)</label>
               <input id="store-price" type="text" placeholder="เว้นว่างหากไม่ต้องการแจ้งราคา" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl outline-none" />
-              <p class="text-[11px] text-slate-400 mt-0.5">*ระบบจะไม่คิดราคาหรือส่วนลดขึ้นเอง</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">*ระบบจะไม่คิดราคาหรือส่วนลดขึ้นเองเด็ดขาด</p>
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">ปัญหาผิวที่มักเจอ (ใช้เปิด Hook เชิงลบแบบปลอดภัย)</label>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">ปัญหาที่ลูกค้าพบ (ใช้เปิดบทพูดเชิงลบอย่างปลอดภัย)</label>
               <input id="pain-point" type="text" placeholder="เช่น ผิวแห้งลอก แต่งหน้าไม่ติด หน้าหมองโทรม" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl outline-none" />
             </div>
           </div>
@@ -207,17 +239,17 @@
       </div>
     </section>
 
-    <!-- ==================== STEP 2 ==================== -->
+    <!-- STEP 2 -->
     <section id="step2" class="glass-card rounded-2xl p-5 md:p-6">
       <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-5">
-        <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm">2</span>
+        <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">2</span>
         <div>
-          <h2 class="text-base md:text-lg font-bold">ตั้งค่าคลิปวิดีโอ รูปแบบการสาธิต & เลือกพรีเซนเตอร์</h2>
-          <p class="text-xs text-slate-500">กำหนดสัดส่วน ความละเอียด ความยาว (10 วิ = 1 ฉาก / 20 วิ = 2 ฉาก) และพรีเซนเตอร์อายุ 20 ผิวขาวใสฉ่ำโกลว์</p>
+          <h2 class="text-base md:text-lg font-bold">ตั้งค่าคลิปวิดีโอ • สไตล์การสาธิต • เลือกพรีเซนเตอร์ (หญิง 1 / ชาย 1)</h2>
+          <p class="text-xs text-slate-500">เลือกสัดส่วน ความละเอียด ความยาว (10 วิ = 1 ฉาก / 20 วิ = 2 ฉาก) รูปแบบการสาธิต และพรีเซนเตอร์อายุ 20 หน้าขาวใสฉ่ำโกลว์</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-6">
         <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
           <label class="block text-xs font-bold text-slate-700 mb-2">1. สัดส่วนภาพ (Aspect Ratio)</label>
           <div class="grid grid-cols-3 gap-1.5">
@@ -236,7 +268,7 @@
         </div>
 
         <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <label class="block text-xs font-bold text-slate-700 mb-2">3. ความยาวคลิป & จำนวนฉาก</label>
+          <label class="block text-xs font-bold text-slate-700 mb-2">3. ความยาว & จำนวนฉาก</label>
           <div class="grid grid-cols-2 gap-1.5">
             <button type="button" onclick="setDuration(10)" data-dur="10" class="dur-btn py-2 text-xs font-bold rounded-lg border bg-white text-slate-700 border-slate-300">10 วิ (1 ฉาก)</button>
             <button type="button" onclick="setDuration(20)" data-dur="20" class="dur-btn py-2 text-xs font-bold rounded-lg border bg-rose-600 text-white border-rose-600">20 วิ (2 ฉาก)</button>
@@ -244,48 +276,49 @@
         </div>
 
         <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <label class="block text-xs font-bold text-slate-700 mb-2">4. โหมดเสียง & สไตล์งาน</label>
+          <label class="block text-xs font-bold text-slate-700 mb-2">4. รูปแบบเสียง / ASMR</label>
           <select id="audio-mode" class="w-full px-2.5 py-2 text-xs font-semibold border border-slate-300 rounded-lg bg-white outline-none">
-            <option value="voiceover">มีบทพูด + Hook (เปิดลบ-ปิดบวก)</option>
-            <option value="asmr">ASMR โดยเฉพาะ (เน้นเสียงสัมผัส/นำไปพากย์ต่อได้)</option>
+            <option value="both">สร้างทั้ง 2 แบบ (บทพูดปกติ + ASMR แยกชุด)</option>
+            <option value="voiceover">เฉพาะบทพูด + Hook (เปิดลบ-ปิดบวก)</option>
+            <option value="asmr">ASMR โดยเฉพาะ (สำหรับนำไปพากย์ต่อในแอปอื่น)</option>
           </select>
         </div>
       </div>
 
-      <!-- Demonstration Styles -->
       <div class="mb-6">
         <label class="block text-xs font-bold text-slate-700 mb-2">เลือกรูปแบบสไตล์การสาธิตสินค้าสกินแคร์และความงาม (เลือกได้หลากหลาย)</label>
-        <div id="demo-styles-container" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2"></div>
+        <div id="demo-styles-container" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
       </div>
 
-      <!-- Presenters -->
       <div class="border-t border-slate-100 pt-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
           <div>
-            <h3 class="text-sm font-bold text-slate-800">เลือกพรีเซนเตอร์ AI เสมือนคนจริง (หญิง 1 / ชาย 1 อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ เห็นใบหน้าชัดเจน)</h3>
-            <p class="text-xs text-slate-500">เลือกจากนายแบบ/นางแบบตัวอย่าง หรือแก้ไขรายละเอียด/อัปโหลดภาพอ้างอิงเพิ่มเติมได้</p>
+            <h3 class="text-sm font-bold text-slate-800">เลือกพรีเซนเตอร์ AI เสมือนคนจริง (หญิง 1 / ชาย 1 อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ เห็นใบหน้าชัดเจน ผิวพรรณดี)</h3>
+            <p class="text-xs text-slate-500">เลือกจากนายแบบ/นางแบบตัวอย่าง แก้ไขข้อความ หรืออัปโหลดรูปเพิ่มเติมได้</p>
           </div>
           <div class="flex items-center gap-2 text-xs">
-            <label class="font-semibold text-slate-600">รูปแบบการใช้พรีเซนเตอร์ในคลิป:</label>
+            <label class="font-semibold text-slate-600">ใช้ในคลิป:</label>
             <select id="presenter-pairing" class="px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white font-medium">
+              <option value="both" selected>ใช้คู่ (หญิง 1 + ชาย 1)</option>
               <option value="female">ใช้พรีเซนเตอร์หญิงเดี่ยว</option>
               <option value="male">ใช้พรีเซนเตอร์ชายเดี่ยว</option>
-              <option value="both" selected>ใช้คู่ (หญิง 1 + ชาย 1)</option>
             </select>
           </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <!-- Female Presenter -->
           <div class="border border-rose-200 bg-rose-50/30 rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-rose-600 text-white">พรีเซนเตอร์หญิง (อายุ 20)</span>
-              <label class="text-xs text-rose-700 font-semibold cursor-pointer hover:underline">
-                + อัปโหลดรูปนางแบบเพิ่มเติม
-                <input type="file" accept="image/*" class="hidden" onchange="uploadPresenterPhoto('female', event)">
-              </label>
+              <div class="flex items-center gap-2">
+                <label class="text-xs text-rose-700 font-semibold cursor-pointer hover:underline">
+                  + อัปโหลดรูปเพิ่มเติม
+                  <input type="file" accept="image/*" class="hidden" onchange="uploadPresenterPhoto('female', event)">
+                </label>
+                <button type="button" id="female-clear-btn" onclick="clearPresenterPhoto('female')" class="hidden text-[11px] text-slate-500 hover:text-red-600 underline">ใช้รูปตัวอย่าง</button>
+              </div>
             </div>
-            <div class="grid grid-cols-3 gap-2" id="female-samples"></div>
+            <div class="grid grid-cols-4 gap-2" id="female-samples"></div>
             <div class="flex gap-3 items-start pt-1">
               <div id="female-preview-box" class="w-20 h-24 rounded-xl overflow-hidden border border-rose-200 bg-white shrink-0 flex items-center justify-center"></div>
               <div class="flex-1 space-y-2 text-xs">
@@ -293,21 +326,23 @@
                   <input id="female-name" type="text" value="น้องมิ้นท์ (Mint)" class="px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white font-medium" />
                   <input id="female-age" type="text" value="อายุ 20 ปี" class="px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white" />
                 </div>
-                <textarea id="female-desc" rows="2" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white">หญิงสาวชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวเนียนละเอียด เห็นใบหน้าชัดเจน แสงธรรมชาติ เสมือนคนจริง 100% (Photorealistic)</textarea>
+                <textarea id="female-desc" rows="2" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white">หญิงสาวชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวเนียนละเอียด เห็นใบหน้าชัดเจน แสงธรรมชาติ เสมือนคนจริง (Photorealistic)</textarea>
               </div>
             </div>
           </div>
 
-          <!-- Male Presenter -->
           <div class="border border-sky-200 bg-sky-50/30 rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-600 text-white">พรีเซนเตอร์ชาย (อายุ 20)</span>
-              <label class="text-xs text-sky-700 font-semibold cursor-pointer hover:underline">
-                + อัปโหลดรูปนายแบบเพิ่มเติม
-                <input type="file" accept="image/*" class="hidden" onchange="uploadPresenterPhoto('male', event)">
-              </label>
+              <div class="flex items-center gap-2">
+                <label class="text-xs text-sky-700 font-semibold cursor-pointer hover:underline">
+                  + อัปโหลดรูปเพิ่มเติม
+                  <input type="file" accept="image/*" class="hidden" onchange="uploadPresenterPhoto('male', event)">
+                </label>
+                <button type="button" id="male-clear-btn" onclick="clearPresenterPhoto('male')" class="hidden text-[11px] text-slate-500 hover:text-red-600 underline">ใช้รูปตัวอย่าง</button>
+              </div>
             </div>
-            <div class="grid grid-cols-3 gap-2" id="male-samples"></div>
+            <div class="grid grid-cols-4 gap-2" id="male-samples"></div>
             <div class="flex gap-3 items-start pt-1">
               <div id="male-preview-box" class="w-20 h-24 rounded-xl overflow-hidden border border-sky-200 bg-white shrink-0 flex items-center justify-center"></div>
               <div class="flex-1 space-y-2 text-xs">
@@ -315,7 +350,7 @@
                   <input id="male-name" type="text" value="น้องนนท์ (Non)" class="px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white font-medium" />
                   <input id="male-age" type="text" value="อายุ 20 ปี" class="px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white" />
                 </div>
-                <textarea id="male-desc" rows="2" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white">ชายหนุ่มชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวสุขภาพดี เห็นใบหน้าชัดเจน ลุคคลีนธรรมชาติ เสมือนคนจริง 100% (Photorealistic)</textarea>
+                <textarea id="male-desc" rows="2" class="w-full px-2.5 py-1.5 border border-slate-300 rounded-lg bg-white">ชายหนุ่มชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวสุขภาพดี เห็นใบหน้าชัดเจน ลุคคลีนธรรมชาติ เสมือนคนจริง (Photorealistic)</textarea>
               </div>
             </div>
           </div>
@@ -323,78 +358,85 @@
       </div>
 
       <div class="mt-6 flex justify-center">
-        <button onclick="generateAllOutputs()" class="gradient-brand text-white px-8 py-3.5 rounded-2xl font-bold text-sm md:text-base shadow-lg hover:opacity-95 transition flex items-center gap-2">
-          <span>🚀 วิเคราะห์ข้อมูล & สร้างบทพูด + Prompt ทีละฉาก + แคปชั่นอัตโนมัติ</span>
+        <button type="button" id="generate-all-btn" onclick="generateAllOutputs()" class="gradient-brand text-white px-8 py-3.5 rounded-2xl font-bold text-sm md:text-base shadow-lg hover:opacity-95 transition flex items-center gap-2">
+          <span>🚀 วิเคราะห์ข้อมูล & สร้าง Hook + บทพูด + ASMR + Prompt ทีละฉาก + แคปชั่น</span>
         </button>
       </div>
     </section>
-
-    <!-- ==================== STEP 3 ==================== -->
+    <!-- STEP 3 -->
     <section id="step3" class="glass-card rounded-2xl p-5 md:p-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 mb-5">
         <div class="flex items-center gap-3">
-          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm">3</span>
+          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">3</span>
           <div>
-            <h2 class="text-base md:text-lg font-bold">Hook 3 วิ & บทพูดต่อฉาก (เปิดลบ-ปิดบวก) / โหมด ASMR โดยเฉพาะ</h2>
-            <p class="text-xs text-slate-500">ไม่เกิน 10 วิ/ฉาก • อ้างอิงจุดเด่นจากร้านเท่านั้น • ห้ามพูดอวดอ้าง แต่งเติม และห้ามพูด "ตรงปก 100%"</p>
+            <h2 class="text-base md:text-lg font-bold">Hook 3 วิ • บทพูดต่อฉาก (ไม่เกิน 10 วิ) • โหมด ASMR สำหรับนำไปพากย์ต่อ</h2>
+            <p class="text-xs text-slate-500">เปิดด้วยลบและปิดจบด้วยบวก • อ้างอิงเฉพาะข้อมูลร้าน • ห้ามแต่งเติมและห้ามพูดว่า "ตรงปก 100%"</p>
           </div>
         </div>
-        <button onclick="copyElementText('full-script-copy-target')" class="text-xs bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl font-semibold">
+        <button type="button" onclick="copyElementText('full-script-copy-target')" class="text-xs bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl font-semibold self-start sm:self-center">
           📋 คัดลอกบทพูดทั้งหมด
         </button>
       </div>
 
       <div id="step3-output" class="space-y-4">
-        <div class="text-center text-sm text-slate-400 py-6">กดปุ่ม "วิเคราะห์ข้อมูล & สร้างบทพูด..." ด้านบนเพื่อสร้าง Hook และบทพูด</div>
+        <div class="text-center text-sm text-slate-400 py-6">กดปุ่ม "วิเคราะห์ข้อมูล & สร้าง..." ด้านบนเพื่อสร้าง Hook, บทพูด และสคริปต์ ASMR</div>
       </div>
       <textarea id="full-script-copy-target" class="hidden"></textarea>
     </section>
 
-    <!-- ==================== STEP 4 ==================== -->
+    <!-- STEP 4 -->
     <section id="step4" class="glass-card rounded-2xl p-5 md:p-6">
-      <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 mb-5">
         <div class="flex items-center gap-3">
-          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm">4</span>
+          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">4</span>
           <div>
             <h2 class="text-base md:text-lg font-bold">AI Video Prompt ทีละฉาก (คัดลอกไปใช้สร้างวิดีโอได้จริง)</h2>
-            <p class="text-xs text-slate-500">กำกับข้อกำหนดล็อกรูปทรง ฉลาก โลโก้ สี เนื้อสัมผัส และตัวอักษรตามจริงไว้ทุกฉาก</p>
+            <p class="text-xs text-slate-500">กำกับล็อก: คงรูปทรง ฉลาก โลโก้ สี ขนาด เนื้อสัมผัส และตัวอักษรตามจริง ห้ามแต่งเติมและเปลี่ยนแปลงเด็ดขาด</p>
           </div>
         </div>
+        <button type="button" onclick="copyAllPrompts()" class="text-xs bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl font-semibold self-start sm:self-center">
+          📋 คัดลอก Prompt ทุกฉาก
+        </button>
       </div>
 
       <div id="step4-output" class="space-y-4">
-        <div class="text-center text-sm text-slate-400 py-6">รอการสร้าง Prompt ทีละฉากตามความยาวคลิปที่เลือก</div>
+        <div class="text-center text-sm text-slate-400 py-6">รอการสร้าง AI Prompt ทีละฉาก (10 วิ = 1 ฉาก / 20 วิ = 2 ฉาก)</div>
       </div>
     </section>
 
-    <!-- ==================== STEP 5 ==================== -->
+    <!-- STEP 5 -->
     <section id="step5" class="glass-card rounded-2xl p-5 md:p-6">
-      <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 mb-5">
         <div class="flex items-center gap-3">
-          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm">5</span>
+          <span class="step-badge-active w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">5</span>
           <div>
-            <h2 class="text-base md:text-lg font-bold">แคปชั่น & แฮชแท็กอัตโนมัติ (ปลอดภัยตามกฎ Shopee & TikTok Shop)</h2>
-            <p class="text-xs text-slate-500">ไม่กล่าวอ้างเกินจริง ไม่รับประกันผล ไม่แจ้งราคา/ส่วนลดเอง (ใช้เฉพาะที่ร้านระบุ)</p>
+            <h2 class="text-base md:text-lg font-bold">แคปชั่น & แฮชแท็กอัตโนมัติ (ตามคุณสมบัติจริงจากร้านค้า)</h2>
+            <p class="text-xs text-slate-500">ไม่กล่าวอ้างเกินจริง ไม่รับประกันผล ไม่แจ้งราคาและส่วนลดเอง (ใช้ข้อมูลจากร้านค้าเท่านั้น)</p>
           </div>
         </div>
-        <button onclick="copyElementText('caption-output-text')" class="text-xs bg-rose-600 hover:bg-rose-700 text-white px-3.5 py-2 rounded-xl font-semibold">
+        <button type="button" onclick="copyElementText('caption-output-text')" class="text-xs bg-rose-600 hover:bg-rose-700 text-white px-3.5 py-2 rounded-xl font-semibold self-start sm:self-center">
           📋 คัดลอกแคปชั่น + แฮชแท็ก
         </button>
       </div>
 
       <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
-        <textarea id="caption-output-text" rows="6" readonly class="w-full bg-transparent text-sm text-slate-800 outline-none resize-none" placeholder="แคปชั่นและแฮชแท็กจะแสดงที่นี่..."></textarea>
+        <textarea id="caption-output-text" rows="7" readonly class="w-full bg-transparent text-sm text-slate-800 outline-none resize-none" placeholder="แคปชั่นและแฮชแท็กจะแสดงที่นี่..."></textarea>
       </div>
     </section>
 
-    <!-- ==================== STEP 6 ==================== -->
-    <section id="step6" class="glass-card rounded-2xl p-5 md:p-6 border-2 border-slate-900/10">
-      <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-5">
-        <span class="bg-slate-900 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm">6</span>
-        <div>
-          <h2 class="text-base md:text-lg font-bold">นำเข้าคลิปวิดีโอที่สร้างเสร็จแล้ว เพื่อตรวจสอบความตรงปกของสินค้า (AI QC)</h2>
-          <p class="text-xs text-slate-500">ตรวจสอบเทียบกับรูปสินค้าจริงที่อัปโหลดไว้ในขั้นตอนที่ 1 และแจ้งผล "ผ่าน" หรือ "ไม่ผ่าน" เพื่อนำไปแก้ไขก่อนโพสต์จริง</p>
+    <!-- STEP 6 -->
+    <section id="step6" class="glass-card rounded-2xl p-5 md:p-6 border-2 border-slate-900/15">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 mb-5">
+        <div class="flex items-center gap-3">
+          <span class="bg-slate-900 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm shrink-0">6</span>
+          <div>
+            <h2 class="text-base md:text-lg font-bold">นำเข้าคลิปวิดีโอเพื่อตรวจสอบความตรงปกของสินค้า (AI QC)</h2>
+            <p class="text-xs text-slate-500">ตรวจเทียบกับรูปสินค้าจริง (Step 1) • <strong>ความละเอียดตั้งแต่ 720p ขึ้นไปถือว่าผ่านเกณฑ์</strong> • แจ้งผลผ่าน/ไม่ผ่านเพื่อแก้ไขก่อนใช้งานจริง</p>
+          </div>
         </div>
+        <button type="button" onclick="clearQcVideo()" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-800 px-3 py-1.5 rounded-lg font-semibold self-start sm:self-center">
+          ล้างคลิปตรวจ QC
+        </button>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -402,25 +444,25 @@
           <div class="border-2 border-dashed border-slate-300 hover:border-slate-500 bg-slate-50 rounded-2xl p-5 text-center cursor-pointer transition" onclick="document.getElementById('qc-video-input').click()">
             <input type="file" id="qc-video-input" accept="video/*" class="hidden" onchange="handleVideoImport(event)" />
             <div class="text-3xl mb-1">🎬</div>
-            <p class="text-sm font-bold text-slate-800">นำเข้าไฟล์คลิปวิดีโอที่สร้างเสร็จแล้ว (.mp4 / .mov)</p>
-            <p class="text-xs text-slate-500 mt-1">ระบบจะสกัดเฟรมภาพจากวิดีโอมาตรวจเทียบสี รูปทรง ฉลาก และสัดส่วนอัตโนมัติ</p>
+            <p class="text-sm font-bold text-slate-800">คลิกเพื่อนำเข้าคลิปวิดีโอที่สร้างเสร็จแล้ว (.mp4 / .mov / .webm)</p>
+            <p class="text-xs text-slate-500 mt-1">ระบบจะสกัดเฟรมภาพจากคลิปมาตรวจสอบรูปทรง ฉลาก โลโก้ สี สัดส่วน และความละเอียด (720p+ ผ่านเกณฑ์)</p>
           </div>
 
           <video id="qc-video-player" controls muted playsinline class="hidden w-full rounded-xl bg-black max-h-72 mx-auto"></video>
 
-          <button id="run-qc-btn" onclick="runVideoQC()" disabled class="w-full py-3 rounded-xl font-bold text-sm bg-slate-300 text-slate-500 cursor-not-allowed transition">
+          <button type="button" id="run-qc-btn" onclick="runVideoQC()" disabled class="w-full py-3 rounded-xl font-bold text-sm bg-slate-300 text-slate-500 cursor-not-allowed transition">
             🔍 เริ่มตรวจสอบความตรงปกจากวิดีโออัตโนมัติ
           </button>
         </div>
 
         <div class="lg:col-span-7 space-y-4">
           <div id="qc-frames-preview" class="hidden">
-            <p class="text-xs font-bold text-slate-700 mb-2">เฟรมภาพที่สกัดจากคลิปวิดีโอ เทียบกับรูปสินค้าจริง:</p>
+            <p class="text-xs font-bold text-slate-700 mb-2">เฟรมภาพที่สกัดจากคลิปวิดีโอ (สำหรับตรวจเทียบกับรูปสินค้าจริง):</p>
             <div class="grid grid-cols-3 gap-2" id="qc-frames-grid"></div>
           </div>
 
-          <div id="qc-result-box" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm text-slate-600">
-            กรุณานำเข้าคลิปวิดีโอที่สร้างเสร็จแล้ว เพื่อเริ่มตรวจสอบความตรงปกของสินค้า (รูปทรง ฉลาก โลโก้ สี สัดส่วน และเกณฑ์ความละเอียด)
+          <div id="qc-result-box" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm text-slate-600 leading-relaxed">
+            กรุณานำเข้าคลิปวิดีโอที่สร้างเสร็จแล้ว เพื่อตรวจสอบความตรงปกของสินค้า (รูปทรง ฉลาก โลโก้ สี ขนาด เนื้อสัมผัส ตัวอักษร สัดส่วน และเกณฑ์ความละเอียด 720p+)
           </div>
         </div>
       </div>
@@ -430,6 +472,9 @@
 
   <script>
     const state = {
+      aplKey: '',
+      aplModel: 'auto',
+      detectedAplModel: null,
       images: [],
       ratio: '9:16',
       resolution: '1080p',
@@ -437,81 +482,68 @@
       selectedDemoStyle: 'asmr_texture',
       femalePresenter: { presetId: 'f1', customPhoto: null },
       malePresenter: { presetId: 'm1', customPhoto: null },
-      generated: { hook: '', scene1: '', scene2: '', prompts: [] },
+      generated: { hook: '', scene1: '', scene2: '', asmr1: '', asmr2: '', prompts: [] },
       videoMeta: null,
+      videoObjectUrl: null,
       extractedFrames: []
     };
 
     const BANNED_OVERCLAIMS = [
-      'ตรงปก 100%', 'ตรงปก100%', '100%', 'ขาวถาวร', 'หายขาด', 'การันตี',
-      'เห็นผลใน 1 วัน', 'เห็นผลทันที', 'รักษาฝ้า', 'รักษาสิวหายขาด', 'เปลี่ยนสีผิว',
-      'ลดอายุ', 'ดีที่สุดในโลก', 'รับประกันผล'
+      'สินค้าตรงปก 100%', 'คอนเฟิร์มว่าตรงปก 100%', 'คอร์นเฟริมว่าสินค้าตรงปก 100%',
+      'ตรงปก 100%', 'ตรงปก100%', 'ตรงปก', '100%', 'ขาวถาวร', 'หายขาด', 'การันตี',
+      'เห็นผลใน 1 วัน', 'เห็นผลทันที', 'รักษาฝ้า', 'รักษาสิวหายขาด', 'รักษาสิว',
+      'เปลี่ยนสีผิว', 'ลดอายุ', 'ดีที่สุดในโลก', 'รับประกันผล', 'ใช้แล้วขาวแน่นอน'
     ];
 
     const DEMO_STYLES = [
       { id: 'asmr_texture', title: 'ASMR โชว์เนื้อสัมผัสใกล้ๆ', desc: 'เปิดฝา หยด/ตักเนื้อ ทาบนหลังมือให้เห็นเนื้อจริงชัดๆ' },
       { id: 'face_apply', title: 'สาธิตทาลงผิวหน้าจริง', desc: 'พรีเซนเตอร์แต้มผลิตภัณฑ์ลงแก้ม เกลี่ยโชว์ความบางเบา' },
-      { id: 'unboxing_label', title: 'โชว์ขวด/ฉลากหมุนรอบด้าน', desc: 'ถือสินค้าใกล้กล้อง หมุนให้เห็นโลโก้และตัวอักษรชัดเจน' },
-      { id: 'absorb_test', title: 'ทดสอบการซึมไว/ไม่เหนอะหนะ', desc: 'ปาดเนื้อบนผิวและใช้สัมผัสโชว์ความเบาสบายผิว' },
-      { id: 'routine_morning', title: 'Routine บำรุงผิวตอนเช้า/ก่อนนอน', desc: 'บรรยากาศห้องน้ำ/โต๊ะเครื่องแป้งแสงธรรมชาติ' },
-      { id: 'drop_pump', title: 'ซูมหัวดรอปเปอร์/หัวปั๊ม/หลอดบีบ', desc: 'โฟกัสที่ตัวบรรจุภัณฑ์และปริมาณเนื้อที่ออกมา' }
+      { id: 'swatch_arm', title: 'สวอชสี/เนื้อลงแขนและริมฝีปาก', desc: 'ปาดสวอชเทียบสีชัดๆ สำหรับลิป คุชชั่น บลัช กันแดด' },
+      { id: 'unboxing_label', title: 'หมุนโชว์ขวด/ฉลาก/โลโก้ชัดๆ', desc: 'ถือสินค้าใกล้กล้อง หมุนให้เห็นฉลากและตัวอักษรชัดเจน' },
+      { id: 'absorb_test', title: 'ทดสอบการซึมไว/ไม่เหนอะหนะ', desc: 'ปาดเนื้อบนผิวและแตะซับโชว์ความเบาสบายผิว' },
+      { id: 'routine_care', title: 'Routine บำรุงผิวเช้า/ก่อนนอน', desc: 'บรรยากาศห้องน้ำหรือโต๊ะเครื่องแป้งแสงธรรมชาติ' },
+      { id: 'drop_pump', title: 'ซูมหัวดรอปเปอร์/หัวปั๊ม/หลอดบีบ', desc: 'โฟกัสที่กลไกบรรจุภัณฑ์และปริมาณเนื้อที่ออกมา' },
+      { id: 'duo_review', title: 'รีวิวคู่ หญิง-ชาย สลับใช้งานจริง', desc: 'แสดงการใช้งานจริงในชีวิตประจำวันทั้งผู้หญิงและผู้ชาย' }
     ];
 
     const FEMALE_SAMPLES = [
-      {
-        id: 'f1', label: 'นางแบบ 1: ลุคใสคลีน', name: 'น้องมิ้นท์ (Mint)',
-        desc: 'หญิงสาวชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวเนียนละเอียด เห็นใบหน้าชัดเจน ผมยาวตรงสีดำธรรมชาติ แต่งหน้าโทนใสธรรมชาติ เสมือนคนจริง 100% (Photorealistic)',
-        bg: '#ffe4e6', hair: '#1e1b18', skin: '#fff0eb', shirt: '#ffffff'
-      },
-      {
-        id: 'f2', label: 'นางแบบ 2: ลุคดิวอี้โกลว์', name: 'น้องไอริส (Iris)',
-        desc: 'หญิงสาวชาวเอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวอมชมพู เห็นใบหน้าชัดเจน รวบผมหางม้าเผยกรอบหน้าและผิวแก้มฉ่ำวาว สวมเสื้อปาดไหล่สีขาว เสมือนคนจริง 100% (Photorealistic)',
-        bg: '#fae8ff', hair: '#3b2820', skin: '#ffece8', shirt: '#fdf2f8'
-      },
-      {
-        id: 'f3', label: 'นางแบบ 3: ลุคมินิมอล', name: 'น้องน้ำฟ้า (Namfah)',
-        desc: 'หญิงสาวชาวไทย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวใสไร้จุดด่างดำ เห็นใบหน้าชัดเจน ผมประบ่าดัดลอนเบาๆ ยิ้มเป็นธรรมชาติ เสมือนคนจริง 100% (Photorealistic)',
-        bg: '#fef3c7', hair: '#271c19', skin: '#fff2ec', shirt: '#f8fafc'
-      }
+      { id: 'f1', label: 'นางแบบ 1: ลุคใสคลีน', name: 'น้องมิ้นท์ (Mint)', desc: 'หญิงสาวชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวเนียนละเอียด เห็นใบหน้าชัดเจน ผมยาวตรงสีดำธรรมชาติ แต่งหน้าโทนใส เสมือนคนจริง (Photorealistic)', bg: '#ffe4e6', hair: '#1c1917', skin: '#fff1ec', blush: '#fda4af', shirt: '#ffffff' },
+      { id: 'f2', label: 'นางแบบ 2: ดิวอี้โกลว์', name: 'น้องไอริส (Iris)', desc: 'หญิงสาวชาวเอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวอมชมพู เห็นใบหน้าชัดเจน รวบผมหางม้าเผยกรอบหน้าและผิวแก้มฉ่ำวาว เสื้อสีขาวคลีน เสมือนคนจริง (Photorealistic)', bg: '#fae8ff', hair: '#3b2820', skin: '#ffece8', blush: '#f9a8d4', shirt: '#fdf2f8' },
+      { id: 'f3', label: 'นางแบบ 3: มินิมอล', name: 'น้องน้ำฟ้า (Namfah)', desc: 'หญิงสาวชาวไทย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวใสไร้จุดด่างดำ เห็นใบหน้าชัดเจน ผมประบ่าลอนเบาๆ ยิ้มเป็นธรรมชาติ เสมือนคนจริง (Photorealistic)', bg: '#fef3c7', hair: '#271c19', skin: '#fff3ed', blush: '#fecdd3', shirt: '#f8fafc' },
+      { id: 'f4', label: 'นางแบบ 4: ลุคบิวตี้', name: 'น้องลิน (Lin)', desc: 'หญิงสาวชาวไทย-จีน อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวสว่างกระจ่างตา เห็นใบหน้าชัดเจน ลุคบิวตี้บล็อกเกอร์แสงสตูดิโอ เสมือนคนจริง (Photorealistic)', bg: '#e0e7ff', hair: '#1e1b4b', skin: '#fff0eb', blush: '#fda4af', shirt: '#ffffff' }
     ];
 
     const MALE_SAMPLES = [
-      {
-        id: 'm1', label: 'นายแบบ 1: ลุคคลีนเกาหลี', name: 'น้องนนท์ (Non)',
-        desc: 'ชายหนุ่มชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวสุขภาพดี เห็นใบหน้าชัดเจน ทรงผมคอมม่าสีดำ เสื้อยืดคอกลมสีขาวสะอาดตา เสมือนคนจริง 100% (Photorealistic)',
-        bg: '#e0f2fe', hair: '#18181b', skin: '#ffefe8', shirt: '#ffffff'
-      },
-      {
-        id: 'm2', label: 'นายแบบ 2: ลุคสปอร์ตคลีน', name: 'น้องภู (Phu)',
-        desc: 'ชายหนุ่มชาวเอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวเนียนสม่ำเสมอ เห็นใบหน้าชัดเจน ผมสั้นเปิดหน้าผากเล็กน้อย เสื้อเชิ้ตสีฟ้าอ่อน เสมือนคนจริง 100% (Photorealistic)',
-        bg: '#dcfce7', hair: '#27272a', skin: '#fff1eb', shirt: '#e0f2fe'
-      },
-      {
-        id: 'm3', label: 'นายแบบ 3: ลุคสตูดิโอ', name: 'น้องเจต (Jate)',
-        desc: 'ชายหนุ่มชาวไทย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวใส เห็นใบหน้าชัดเจน ทรงผมธรรมชาติรับกรอบหน้า สวมเสื้อโปโลสีเบจ เสมือนคนจริง 100% (Photorealistic)',
-        bg: '#f1f5f9', hair: '#1c1917', skin: '#fff0ea', shirt: '#fef3c7'
-      }
+      { id: 'm1', label: 'นายแบบ 1: คลีนเกาหลี', name: 'น้องนนท์ (Non)', desc: 'ชายหนุ่มชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวสุขภาพดี เห็นใบหน้าชัดเจน ทรงผมคอมม่าสีดำ เสื้อยืดสีขาวสะอาดตา เสมือนคนจริง (Photorealistic)', bg: '#e0f2fe', hair: '#18181b', skin: '#fff0ea', blush: '#fecdd3', shirt: '#ffffff' },
+      { id: 'm2', label: 'นายแบบ 2: สปอร์ตคลีน', name: 'น้องภู (Phu)', desc: 'ชายหนุ่มชาวเอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวเนียนสม่ำเสมอ เห็นใบหน้าชัดเจน ผมสั้นเปิดหน้าผาก เสื้อเชิ้ตสีฟ้าอ่อน เสมือนคนจริง (Photorealistic)', bg: '#dcfce7', hair: '#27272a', skin: '#fff2ec', blush: '#fed7aa', shirt: '#e0f2fe' },
+      { id: 'm3', label: 'นายแบบ 3: สตูดิโอ', name: 'น้องเจต (Jate)', desc: 'ชายหนุ่มชาวไทย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวใส เห็นใบหน้าชัดเจน ทรงผมธรรมชาติรับกรอบหน้า เสื้อโปโลสีครีม เสมือนคนจริง (Photorealistic)', bg: '#f1f5f9', hair: '#1c1917', skin: '#fff1eb', blush: '#fecdd3', shirt: '#fef3c7' },
+      { id: 'm4', label: 'นายแบบ 4: หนุ่มมินิมอล', name: 'น้องไทม์ (Time)', desc: 'ชายหนุ่มชาวไทย-เอเชีย อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ ผิวพรรณดี ขาวละเอียด เห็นใบหน้าชัดเจน ลุคดูแลตัวเองดี แสงธรรมชาติ เสมือนคนจริง (Photorealistic)', bg: '#ede9fe', hair: '#1e293b', skin: '#fff0eb', blush: '#fbcfe8', shirt: '#f8fafc' }
     ];
 
     function buildAvatarSVG(sample, isFemale) {
       return `
         <svg viewBox="0 0 120 140" class="w-full h-full">
-          <rect width="120" height="140" fill="${sample.bg}"/>
-          <circle cx="60" cy="45" r="38" fill="rgba(255,255,255,0.6)"/>
+          <defs>
+            <radialGradient id="glow_${sample.id}" cx="50%" cy="42%" r="55%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="${sample.bg}" stop-opacity="1"/>
+            </radialGradient>
+          </defs>
+          <rect width="120" height="140" fill="url(#glow_${sample.id})"/>
           ${isFemale
-            ? `<path d="M24,60 Q24,18 60,18 Q96,18 96,60 L98,110 L22,110 Z" fill="${sample.hair}"/>`
-            : `<path d="M30,52 Q30,18 60,18 Q90,18 90,52 Z" fill="${sample.hair}"/>`
+            ? `<path d="M23,62 Q23,16 60,16 Q97,16 97,62 L99,112 L21,112 Z" fill="${sample.hair}"/>`
+            : `<path d="M29,54 Q29,18 60,18 Q91,18 91,54 Z" fill="${sample.hair}"/>`
           }
           <rect x="49" y="82" width="22" height="22" rx="8" fill="${sample.skin}"/>
           <path d="M18,140 Q22,102 60,102 Q98,102 102,140 Z" fill="${sample.shirt}"/>
           <ellipse cx="60" cy="58" rx="26" ry="31" fill="${sample.skin}"/>
-          <ellipse cx="46" cy="64" rx="6" ry="3.5" fill="#ffb4c2" opacity="0.45"/>
-          <ellipse cx="74" cy="64" rx="6" ry="3.5" fill="#ffb4c2" opacity="0.45"/>
-          <ellipse cx="52" cy="48" rx="4" ry="1.8" fill="#ffffff" opacity="0.7"/>
+          <ellipse cx="46" cy="64" rx="6" ry="3.5" fill="${sample.blush}" opacity="0.55"/>
+          <ellipse cx="74" cy="64" rx="6" ry="3.5" fill="${sample.blush}" opacity="0.55"/>
+          <ellipse cx="52" cy="46" rx="5" ry="2" fill="#ffffff" opacity="0.75"/>
           <circle cx="49" cy="56" r="2.8" fill="#1e293b"/>
           <circle cx="71" cy="56" r="2.8" fill="#1e293b"/>
-          <circle cx="50" cy="55" r="0.9" fill="#ffffff"/>
-          <circle cx="72" cy="55" r="0.9" fill="#ffffff"/>
+          <circle cx="50" cy="55" r="1" fill="#ffffff"/>
+          <circle cx="72" cy="55" r="1" fill="#ffffff"/>
           <path d="M42,49 Q49,46 55,49" stroke="${sample.hair}" stroke-width="2" fill="none" stroke-linecap="round"/>
           <path d="M65,49 Q71,46 78,49" stroke="${sample.hair}" stroke-width="2" fill="none" stroke-linecap="round"/>
           <path d="M53,73 Q60,79 67,73" stroke="#e11d48" stroke-width="2" fill="none" stroke-linecap="round"/>
@@ -519,7 +551,7 @@
             ? `<path d="M33,48 Q45,25 60,32 Q75,25 87,48 Q75,20 60,20 Q45,20 33,48 Z" fill="${sample.hair}"/>`
             : `<path d="M32,46 Q46,24 62,33 Q76,22 88,46 Q80,18 60,18 Q40,18 32,46 Z" fill="${sample.hair}"/>`
           }
-          <text x="60" y="132" font-size="8" text-anchor="middle" fill="#475569" font-family="Prompt, sans-serif">AI Glow 20y</text>
+          <text x="60" y="133" font-size="8" text-anchor="middle" fill="#475569" font-family="Prompt, sans-serif">Glow Skin 20y</text>
         </svg>
       `;
     }
@@ -528,28 +560,22 @@
       return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    function init() {
-      renderProductSlots();
-      renderDemoStyles();
-      renderPresenterSamples();
-      updatePresenterPreview('female');
-      updatePresenterPreview('male');
-      document.getElementById('store-description').addEventListener('input', checkOverclaims);
-    }
-
     function showToast(msg) {
       const toast = document.getElementById('toast');
       document.getElementById('toast-msg').textContent = msg;
       toast.classList.remove('hidden');
       clearTimeout(window._toastTimer);
-      window._toastTimer = setTimeout(() => toast.classList.add('hidden'), 2400);
+      window._toastTimer = setTimeout(() => toast.classList.add('hidden'), 2600);
     }
 
     function copyText(text) {
-      if (!text) return;
+      if (!text) {
+        showToast('ยังไม่มีข้อความให้คัดลอก');
+        return;
+      }
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text).then(() => {
-          showToast('คัดลอกข้อความลงคลิปบอร์ดเรียบร้อย!');
+          showToast('คัดลอกข้อความเรียบร้อยแล้ว!');
         }).catch(() => fallbackCopy(text));
       } else {
         fallbackCopy(text);
@@ -566,15 +592,20 @@
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      showToast('คัดลอกข้อความลงคลิปบอร์ดเรียบร้อย!');
+      showToast('คัดลอกข้อความเรียบร้อยแล้ว!');
     }
 
-    function copyGenerated(type, idx) {
-      if (type === 'prompt') {
-        copyText(state.generated.prompts[idx] || '');
-      } else {
-        copyText(state.generated[type] || '');
+    function copyGenerated(key, idx) {
+      if (key === 'prompt') copyText(state.generated.prompts[idx] || '');
+      else copyText(state.generated[key] || '');
+    }
+
+    function copyAllPrompts() {
+      if (!state.generated.prompts.length) {
+        showToast('ยังไม่มี Prompt กรุณากดปุ่มสร้างข้อมูลก่อน');
+        return;
       }
+      copyText(state.generated.prompts.map((p, i) => `=== ฉากที่ ${i + 1} ===\n${p}`).join('\n\n'));
     }
 
     function copyElementText(id) {
@@ -586,14 +617,148 @@
       copyText(el.value);
     }
 
+    function loadSavedApl() {
+      try {
+        const saved = localStorage.getItem('skincare_apl_key') || '';
+        const savedModel = localStorage.getItem('skincare_apl_model') || 'auto';
+        state.aplKey = saved;
+        state.aplModel = savedModel;
+        document.getElementById('apl-key').value = saved;
+        document.getElementById('apl-model').value = savedModel;
+        updateAplBadges();
+      } catch (e) {}
+    }
+
+    function updateAplBadges(verifiedText) {
+      const badge = document.getElementById('apl-badge');
+      const headerBadge = document.getElementById('header-apl-status');
+      const key = (document.getElementById('apl-key').value || '').trim();
+      state.aplKey = key;
+
+      if (verifiedText) {
+        badge.className = 'text-[11px] px-2 py-0.5 rounded-full bg-emerald-600 text-white font-semibold';
+        badge.textContent = verifiedText;
+        headerBadge.className = 'bg-emerald-600 px-2.5 py-0.5 rounded-full text-[11px] font-medium';
+        headerBadge.textContent = `APL เชื่อมต่อแล้ว (${state.detectedAplModel || 'Gemini AI'})`;
+      } else if (key) {
+        badge.className = 'text-[11px] px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 font-semibold';
+        badge.textContent = 'บันทึกรหัส APL แล้ว (กดทดสอบเพื่อยืนยัน)';
+        headerBadge.className = 'bg-amber-500 text-slate-950 px-2.5 py-0.5 rounded-full text-[11px] font-medium';
+        headerBadge.textContent = 'ใส่รหัส APL แล้ว';
+      } else {
+        badge.className = 'text-[11px] px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 font-normal';
+        badge.textContent = 'ยังไม่ใส่รหัส APL';
+        headerBadge.className = 'bg-slate-900/60 px-2.5 py-0.5 rounded-full text-[11px] font-medium';
+        headerBadge.textContent = 'โหมดวิเคราะห์ในเบราว์เซอร์ (ยังไม่ใส่ APL)';
+      }
+    }
+
+    function toggleAplVisibility() {
+      const input = document.getElementById('apl-key');
+      const btn = document.getElementById('apl-eye-btn');
+      if (input.type === 'password') { input.type = 'text'; btn.textContent = 'ซ่อน'; }
+      else { input.type = 'password'; btn.textContent = 'แสดง'; }
+    }
+
+    function saveAplKey() {
+      const key = document.getElementById('apl-key').value.trim();
+      const model = document.getElementById('apl-model').value;
+      state.aplKey = key;
+      state.aplModel = model;
+      try {
+        localStorage.setItem('skincare_apl_key', key);
+        localStorage.setItem('skincare_apl_model', model);
+      } catch (e) {}
+      updateAplBadges();
+      showToast(key ? 'บันทึกรหัส APL เรียบร้อยแล้ว' : 'ไม่มีรหัส APL (ใช้โหมดวิเคราะห์ในเบราว์เซอร์)');
+    }
+
+    function clearAplKey() {
+      document.getElementById('apl-key').value = '';
+      state.aplKey = '';
+      state.detectedAplModel = null;
+      try { localStorage.removeItem('skincare_apl_key'); } catch (e) {}
+      updateAplBadges();
+      showToast('ล้างรหัส APL เรียบร้อยแล้ว');
+    }
+
+    async function resolveWorkingGeminiModel(key) {
+      const selected = document.getElementById('apl-model').value;
+      if (selected !== 'auto') return selected;
+      if (state.detectedAplModel) return state.detectedAplModel;
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`);
+        if (res.ok) {
+          const data = await res.json();
+          const models = (data.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent'));
+          const preferred = ['gemini-3.5-flash', 'gemini-3-flash-preview', 'gemini-2.5-flash', 'gemini-2.0-flash'];
+          for (const p of preferred) {
+            if (models.some(m => m.name === `models/${p}`)) {
+              state.detectedAplModel = p;
+              return p;
+            }
+          }
+          const anyFlash = models.find(m => m.name.includes('flash'));
+          if (anyFlash) {
+            state.detectedAplModel = anyFlash.name.replace('models/', '');
+            return state.detectedAplModel;
+          }
+        }
+      } catch (e) {}
+      return 'gemini-2.5-flash';
+    }
+
+    async function testAplKey() {
+      saveAplKey();
+      if (!state.aplKey) { showToast('กรุณาวางรหัส APL / Gemini API Key ก่อนกดทดสอบ'); return; }
+      showToast('กำลังทดสอบการเชื่อมต่อรหัส APL...');
+      try {
+        const model = await resolveWorkingGeminiModel(state.aplKey);
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(state.aplKey)}`;
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: 'Reply with OK only.' }] }] })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err?.error?.message || `HTTP ${res.status}`);
+        }
+        state.detectedAplModel = model;
+        updateAplBadges(`เชื่อมต่อสำเร็จ (${model})`);
+        showToast(`เชื่อมต่อรหัส APL สำเร็จ! (${model})`);
+      } catch (err) {
+        updateAplBadges();
+        showToast(`เชื่อมต่อไม่สำเร็จ: ${err.message}`);
+      }
+    }
+
+    async function callGeminiWithImages(promptText, imageDataUrls = []) {
+      if (!state.aplKey) return null;
+      const model = await resolveWorkingGeminiModel(state.aplKey);
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(state.aplKey)}`;
+      const parts = [{ text: promptText }];
+      imageDataUrls.forEach(dataUrl => {
+        const match = (dataUrl || '').match(/^data:(image\/\w+);base64,(.+)$/);
+        if (match) parts.push({ inlineData: { mimeType: match[1], data: match[2] } });
+      });
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts }], generationConfig: { temperature: 0.3 } })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error?.message || `HTTP ${res.status}`);
+      }
+      const data = await res.json();
+      return data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    }
     function handleProductImages(event) {
       const files = Array.from(event.target.files || []);
       if (!files.length) return;
       const available = 6 - state.images.length;
-      if (available <= 0) {
-        showToast('อัปโหลดครบสูงสุด 6 รูปแล้ว');
-        return;
-      }
+      if (available <= 0) { showToast('อัปโหลดครบสูงสุด 6 รูปแล้ว'); return; }
       files.slice(0, available).forEach(file => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -601,7 +766,7 @@
             if (state.images.length < 6) {
               state.images.push(info);
               renderProductSlots();
-              analyzeProductAll();
+              analyzeProductAll(false);
             }
           });
         };
@@ -621,24 +786,19 @@
           canvas.height = h;
           ctx.drawImage(img, 0, 0, w, h);
           const data = ctx.getImageData(0, 0, w, h).data;
-
           const colorBuckets = {};
           let brightSum = 0, count = 0;
-          for (let y = 12; y < 52; y++) {
-            for (let x = 12; x < 52; x++) {
+          for (let y = 10; y < 54; y++) {
+            for (let x = 10; x < 54; x++) {
               const i = (y * w + x) * 4;
               const r = data[i], g = data[i + 1], b = data[i + 2];
               brightSum += (r + g + b) / 3;
               count++;
-              if (r > 240 && g > 240 && b > 240) continue;
-              const qr = Math.round(r / 32) * 32;
-              const qg = Math.round(g / 32) * 32;
-              const qb = Math.round(b / 32) * 32;
-              const key = `${qr},${qg},${qb}`;
+              if (r > 242 && g > 242 && b > 242) continue;
+              const key = `${Math.round(r / 32) * 32},${Math.round(g / 32) * 32},${Math.round(b / 32) * 32}`;
               colorBuckets[key] = (colorBuckets[key] || 0) + 1;
             }
           }
-
           const sortedColors = Object.entries(colorBuckets)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 3)
@@ -646,15 +806,9 @@
               const [r, g, b] = rgb.split(',').map(Number);
               return { rgb: `rgb(${r},${g},${b})`, name: describeColorThai(r, g, b), r, g, b };
             });
-
-          const ratio = img.width / img.height;
-          const aspectDesc = ratio < 0.85 ? 'ทรงสูงแนวตั้ง' : ratio > 1.15 ? 'ทรงกว้างแนวนอน' : 'ทรงสี่เหลี่ยมสมดุล';
-
-          resolve({
-            name, dataUrl, width: img.width, height: img.height, aspectDesc,
-            brightness: Math.round(brightSum / Math.max(1, count)),
-            dominantColors: sortedColors
-          });
+          const ratio = img.width / Math.max(1, img.height);
+          const aspectDesc = ratio < 0.85 ? 'ทรงสูงแนวตั้ง' : ratio > 1.15 ? 'ทรงกว้างแนวนอน' : 'ทรงสมดุล';
+          resolve({ name, dataUrl, width: img.width, height: img.height, aspectDesc, brightness: Math.round(brightSum / Math.max(1, count)), dominantColors: sortedColors });
         };
         img.src = dataUrl;
       });
@@ -663,7 +817,7 @@
     function describeColorThai(r, g, b) {
       if (r > 200 && g > 200 && b > 200) return 'โทนขาว/ใส';
       if (r < 55 && g < 55 && b < 55) return 'โทนดำ/เข้ม';
-      if (r > 180 && g > 140 && b < 110) return 'โทนทอง/ส้ม/อำพัน';
+      if (r > 180 && g > 135 && b < 110) return 'โทนทอง/ส้ม/อำพัน';
       if (r > 180 && g < 120 && b < 120) return 'โทนแดง/ชมพูเข้ม';
       if (r > 180 && g > 130 && b > 150) return 'โทนชมพูอ่อน/โรส';
       if (b > r + 25 && b > g) return 'โทนฟ้า/น้ำเงิน';
@@ -675,23 +829,21 @@
     function removeProductImage(idx) {
       state.images.splice(idx, 1);
       renderProductSlots();
-      analyzeProductAll();
+      analyzeProductAll(false);
     }
 
     function renderProductSlots() {
       const grid = document.getElementById('product-image-grid');
-      const badge = document.getElementById('img-count-badge');
-      badge.textContent = `${state.images.length} / 6 รูป`;
-      const slotLabels = ['รูป 1 (หน้าตรง)', 'รูป 2 (ฉลาก/หลัง)', 'รูป 3 (เนื้อสัมผัส)', 'รูป 4 (มุมข้าง)', 'รูป 5 (ฝา/หัวปั๊ม)', 'รูป 6 (รายละเอียด)'];
-
+      document.getElementById('img-count-badge').textContent = `${state.images.length} / 6 รูป`;
+      const slotLabels = ['รูป 1 (หน้าตรง)', 'รูป 2 (ฉลาก/หลัง)', 'รูป 3 (เนื้อสัมผัส)', 'รูป 4 (มุมข้าง)', 'รูป 5 (ฝา/หัวปั๊ม)', 'รูป 6 (ขนาดจริง)'];
       grid.innerHTML = Array.from({ length: 6 }).map((_, idx) => {
         const img = state.images[idx];
         if (img) {
           return `
             <div class="relative rounded-xl overflow-hidden border border-slate-200 bg-white aspect-square">
               <img src="${img.dataUrl}" class="w-full h-full object-cover" />
-              <span class="absolute bottom-1 left-1 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">${slotLabels[idx]}</span>
-              <button onclick="removeProductImage(${idx})" class="absolute top-1 right-1 bg-red-600 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">×</button>
+              <span class="absolute bottom-1 left-1 bg-black/75 text-white text-[10px] px-1.5 py-0.5 rounded">${slotLabels[idx]}</span>
+              <button type="button" onclick="removeProductImage(${idx})" class="absolute top-1 right-1 bg-red-600 hover:bg-red-700 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">×</button>
             </div>
           `;
         }
@@ -704,11 +856,11 @@
       }).join('');
     }
 
-    function analyzeProductAll() {
+    async function analyzeProductAll(useAiIfAvailable = false) {
       const box = document.getElementById('visual-analysis-box');
       const colorRow = document.getElementById('detected-colors-row');
       if (state.images.length === 0) {
-        box.textContent = 'ยังไม่มีรูปภาพสินค้า กรุณาอัปโหลดอย่างน้อย 1 รูปเพื่อวิเคราะห์สี รูปทรง และเนื้อสัมผัส';
+        box.textContent = 'ยังไม่มีรูปภาพสินค้า กรุณาอัปโหลดอย่างน้อย 1 รูปเพื่อวิเคราะห์รูปทรง สี ขนาด และเนื้อสัมผัส';
         colorRow.innerHTML = '';
         return;
       }
@@ -716,29 +868,24 @@
       const shapes = new Set();
       state.images.forEach(img => {
         shapes.add(img.aspectDesc);
-        img.dominantColors.forEach(c => {
-          if (!allColors.find(x => x.name === c.name)) allColors.push(c);
-        });
+        img.dominantColors.forEach(c => { if (!allColors.find(x => x.name === c.name)) allColors.push(c); });
       });
-
       const shapePkg = document.getElementById('packaging-shape').value;
       const texture = document.getElementById('product-texture').value;
-      const colorNames = allColors.map(c => c.name).join(', ') || 'โทนสีธรรมชาติของบรรจุภัณฑ์';
+      const sizeText = document.getElementById('product-size').value.trim() || 'ตามรูปอ้างอิงจริง';
+      const colorNames = allColors.map(c => c.name).join(', ') || 'โทนสีตามบรรจุภัณฑ์';
+      box.innerHTML = `อัปโหลดแล้ว <strong>${state.images.length} รูป</strong> • รูปทรงบรรจุภัณฑ์: <strong>${shapePkg} (${Array.from(shapes).join('/')})</strong> • ขนาด: <strong>${escapeHtml(sizeText)}</strong> • เนื้อสัมผัส: <strong>${texture}</strong> • โทนสีหลัก: <strong>${colorNames}</strong>`;
+      colorRow.innerHTML = allColors.map(c => `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white border border-slate-200 text-[11px]"><span class="w-2.5 h-2.5 rounded-full border border-slate-300" style="background:${c.rgb}"></span>${c.name}</span>`).join('');
 
-      box.innerHTML = `
-        อัปโหลดแล้ว <strong>${state.images.length} รูป</strong> •
-        ตรวจพบสัดส่วนภาพ: <strong>${Array.from(shapes).join(' / ')}</strong> •
-        บรรจุภัณฑ์ที่ระบุ: <strong>${shapePkg}</strong> •
-        เนื้อสัมผัส: <strong>${texture}</strong> •
-        โทนสีหลักจากภาพจริง: <strong>${colorNames}</strong>
-      `;
-
-      colorRow.innerHTML = allColors.map(c => `
-        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white border border-slate-200 text-[11px]">
-          <span class="w-2.5 h-2.5 rounded-full border border-slate-300" style="background:${c.rgb}"></span>
-          ${c.name}
-        </span>
-      `).join('');
+      if (useAiIfAvailable && state.aplKey) {
+        box.innerHTML += `<div class="mt-2 text-rose-600 font-semibold">⏳ กำลังให้ AI (รหัส APL) วิเคราะห์รูปทรง ฉลาก โลโก้ และตัวอักษรจากภาพจริง...</div>`;
+        try {
+          const aiDesc = await callGeminiWithImages(`วิเคราะห์ภาพสินค้าทั้ง ${state.images.length} รูปตามจริงเท่านั้น (ห้ามอวดอ้างเกินจริง): ระบุรูปทรงบรรจุภัณฑ์ สีหลัก สีฝา/หัวปั๊ม ตำแหน่งฉลาก โลโก้ และข้อความที่เห็นบนขวด/กล่องแบบสั้นกระชับ 3-4 บรรทัด`, state.images.map(i => i.dataUrl));
+          if (aiDesc) box.innerHTML = `<div class="whitespace-pre-line text-slate-800">${escapeHtml(sanitizeStoreText(aiDesc))}</div>`;
+        } catch (err) {
+          box.innerHTML += `<div class="mt-1 text-red-600">ไม่สามารถเรียก AI Vision ได้ (${escapeHtml(err.message)}) — ใช้ผลวิเคราะห์ในเบราว์เซอร์แทน</div>`;
+        }
+      }
     }
 
     function checkOverclaims() {
@@ -747,7 +894,7 @@
       const found = BANNED_OVERCLAIMS.filter(w => text.includes(w));
       if (found.length > 0) {
         warn.classList.remove('hidden');
-        warn.innerHTML = `⚠️ พบคำที่อาจผิดกฎ/อวดอ้างเกินจริงในข้อมูลร้าน: <strong>${found.join(', ')}</strong> (ระบบจะตัดคำเหล่านี้ออกจากบทพูดและแคปชั่นให้อัตโนมัติ)`;
+        warn.innerHTML = `⚠️ พบคำต้องห้าม/อวดอ้างเกินจริงในข้อมูลร้าน: <strong>${found.join(', ')}</strong> (ระบบจะตัดออกให้อัตโนมัติ)`;
       } else {
         warn.classList.add('hidden');
       }
@@ -755,10 +902,8 @@
 
     function sanitizeStoreText(text) {
       let clean = text || '';
-      BANNED_OVERCLAIMS.forEach(word => {
-        clean = clean.split(word).join('');
-      });
-      return clean.replace(/\s+/g, ' ').trim();
+      BANNED_OVERCLAIMS.forEach(word => { clean = clean.split(word).join(''); });
+      return clean.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
     }
 
     function setRatio(ratio) {
@@ -786,8 +931,7 @@
     }
 
     function renderDemoStyles() {
-      const container = document.getElementById('demo-styles-container');
-      container.innerHTML = DEMO_STYLES.map(s => {
+      document.getElementById('demo-styles-container').innerHTML = DEMO_STYLES.map(s => {
         const active = state.selectedDemoStyle === s.id;
         return `
           <button type="button" onclick="selectDemoStyle('${s.id}')" class="text-left p-2.5 rounded-xl border transition ${active ? 'border-rose-500 bg-rose-50 ring-1 ring-rose-500' : 'border-slate-200 bg-white hover:bg-slate-50'}">
@@ -798,47 +942,26 @@
       }).join('');
     }
 
-    function selectDemoStyle(id) {
-      state.selectedDemoStyle = id;
-      renderDemoStyles();
-    }
+    function selectDemoStyle(id) { state.selectedDemoStyle = id; renderDemoStyles(); }
 
     function renderPresenterSamples() {
       document.getElementById('female-samples').innerHTML = FEMALE_SAMPLES.map(s => {
         const active = state.femalePresenter.presetId === s.id && !state.femalePresenter.customPhoto;
-        return `
-          <button type="button" onclick="selectPresenterPreset('female', '${s.id}')" class="p-1.5 rounded-xl border text-center transition ${active ? 'border-rose-500 bg-white ring-1 ring-rose-500' : 'border-slate-200 bg-white/70 hover:bg-white'}">
-            <div class="w-10 h-12 mx-auto rounded-lg overflow-hidden mb-1">${buildAvatarSVG(s, true)}</div>
-            <div class="text-[10px] font-semibold text-slate-700 leading-tight">${s.label}</div>
-          </button>
-        `;
+        return `<button type="button" onclick="selectPresenterPreset('female', '${s.id}')" class="p-1.5 rounded-xl border text-center transition ${active ? 'border-rose-500 bg-white ring-1 ring-rose-500' : 'border-slate-200 bg-white/70 hover:bg-white'}"><div class="w-10 h-12 mx-auto rounded-lg overflow-hidden mb-1">${buildAvatarSVG(s, true)}</div><div class="text-[10px] font-semibold text-slate-700 leading-tight">${s.label}</div></button>`;
       }).join('');
-
       document.getElementById('male-samples').innerHTML = MALE_SAMPLES.map(s => {
         const active = state.malePresenter.presetId === s.id && !state.malePresenter.customPhoto;
-        return `
-          <button type="button" onclick="selectPresenterPreset('male', '${s.id}')" class="p-1.5 rounded-xl border text-center transition ${active ? 'border-sky-500 bg-white ring-1 ring-sky-500' : 'border-slate-200 bg-white/70 hover:bg-white'}">
-            <div class="w-10 h-12 mx-auto rounded-lg overflow-hidden mb-1">${buildAvatarSVG(s, false)}</div>
-            <div class="text-[10px] font-semibold text-slate-700 leading-tight">${s.label}</div>
-          </button>
-        `;
+        return `<button type="button" onclick="selectPresenterPreset('male', '${s.id}')" class="p-1.5 rounded-xl border text-center transition ${active ? 'border-sky-500 bg-white ring-1 ring-sky-500' : 'border-slate-200 bg-white/70 hover:bg-white'}"><div class="w-10 h-12 mx-auto rounded-lg overflow-hidden mb-1">${buildAvatarSVG(s, false)}</div><div class="text-[10px] font-semibold text-slate-700 leading-tight">${s.label}</div></button>`;
       }).join('');
     }
 
     function selectPresenterPreset(gender, id) {
-      if (gender === 'female') {
-        const s = FEMALE_SAMPLES.find(x => x.id === id);
-        state.femalePresenter.presetId = id;
-        state.femalePresenter.customPhoto = null;
-        document.getElementById('female-name').value = s.name;
-        document.getElementById('female-desc').value = s.desc;
-      } else {
-        const s = MALE_SAMPLES.find(x => x.id === id);
-        state.malePresenter.presetId = id;
-        state.malePresenter.customPhoto = null;
-        document.getElementById('male-name').value = s.name;
-        document.getElementById('male-desc').value = s.desc;
-      }
+      const s = (gender === 'female' ? FEMALE_SAMPLES : MALE_SAMPLES).find(x => x.id === id);
+      state[gender + 'Presenter'].presetId = id;
+      state[gender + 'Presenter'].customPhoto = null;
+      document.getElementById(`${gender}-name`).value = s.name;
+      document.getElementById(`${gender}-desc`).value = s.desc;
+      document.getElementById(`${gender}-clear-btn`).classList.add('hidden');
       renderPresenterSamples();
       updatePresenterPreview(gender);
     }
@@ -849,19 +972,27 @@
       const reader = new FileReader();
       reader.onload = (e) => {
         state[gender + 'Presenter'].customPhoto = e.target.result;
+        document.getElementById(`${gender}-clear-btn`).classList.remove('hidden');
         renderPresenterSamples();
         updatePresenterPreview(gender);
         showToast(`อัปโหลดรูปพรีเซนเตอร์${gender === 'female' ? 'หญิง' : 'ชาย'}เพิ่มเติมเรียบร้อย`);
       };
       reader.readAsDataURL(file);
+      event.target.value = '';
+    }
+
+    function clearPresenterPhoto(gender) {
+      state[gender + 'Presenter'].customPhoto = null;
+      document.getElementById(`${gender}-clear-btn`).classList.add('hidden');
+      renderPresenterSamples();
+      updatePresenterPreview(gender);
     }
 
     function updatePresenterPreview(gender) {
       const box = document.getElementById(`${gender}-preview-box`);
       const p = state[gender + 'Presenter'];
-      if (p.customPhoto) {
-        box.innerHTML = `<img src="${p.customPhoto}" class="w-full h-full object-cover" />`;
-      } else {
+      if (p.customPhoto) { box.innerHTML = `<img src="${p.customPhoto}" class="w-full h-full object-cover" />`; }
+      else {
         const list = gender === 'female' ? FEMALE_SAMPLES : MALE_SAMPLES;
         const s = list.find(x => x.id === p.presetId) || list[0];
         box.innerHTML = buildAvatarSVG(s, gender === 'female');
@@ -870,53 +1001,321 @@
 
     function extractStoreFacts(rawDesc) {
       const clean = sanitizeStoreText(rawDesc);
-      if (!clean) return ['เนื้อสัมผัสตามที่ร้านระบุ', 'เหมาะสำหรับดูแลผิวในชีวิตประจำวัน'];
-      const parts = clean.split(/[\n•,]+/).map(s => s.trim()).filter(s => s.length >= 4);
+      if (!clean) return ['เนื้อสัมผัสตามข้อมูลร้านค้า', 'เหมาะสำหรับการดูแลผิวประจำวัน'];
+      const parts = clean.split(/[\n•,]+/).map(s => s.trim()).filter(s => s.length >= 3);
       return parts.length ? parts : [clean];
     }
 
-    function generateAllOutputs() {
-      const name = document.getElementById('product-name').value.trim();
+    async function generateAllOutputs() {
+      const name = sanitizeStoreText(document.getElementById('product-name').value.trim());
       const rawDesc = document.getElementById('store-description').value.trim();
-
       if (!name || !rawDesc) {
         showToast('กรุณากรอกชื่อสินค้าและข้อมูลสินค้าจากร้านค้าก่อนครับ');
         document.getElementById('product-name').focus();
         return;
       }
+      const genBtn = document.getElementById('generate-all-btn');
+      genBtn.disabled = true;
+      genBtn.classList.add('opacity-70');
+      try {
+        await analyzeProductAll(false);
+        const category = document.getElementById('product-category').value;
+        const packaging = document.getElementById('packaging-shape').value;
+        const texture = document.getElementById('product-texture').value;
+        const sizeInfo = sanitizeStoreText(document.getElementById('product-size').value.trim()) || 'ขนาดตามจริงของผลิตภัณฑ์';
+        const storePrice = sanitizeStoreText(document.getElementById('store-price').value.trim());
+        const painPoint = sanitizeStoreText(document.getElementById('pain-point').value.trim()) || 'ผิวดูโทรม ไม่ชุ่มชื้น หรือกังวลเนื้อผลิตภัณฑ์หนักผิว';
+        const audioMode = document.getElementById('audio-mode').value;
+        const sceneCount = state.duration === 10 ? 1 : 2;
+        const facts = extractStoreFacts(rawDesc);
+        const fact1 = facts[0] || '';
+        const fact2 = facts[1] || facts[0] || '';
+        const colorSummary = state.images.length ? Array.from(new Set(state.images.flatMap(i => i.dominantColors.map(c => c.name)))).join(', ') : 'สีจริงตามบรรจุภัณฑ์สินค้า';
 
-      analyzeProductAll();
+        let hook3s = `"${painPoint} ลองดูเนื้อสัมผัสของ ${name} ตัวนี้ก่อนเลย"`;
+        let scene1Script = `เจอปัญหา${painPoint}ใช่ไหม ลองดู ${name} ที่ร้านระบุว่า${fact1} ใน${packaging} ใช้งานสะดวก`;
+        let scene2Script = `จุดเด่นจากทางร้านคือ${fact2} มาพร้อม${texture} เกลี่ยสบายผิว ดูข้อมูลเพิ่มเติมที่ตะกร้าด้านล่างได้เลย`;
+        const asmr1Script = `[ASMR ฉากที่ 1 (0-10 วิ) — ไม่มีเสียงพูด / นำไปพากย์เสียงเพิ่มใน CapCut หรือ TikTok ได้]\n• 0-3 วิ: เสียงวาง${packaging}ลงบนโต๊ะ + เสียงหมุน/เปิดฝาชัดๆ\n• 3-7 วิ: เสียงหยด/บีบ/ตัก "${texture}" ลงบนหลังมือหรือแก้ม\n• 7-10 วิ: เสียงนิ้วเกลี่ยเนื้อผลิตภัณฑ์ลงผิวเบาๆ\n• สคริปต์สำหรับนำไปพากย์ทับ (<= 10 วิ): "${painPoint} ลองดูเนื้อของ ${name} ที่${fact1} ใช้สะดวกทุกวัน"`;
+        const asmr2Script = `[ASMR ฉากที่ 2 (10-20 วิ) — ไม่มีเสียงพูด / นำไปพากย์เสียงเพิ่มใน CapCut หรือ TikTok ได้]\n• 10-15 วิ: เสียงลูบเนื้อสัมผัสลงผิวจนกลืนเนียน พรีเซนเตอร์โชว์ผิวใกล้กล้อง\n• 15-18 วิ: เสียงปิดฝาคลิกคมชัด + วางสินค้าหน้าตรงให้เห็นฉลากชัดเจน\n• 18-20 วิ: จังหวะนิ่งโชว์สินค้าคู่ตะกร้า\n• สคริปต์สำหรับนำไปพากย์ทับ (<= 10 วิ): "ตามข้อมูลร้านระบุว่า${fact2} มาพร้อม${texture} สนใจดูรายละเอียดที่ตะกร้าได้เลย"`;
 
-      const category = document.getElementById('product-category').value;
-      const packaging = document.getElementById('packaging-shape').value;
-      const texture = document.getElementById('product-texture').value;
-      const storePrice = document.getElementById('store-price').value.trim();
-      const painPoint = document.getElementById('pain-point').value.trim() || 'ปัญหาผิวดูโทรม ไม่ชุ่มชื้น หรือกังวลเรื่องเนื้อผลิตภัณฑ์เหนอะหนะ';
-      const audioMode = document.getElementById('audio-mode').value;
-      const sceneCount = state.duration === 10 ? 1 : 2;
-      const facts = extractStoreFacts(rawDesc);
+        if (state.aplKey) {
+          try {
+            showToast('กำลังใช้รหัส APL (Gemini AI) วิเคราะห์ภาพและสร้างสคริปต์...');
+            const aiPrompt = `สร้างสคริปต์ Affiliate Shopee & TikTok Shop จากข้อมูลร้านเท่านั้น:
+สินค้า: ${name} (${category}), ${packaging}, ขนาด: ${sizeInfo}, เนื้อ: ${texture}
+ข้อมูลร้าน: ${sanitizeStoreText(rawDesc)} | ปัญหา: ${painPoint} | ราคาที่ร้านระบุ: ${storePrice || 'ไม่มี (ห้ามคิดราคา/ส่วนลดเอง)'}
+กฎเหล็ก: ห้ามอวดอ้างเกินจริง ไม่รับประกันผล ห้ามมีคำว่า "สินค้าตรงปก 100%" หรือ "ตรงปก 100%" เด็ดขาด Hook 3 วิเปิดลบ บทพูดฉากละไม่เกิน 10 วิ (18-26 คำ) ปิดบวก ตอบเป็น JSON เท่านั้น: {"hook":"...","scene1":"...","scene2":"..."}`;
+            const rawAi = await callGeminiWithImages(aiPrompt, state.images.slice(0, 3).map(i => i.dataUrl));
+            const jsonMatch = (rawAi || '').match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+              const parsed = JSON.parse(jsonMatch[0]);
+              if (parsed.hook) hook3s = sanitizeStoreText(parsed.hook);
+              if (parsed.scene1) scene1Script = sanitizeStoreText(parsed.scene1);
+              if (parsed.scene2) scene2Script = sanitizeStoreText(parsed.scene2);
+            }
+          } catch (e) {}
+        }
 
-      const colorSummary = state.images.length
-        ? Array.from(new Set(state.images.flatMap(i => i.dominantColors.map(c => c.name)))).join(', ')
-        : 'สีจริงตามบรรจุภัณฑ์สินค้า';
+        state.generated = { ...state.generated, hook: hook3s, scene1: scene1Script, scene2: scene2Script, asmr1: asmr1Script, asmr2: asmr2Script };
+        let step3Html = '', fullCopy = '';
 
-      const hook3s = audioMode === 'asmr'
-        ? `[ASMR Hook 0-3 วิ] (เสียงเปิดฝา/หยดผลิตภัณฑ์ใกล้ไมค์ คมชัด) ข้อความขึ้นจอสั้นๆ: "${painPoint} ลองดูเนื้อตัวนี้ใกล้ๆ"`
-        : `"${painPoint} อย่าเพิ่งเลื่อนผ่าน ถ้ายังไม่ได้ลองดูเนื้อสัมผัสของ ${name} ตัวนี้"`;
+        if (audioMode === 'voiceover' || audioMode === 'both') {
+          step3Html += `
+            <div class="bg-rose-50/70 border border-rose-200 rounded-2xl p-4">
+              <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-rose-600 text-white">⚡ Hook ดึงดูดความสนใจ (3 วินาทีแรก)</span><button type="button" onclick="copyGenerated('hook')" class="text-xs text-rose-700 font-semibold hover:underline">📋 คัดลอก Hook</button></div>
+              <p class="text-sm text-slate-800 whitespace-pre-line leading-relaxed">${escapeHtml(hook3s)}</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+              <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-800 text-white">🎙️ บทพูดฉากที่ 1 (0 - 10 วิ | เปิดลบ-ปิดบวก)</span><button type="button" onclick="copyGenerated('scene1')" class="text-xs text-slate-700 font-semibold hover:underline">📋 คัดลอกฉาก 1</button></div>
+              <p class="text-sm text-slate-800 whitespace-pre-line leading-relaxed">${escapeHtml(scene1Script)}</p>
+            </div>`;
+          fullCopy += `Hook 3 วิ:\n${hook3s}\n\nบทพูดฉากที่ 1 (0-10 วิ):\n${scene1Script}`;
+          if (sceneCount === 2) {
+            step3Html += `
+              <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-800 text-white">🎙️ บทพูดฉากที่ 2 (10 - 20 วิ | ไม่เกิน 10 วิ)</span><button type="button" onclick="copyGenerated('scene2')" class="text-xs text-slate-700 font-semibold hover:underline">📋 คัดลอกฉาก 2</button></div>
+                <p class="text-sm text-slate-800 whitespace-pre-line leading-relaxed">${escapeHtml(scene2Script)}</p>
+              </div>`;
+            fullCopy += `\n\nบทพูดฉากที่ 2 (10-20 วิ):\n${scene2Script}`;
+          }
+        }
 
-      let scene1Script = '';
-      let scene2Script = '';
-      const fact1 = facts[0] || '';
-      const fact2 = facts[1] || facts[0] || '';
+        if (audioMode === 'asmr' || audioMode === 'both') {
+          step3Html += `
+            <div class="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4">
+              <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-700 text-white">🎧 โหมด ASMR ฉากที่ 1 (สำหรับนำไปพากย์ต่อในแอปอื่น)</span><button type="button" onclick="copyGenerated('asmr1')" class="text-xs text-emerald-800 font-semibold hover:underline">📋 คัดลอก ASMR ฉาก 1</button></div>
+              <p class="text-sm text-slate-800 whitespace-pre-line leading-relaxed">${escapeHtml(asmr1Script)}</p>
+            </div>`;
+          fullCopy += `${fullCopy ? '\n\n' : ''}${asmr1Script}`;
+          if (sceneCount === 2) {
+            step3Html += `
+              <div class="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4">
+                <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-700 text-white">🎧 โหมด ASMR ฉากที่ 2 (สำหรับนำไปพากย์ต่อในแอปอื่น)</span><button type="button" onclick="copyGenerated('asmr2')" class="text-xs text-emerald-800 font-semibold hover:underline">📋 คัดลอก ASMR ฉาก 2</button></div>
+                <p class="text-sm text-slate-800 whitespace-pre-line leading-relaxed">${escapeHtml(asmr2Script)}</p>
+              </div>`;
+            fullCopy += `\n\n${asmr2Script}`;
+          }
+        }
 
-      if (audioMode === 'asmr') {
-        scene1Script = `[โหมด ASMR ฉากที่ 1 (0-10 วิ) — ไม่มีเสียงพูด / ใช้เสียงสัมผัสจริง เพื่อนำไปพากย์เสียงในแอปอื่นต่อได้]\n• 0-3 วิ: เสียงวางขวด/บรรจุภัณฑ์เบาๆ + เสียงหมุนเปิดฝา (${packaging})\n• 3-7 วิ: เสียงหยด/บีบ/ตัก "${texture}" ลงบนหลังมือหรือแก้มอย่างช้าๆ\n• 7-10 วิ: เสียงนิ้วเกลี่ยเนื้อผลิตภัณฑ์ลงผิว (Soft Skin Tapping)\n• คำแนะนำพากย์ทับภายหลัง (อ้างอิงร้าน): ${fact1}`;
-        scene2Script = `[โหมด ASMR ฉากที่ 2 (10-20 วิ) — ไม่มีเสียงพูด / ใช้เสียงสัมผัสจริง เพื่อนำไปพากย์เสียงในแอปอื่นต่อได้]\n• 10-15 วิ: เสียงลูบเนื้อครีม/เซรั่มจนซึมลงผิว พรีเซนเตอร์โชว์ผิวใกล้กล้อง\n• 15-18 วิ: เสียงปิดฝาคลิกชัดเจน + วางสินค้าคู่ฉลากหน้าตรง\n• 18-20 วิ: จังหวะนิ่งโชว์สินค้าชัดเจนสำหรับปักตะกร้า\n• คำแนะนำพากย์ทับภายหลัง (อ้างอิงร้าน): ${fact2}`;
-      } else {
-        scene1Script = `เปิดด้วยปัญหาที่เจอบ่อยอย่าง ${painPoint} — ลองดูตัวนี้เลย ${name} จากข้อมูลร้านระบุว่า ${fact1} มาในรูปแบบ ${packaging} ที่ช่วยให้ดูแลผิวได้ง่ายขึ้นในทุกวัน`;
-        scene2Script = `จุดเด่นเพิ่มเติมตามที่ร้านระบุคือ ${fact2} เนื้อสัมผัสแบบ ${texture} เกลี่ยลงผิวได้สบาย ใครกำลังมองหา${category} กดดูรายละเอียดเพิ่มเติมที่ตะกร้าด้านล่างได้เลย`;
+        document.getElementById('step3-output').innerHTML = step3Html;
+        document.getElementById('full-script-copy-target').value = fullCopy;
+
+        const demoObj = DEMO_STYLES.find(s => s.id === state.selectedDemoStyle) || DEMO_STYLES[0];
+        const pairing = document.getElementById('presenter-pairing').value;
+        const fText = `${document.getElementById('female-name').value.trim()} (${document.getElementById('female-age').value.trim()}): ${document.getElementById('female-desc').value.trim()}`;
+        const mText = `${document.getElementById('male-name').value.trim()} (${document.getElementById('male-age').value.trim()}): ${document.getElementById('male-desc').value.trim()}`;
+        const p1 = pairing === 'male' ? mText : fText;
+        const p2 = pairing === 'female' ? fText : mText;
+
+        const strictMandate = `MANDATORY PRODUCT FIDELITY RULE (ข้อกำหนดบังคับทุกฉาก):\n- EN: Strictly preserve the exact real packaging shape (${packaging}), label design, brand logo, color tone (${colorSummary}), true size/scale (${sizeInfo}), product texture (${texture}), and every printed text/typography from the uploaded reference product images so they remain sharp and clearly visible. Strictly NO modification, NO alteration, NO embellishment, and NO distortion allowed.\n- TH: ให้คงรูปทรง ฉลาก โลโก้ สี ขนาด เนื้อสัมผัส และตัวอักษรของสินค้าตามจริงให้เห็นเด่นชัด และห้ามแต่งเติมและเปลี่ยนแปลงเด็ดขาด`;
+        const audioDir = audioMode === 'asmr' ? 'AUDIO DIRECTIVE: Pure crisp ASMR ambient & touch sounds only (cap click, serum drop, gentle skin blending). No spoken dialogue so user can dub later.' : 'AUDIO DIRECTIVE: Clean natural lifestyle environment suitable for Thai voiceover & ASMR texture sound.';
+
+        const prompts = [`[SCENE 1 | Duration: 0-10s | Aspect Ratio: ${state.ratio} | Resolution: ${state.resolution} | Photorealistic 4K]\nPRESENTER: ${p1} — Clear visible face, bright dewy glowing fair skin, healthy radiant complexion, natural realistic human look.\nPRODUCT: "${name}" (${category}), ${packaging}, size ${sizeInfo}, ${texture}, color ${colorSummary}.\nVISUAL & DEMO STYLE (${demoObj.title}): Opening 3s close-up hook showing the presenter holding "${name}" clearly next to their glowing face, transitioning smoothly into "${demoObj.desc}". Soft natural studio daylight, razor-sharp focus on product label.\n${audioDir}\n${strictMandate}`];
+        if (sceneCount === 2) {
+          prompts.push(`[SCENE 2 | Duration: 10-20s | Aspect Ratio: ${state.ratio} | Resolution: ${state.resolution} | Photorealistic 4K]\nPRESENTER: ${p2} — Clear visible face, bright dewy glowing fair skin, natural confident smile.\nPRODUCT: "${name}" (${category}), ${packaging}, size ${sizeInfo}, ${texture}, color ${colorSummary}.\nVISUAL & DEMO STYLE: Smooth continuation showing "${texture}" applied gently onto cheek/back of hand without exaggeration, then presenter holds "${name}" upright facing front-on clearly for the final 2-3 seconds for affiliate basket click.\n${audioDir}\n${strictMandate}`);
+        }
+        state.generated.prompts = prompts;
+        document.getElementById('step4-output').innerHTML = prompts.map((p, idx) => `
+          <div class="bg-slate-900 text-slate-100 rounded-2xl p-4 space-y-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-rose-600 text-white">🎬 AI Prompt ฉากที่ ${idx + 1} (${idx === 0 ? '0-10 วิ' : '10-20 วิ'}) • ${state.ratio} • ${state.resolution}</span>
+              <button type="button" onclick="copyGenerated('prompt', ${idx})" class="text-xs bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 rounded-lg font-semibold transition">📋 คัดลอก Prompt ฉากที่ ${idx + 1}</button>
+            </div>
+            <pre class="text-xs text-slate-200 whitespace-pre-wrap font-mono leading-relaxed bg-black/35 p-3.5 rounded-xl border border-white/10">${escapeHtml(p)}</pre>
+          </div>
+        `).join('');
+
+        const factBullets = facts.slice(0, 4).map(f => `• ${f}`).join('\n');
+        const priceLine = storePrice ? `\n💰 ราคา/โปรโมชั่นจากทางร้าน: ${storePrice}` : '';
+        const cleanCatTag = category.replace(/[\/\s]+/g, '');
+        const cleanNameTag = name.replace(/[^\u0E00-\u0E7Fa-zA-Z0-9]/g, '').slice(0, 24);
+        document.getElementById('caption-output-text').value = sanitizeStoreText(`${name} (${category}) ✨\nรูปแบบ ${packaging} • ${texture} • ปริมาณ ${sizeInfo}\n\n📌 คุณสมบัติและวิธีใช้ตามข้อมูลร้านค้า:\n${factBullets}${priceLine}\n\n🛒 กดดูรายละเอียดเพิ่มเติมและเลือกซื้อได้ที่ตะกร้าด้านล่างได้เลย\n\n#สกินแคร์ #ความงาม #รีวิวบิวตี้ #${cleanCatTag} #${cleanNameTag || 'บิวตี้ไอเทม'} #ShopeeAffiliate #TikTokShop`);
+        showToast('สร้าง Hook, บทพูด, ASMR, Prompt ทีละฉาก และแคปชั่นเรียบร้อย!');
+      } finally {
+        genBtn.disabled = false;
+        genBtn.classList.remove('opacity-70');
+      }
+    }
+
+    function handleVideoImport(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      if (state.videoObjectUrl) URL.revokeObjectURL(state.videoObjectUrl);
+      const url = URL.createObjectURL(file);
+      state.videoObjectUrl = url;
+      const player = document.getElementById('qc-video-player');
+      player.src = url;
+      player.classList.remove('hidden');
+      player.onloadedmetadata = () => {
+        state.videoMeta = { fileName: file.name, duration: player.duration, width: player.videoWidth, height: player.videoHeight };
+        const btn = document.getElementById('run-qc-btn');
+        btn.disabled = false;
+        btn.className = 'w-full py-3 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white cursor-pointer transition';
+        document.getElementById('qc-result-box').innerHTML = `นำเข้าวิดีโอ <strong>${escapeHtml(file.name)}</strong> เรียบร้อย • ขนาดภาพ: <strong>${player.videoWidth}x${player.videoHeight}px</strong> • ความยาว: <strong>${player.duration.toFixed(1)} วินาที</strong><br>กดปุ่ม <strong>"เริ่มตรวจสอบความตรงปกจากวิดีโออัตโนมัติ"</strong> เพื่อสกัดเฟรมและตรวจสอบได้เลย`;
+      };
+      event.target.value = '';
+    }
+
+    function clearQcVideo() {
+      if (state.videoObjectUrl) { URL.revokeObjectURL(state.videoObjectUrl); state.videoObjectUrl = null; }
+      state.videoMeta = null; state.extractedFrames = [];
+      const player = document.getElementById('qc-video-player');
+      player.src = ''; player.classList.add('hidden');
+      document.getElementById('qc-frames-preview').classList.add('hidden');
+      document.getElementById('qc-frames-grid').innerHTML = '';
+      document.getElementById('qc-result-box').innerHTML = 'กรุณานำเข้าคลิปวิดีโอที่สร้างเสร็จแล้ว เพื่อตรวจสอบความตรงปกของสินค้า (รูปทรง ฉลาก โลโก้ สี ขนาด เนื้อสัมผัส ตัวอักษร สัดส่วน และเกณฑ์ความละเอียด 720p+)';
+      const btn = document.getElementById('run-qc-btn');
+      btn.disabled = true;
+      btn.className = 'w-full py-3 rounded-xl font-bold text-sm bg-slate-300 text-slate-500 cursor-not-allowed transition';
+      showToast('ล้างคลิปตรวจ QC เรียบร้อย');
+    }
+
+    function seekVideo(video, time) {
+      return new Promise((resolve) => {
+        let done = false;
+        const finish = () => { if (done) return; done = true; video.removeEventListener('seeked', finish); resolve(); };
+        video.addEventListener('seeked', finish);
+        video.currentTime = Math.min(Math.max(0.1, time), Math.max(0.1, (video.duration || 1) - 0.1));
+        setTimeout(finish, 1200);
+      });
+    }
+
+    async function runVideoQC() {
+      if (!state.videoMeta) { showToast('กรุณานำเข้าคลิปวิดีโอก่อนตรวจสอบ'); return; }
+      const player = document.getElementById('qc-video-player');
+      const resultBox = document.getElementById('qc-result-box');
+      const framesGrid = document.getElementById('qc-frames-grid');
+      const framesPreview = document.getElementById('qc-frames-preview');
+      resultBox.innerHTML = '⏳ กำลังสกัดเฟรมภาพจากวิดีโอและตรวจเทียบความตรงปกของสินค้า...';
+
+      const dur = state.videoMeta.duration || 5;
+      const times = [dur * 0.15, dur * 0.5, dur * 0.85];
+      const frames = [];
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const cw = 320, ch = Math.max(180, Math.round(cw * (player.videoHeight / Math.max(1, player.videoWidth))));
+      canvas.width = cw; canvas.height = ch;
+
+      for (let i = 0; i < times.length; i++) {
+        await seekVideo(player, times[i]);
+        ctx.drawImage(player, 0, 0, cw, ch);
+        const analyzed = await analyzeSingleImage(`frame_${i + 1}`, canvas.toDataURL('image/jpeg', 0.85));
+        frames.push({ time: times[i].toFixed(1), ...analyzed });
       }
 
-      state.generated.hook = hook3s;
-      state.generated.scene1 = scene1Script;
-      state.genera
+      state.extractedFrames = frames;
+      framesPreview.classList.remove('hidden');
+      framesGrid.innerHTML = frames.map((f, idx) => `<div class="rounded-xl overflow-hidden border border-slate-200 bg-white"><img src="${f.dataUrl}" class="w-full h-28 object-cover" /><div class="p-1.5 text-[10px] text-slate-600"><div class="font-bold">เฟรม ${idx + 1} (${f.time} วิ)</div><div>สี: ${f.dominantColors.map(c => c.name).slice(0, 2).join(', ') || '-'}</div></div></div>`).join('');
+
+      const checks = [];
+      let passAll = true;
+      if (state.images.length === 0) { passAll = false; checks.push({ ok: false, label: 'รูปสินค้าอ้างอิง (Step 1)', detail: 'ยังไม่มีรูปสินค้าจริงในขั้นตอนที่ 1' }); }
+      else { checks.push({ ok: true, label: 'รูปสินค้าอ้างอิง (Step 1)', detail: `มีรูปสินค้าจริงอ้างอิง ${state.images.length} รูป` }); }
+
+      const vw = state.videoMeta.width, vh = state.videoMeta.height, actualRatio = vw / Math.max(1, vh);
+      const expectedRatio = state.ratio === '1:1' ? 1 : state.ratio === '16:9' ? 16 / 9 : 9 / 16;
+      const ratioOk = Math.abs(actualRatio - expectedRatio) < 0.15;
+      if (!ratioOk) passAll = false;
+      checks.push({ ok: ratioOk, label: `สัดส่วนวิดีโอ (ตั้งค่า ${state.ratio})`, detail: ratioOk ? `ตรงตามสัดส่วน (${vw}x${vh}px)` : `ไม่ตรงตามที่ตั้งค่า (${vw}x${vh}px ควรเป็น ${state.ratio})` });
+
+      const minSide = Math.min(vw, vh), resOk = minSide >= 720;
+      if (!resOk) passAll = false;
+      checks.push({ ok: resOk, label: 'เกณฑ์ความละเอียดคลิป (720p ขึ้นไปถือว่าผ่าน)', detail: resOk ? `ผ่านเกณฑ์ความละเอียด (${vw}x${vh}px • ด้านสั้น ${minSide}p >= 720p)` : `ไม่ผ่านเกณฑ์ (ด้านสั้น ${minSide}px ต่ำกว่า 720p)` });
+
+      if (state.images.length > 0) {
+        const refColors = state.images.flatMap(img => img.dominantColors);
+        const frameColors = frames.flatMap(f => f.dominantColors);
+        let bestMatches = 0;
+        refColors.forEach(rc => {
+          if (frameColors.some(fc => Math.sqrt((rc.r - fc.r) ** 2 + (rc.g - fc.g) ** 2 + (rc.b - fc.b) ** 2) < 120 || rc.name === fc.name)) bestMatches++;
+        });
+        const colorScore = Math.round((bestMatches / Math.max(1, refColors.length)) * 100);
+        const colorOk = colorScore >= 35;
+        if (!colorOk) passAll = false;
+        checks.push({ ok: colorOk, label: 'ความสอดคล้องของโทนสีสินค้า', detail: `ความสอดคล้อง ${colorScore}% ${colorOk ? '(อยู่ในเกณฑ์ดี)' : '(โทนสีในคลิปต่างจากรูปสินค้าจริง)'}` });
+      }
+
+      const avgBright = Math.round(frames.reduce((s, f) => s + f.brightness, 0) / frames.length);
+      const brightOk = avgBright >= 50 && avgBright <= 238;
+      if (!brightOk) passAll = false;
+      checks.push({ ok: brightOk, label: 'ความสว่างและความชัดเจนของภาพ', detail: brightOk ? `แสงสว่างสมดุล (${avgBright}/255)` : `แสงมืดหรือจ้าเกินไป (${avgBright}/255)` });
+
+      let aiQcReport = '';
+      if (state.aplKey && state.images.length > 0) {
+        try {
+          const aiRaw = await callGeminiWithImages(`ภาพชุดแรกคือรูปสินค้าจริง ส่วน 3 ภาพถัดมาคือเฟรมจากคลิป AI โปรดตรวจความตรงปก (รูปทรง ฉลาก โลโก้ สี ขนาด เนื้อสัมผัส ตัวอักษร) ตอบเป็น JSON เท่านั้น: {"verdict":"PASS หรือ FAIL","summary":"สรุปสั้นๆ"}`, [...state.images.slice(0, 3).map(i => i.dataUrl), ...frames.map(f => f.dataUrl)]);
+          const jsonMatch = (aiRaw || '').match(/\{[\s\S]*\}/);
+          if (jsonMatch) {
+            const parsed = JSON.parse(jsonMatch[0]);
+            const aiPass = String(parsed.verdict || '').toUpperCase() === 'PASS';
+            if (!aiPass) passAll = false;
+            aiQcReport = `<div class="mt-3 p-3 rounded-xl bg-white border ${aiPass ? 'border-emerald-300' : 'border-red-300'} text-xs text-slate-800"><div class="font-bold mb-1">🤖 ผลวิเคราะห์ภาพจาก AI Vision (รหัส APL): ${aiPass ? 'ผ่าน (PASS)' : 'ไม่ผ่าน (FAIL)'}</div><div>${escapeHtml(parsed.summary || '')}</div></div>`;
+          }
+        } catch (err) {
+          aiQcReport = `<div class="mt-2 text-[11px] text-amber-800">หมายเหตุ: ไม่สามารถเชื่อมต่อ AI Vision (${escapeHtml(err.message)}) จึงใช้ผลการตรวจในเบราว์เซอร์</div>`;
+        }
+      }
+
+      resultBox.innerHTML = `
+        <div class="p-4 rounded-xl border ${passAll ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-red-50 border-red-300 text-red-950'}">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span class="text-base font-bold">${passAll ? '✅ ผลการตรวจสอบ: ผ่าน (PASS)' : '❌ ผลการตรวจสอบ: ไม่ผ่าน (FAIL)'}</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full ${passAll ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white'}">${passAll ? 'พร้อมนำไปใช้งานจริง' : 'กรุณาแก้ไขจุดที่ไม่ผ่านก่อนใช้งาน'}</span>
+          </div>
+          <ul class="space-y-1.5 text-xs mt-2">${checks.map(c => `<li class="flex items-start gap-1.5"><span class="font-bold">${c.ok ? '✓' : '✗'}</span><span><strong>${c.label}:</strong> ${c.detail}</span></li>`).join('')}</ul>
+          ${aiQcReport}
+        </div>`;
+    }
+
+    function createDemoProductImageDataUrl() {
+      const c = document.createElement('canvas'); c.width = 300; c.height = 300;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#fff5f5'; ctx.fillRect(0, 0, 300, 300);
+      ctx.fillStyle = '#f59e0b'; ctx.fillRect(105, 95, 90, 160);
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(113, 125, 74, 95);
+      ctx.fillStyle = '#1e293b'; ctx.fillRect(130, 48, 40, 47);
+      ctx.fillStyle = '#0f172a'; ctx.font = 'bold 14px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('VIT-C HYA', 150, 160); ctx.font = '11px sans-serif'; ctx.fillText('SERUM 30ml', 150, 180);
+      return c.toDataURL('image/png');
+    }
+
+    async function loadDemoProduct() {
+      document.getElementById('product-name').value = 'เซรั่มวิตามินซี ไฮยา 30 ml';
+      document.getElementById('product-category').value = 'เซรั่ม/เอสเซนส์บำรุงผิวหน้า';
+      document.getElementById('packaging-shape').value = 'ขวดแก้วหัวดรอปเปอร์ (Dropper)';
+      document.getElementById('product-texture').value = 'เนื้อเซรั่มใสบางเบา';
+      document.getElementById('product-size').value = '30 ml';
+      document.getElementById('store-description').value = 'มีส่วนผสม Niacinamide 5%, Vitamin C และ Hyaluronic Acid, เนื้อเซรั่มบางเบา ซึมไวไม่เหนอะหนะ, ช่วยเติมความชุ่มชื้นให้ผิวดูอิ่มฟู, ใช้ทาบำรุงเช้า-เย็น';
+      document.getElementById('store-price').value = '';
+      document.getElementById('pain-point').value = 'ผิวแห้งกร้าน ดูหมองโทรม แต่งหน้าไม่ติด';
+      setRatio('9:16'); setResolution('1080p'); setDuration(20);
+      if (state.images.length === 0) {
+        state.images = [await analyzeSingleImage('demo_serum.png', createDemoProductImageDataUrl())];
+        renderProductSlots();
+      }
+      await analyzeProductAll(false);
+      checkOverclaims();
+      showToast('ใส่ข้อมูลสินค้าตัวอย่างเรียบร้อย กดปุ่มสร้างข้อมูลได้เลย!');
+    }
+
+    function resetAll() {
+      state.images = [];
+      state.generated = { hook: '', scene1: '', scene2: '', asmr1: '', asmr2: '', prompts: [] };
+      ['product-name', 'product-size', 'store-description', 'store-price', 'pain-point', 'caption-output-text', 'full-script-copy-target'].forEach(id => { document.getElementById(id).value = ''; });
+      document.getElementById('overclaim-warning').classList.add('hidden');
+      document.getElementById('step3-output').innerHTML = '<div class="text-center text-sm text-slate-400 py-6">กดปุ่ม "วิเคราะห์ข้อมูล & สร้าง..." ด้านบนเพื่อสร้าง Hook, บทพูด และสคริปต์ ASMR</div>';
+      document.getElementById('step4-output').innerHTML = '<div class="text-center text-sm text-slate-400 py-6">รอการสร้าง AI Prompt ทีละฉาก (10 วิ = 1 ฉาก / 20 วิ = 2 ฉาก)</div>';
+      clearQcVideo(); renderProductSlots(); analyzeProductAll(false);
+      showToast('ล้างข้อมูลทั้งหมดเรียบร้อยแล้ว');
+    }
+
+    function init() {
+      loadSavedApl(); renderProductSlots(); renderDemoStyles(); renderPresenterSamples();
+      updatePresenterPreview('female'); updatePresenterPreview('male');
+      document.getElementById('store-description').addEventListener('input', checkOverclaims);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
