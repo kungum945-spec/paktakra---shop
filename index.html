@@ -1,234 +1,260 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ปักตะกร้า สกินแคร์และความงาม Shopee &amp; Tiktok shop</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Prompt', sans-serif; background-color: #fdf8fa; color: #1f2937; }
-    .glass-card { background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(10px); border: 1px solid rgba(244, 114, 182, 0.18); }
-    .gradient-brand { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 50%, #fb7185 100%); }
-    .tab-active { background: linear-gradient(135deg, #ec4899, #f43f5e); color: #ffffff; box-shadow: 0 6px 18px rgba(236, 72, 153, 0.28); }
-    .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
-    .scrollbar-thin::-webkit-scrollbar-thumb { background: #f9a8d4; border-radius: 9999px; }
-  </style>
-</head>
-<body class="min-h-screen pb-16">
-
-  <!-- Top Header -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-pink-100 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-2xl gradient-brand flex items-center justify-center text-white shadow-md">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-        </div>
-        <div>
-          <h1 class="text-lg sm:text-xl font-bold text-gray-900 leading-tight">
-            ปักตะกร้า สกินแคร์และความงาม <span class="text-pink-600">Shopee &amp; Tiktok shop</span>
-          </h1>
-          <p class="text-xs text-gray-500">
-            สตูดิโอสร้างสคริปต์ สตอรี่บอร์ด Prompt โหมด ASMR &amp; ตรวจสอบความตรงปกสินค้าจริง
-          </p>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <button onclick="toggleApiModal()" id="apiStatusBtn"
-          class="text-xs px-3 py-2 rounded-xl border border-pink-200 bg-pink-50 hover:bg-pink-100 text-pink-700 font-medium flex items-center gap-1.5 transition">
-          <span class="w-2 h-2 rounded-full bg-amber-400" id="apiDot"></span>
-          <span id="apiStatusText">โหมดพื้นฐาน (ใส่ Gemini Key เพื่อวิเคราะห์ภาพ/คลิปจริง)</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 pb-3 flex gap-2 overflow-x-auto scrollbar-thin">
-      <button onclick="switchTab(1)" id="tabBtn1" class="tab-btn tab-active px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition">
-        1. ตั้งค่า &amp; สินค้า (สูงสุด 6 รูป)
-      </button>
-      <button onclick="switchTab(2)" id="tabBtn2" class="tab-btn bg-white text-gray-600 hover:bg-pink-50 px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 whitespace-nowrap transition">
-        2. พรีเซนเตอร์ AI (หญิง/ชาย อายุ 20)
-      </button>
-      <button onclick="switchTab(3)" id="tabBtn3" class="tab-btn bg-white text-gray-600 hover:bg-pink-50 px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 whitespace-nowrap transition">
-        3. สคริปต์ Hook, ASMR, สตอรี่บอร์ด, Prompt &amp; แคปชั่น
-      </button>
-      <button onclick="switchTab(4)" id="tabBtn4" class="tab-btn bg-white text-gray-600 hover:bg-pink-50 px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 whitespace-nowrap transition">
-        4. ตรวจคลิปวิดีโอเช็คความตรงปก (ผ่าน / ไม่ผ่าน)
-      </button>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 pt-6">
-
-    <!-- Compliance Guardrail Banner -->
-    <div class="mb-6 rounded-2xl bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border border-rose-200 p-4 flex items-start gap-3">
-      <div class="p-2 rounded-xl bg-rose-100 text-rose-600 shrink-0">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" />
-        </svg>
-      </div>
-      <div class="text-xs sm:text-sm text-rose-950 space-y-1">
-        <p class="font-semibold">กฎเหล็กควบคุมความตรงปก &amp; มาตรฐานโฆษณา Shopee / TikTok Shop:</p>
-        <ul class="list-disc list-inside text-rose-800 space-y-0.5">
-          <li><strong>ห้ามแต่งเติม อวดอ้าง</strong> คุณสมบัติสินค้านอกเหนือจากที่ร้านค้าระบุ และ <strong>ห้ามพูดหรือเคลมคอนเฟิร์มว่า "สินค้าตรงปก 100%"</strong></li>
-          <li><strong>คงสภาพสินค้าตามจริงทุกมิติ:</strong> รูปทรง ฉลาก โลโก้ สี และเนื้อสัมผัสต้องเหมือนรูปสินค้าจริง ห้ามดัดแปลงหรือแต่งเติมใน Prompt และคลิปวิดีโอ</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ==================== TAB 1: SETTINGS & PRODUCT ==================== -->
-    <section id="tab1" class="tab-section space-y-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-        <!-- Left: Video Settings -->
-        <div class="lg:col-span-5 glass-card rounded-3xl p-6 shadow-sm space-y-5">
-          <h2 class="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center text-sm font-bold">1</span>
-            ตั้งค่าสเปกคลิปวิดีโอและรูปแบบสาธิต
-          </h2>
-
+2
+<!-- ==================== TAB 2: PRESENTERS ==================== -->
+    <section id="tab2" class="tab-section hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 shadow-sm space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">อัตราส่วนภาพ (Aspect Ratio)</label>
-            <div class="grid grid-cols-3 gap-2">
-              <button type="button" onclick="selectOption('ratio', '9:16', this)" class="opt-ratio active-opt border-2 border-pink-500 bg-pink-50 text-pink-700 rounded-xl py-2.5 px-3 text-center text-sm font-semibold">
-                9:16<span class="block text-[11px] font-normal text-pink-600">TikTok / Shopee</span>
-              </button>
-              <button type="button" onclick="selectOption('ratio', '1:1', this)" class="opt-ratio border border-gray-200 bg-white text-gray-700 rounded-xl py-2.5 px-3 text-center text-sm font-semibold hover:bg-gray-50">
-                1:1<span class="block text-[11px] font-normal text-gray-400">สี่เหลี่ยมจัตุรัส</span>
-              </button>
-              <button type="button" onclick="selectOption('ratio', '16:9', this)" class="opt-ratio border border-gray-200 bg-white text-gray-700 rounded-xl py-2.5 px-3 text-center text-sm font-semibold hover:bg-gray-50">
-                16:9<span class="block text-[11px] font-normal text-gray-400">แนวนอน</span>
-              </button>
-            </div>
+            <h2 class="text-lg font-bold text-gray-900">พรีเซนเตอร์ AI เสมือนคนจริง (อายุ 20 ปี หน้าขาวใสฉ่ำโกลว์ เห็นใบหน้าชัดเจน)</h2>
+            <p class="text-xs text-gray-500">กดปุ่มเลือกพรีเซนเตอร์ที่ต้องการใช้จริง (หญิง / ชาย / ทั้งคู่) ระบบจะล็อคเพศ ตัวละคร คำพูด และ Prompt ให้ตรงตามที่เลือก</p>
           </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">ความละเอียด</label>
-              <div class="grid grid-cols-2 gap-2">
-                <button type="button" onclick="selectOption('resolution', '720p', this)" class="opt-resolution border border-gray-200 bg-white text-gray-700 rounded-xl py-2 text-sm font-semibold">720p</button>
-                <button type="button" onclick="selectOption('resolution', '1080p', this)" class="opt-resolution active-opt border-2 border-pink-500 bg-pink-50 text-pink-700 rounded-xl py-2 text-sm font-semibold">1080p</button>
-              </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-medium text-gray-600">กำลังเลือกใช้ในคลิป:</span>
+            <div class="inline-flex rounded-xl bg-gray-100 p-1 gap-1" id="presenterToggleGroup">
+              <button type="button" onclick="setActivePresenter('female')" id="presTopBtn_female"
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-pink-600 text-white shadow-xs">
+                👩🏻 หญิง (อายุ 20)
+              </button>
+              <button type="button" onclick="setActivePresenter('male')" id="presTopBtn_male"
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:bg-white">
+                👨🏻 ชาย (อายุ 20)
+              </button>
+              <button type="button" onclick="setActivePresenter('both')" id="presTopBtn_both"
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:bg-white">
+                👩🏻👨🏻 ทั้งคู่ (20 วิ)
+              </button>
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">ความยาวคลิป &amp; จำนวนฉาก</label>
-              <div class="grid grid-cols-2 gap-2">
-                <button type="button" onclick="selectOption('duration', '10', this)" class="opt-duration active-opt border-2 border-pink-500 bg-pink-50 text-pink-700 rounded-xl py-2 text-xs font-semibold">10 วิ (1 ฉาก)</button>
-                <button type="button" onclick="selectOption('duration', '20', this)" class="opt-duration border border-gray-200 bg-white text-gray-700 rounded-xl py-2 text-xs font-semibold">20 วิ (2 ฉาก)</button>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1.5">ประเภทสินค้าสกินแคร์และความงาม</label>
-            <select id="productCategory" class="w-full rounded-xl border border-gray-300 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-pink-400 focus:border-pink-400 outline-none bg-white">
-              <option value="เซรั่มบำรุงผิวหน้า">เซรั่ม / เอสเซนส์บำรุงผิวหน้า</option>
-              <option value="ครีมบำรุงผิว / มอยส์เจอไรเซอร์">ครีมบำรุงผิว / มอยส์เจอไรเซอร์</option>
-              <option value="ครีมกันแดด">ครีมกันแดด (Sunscreen / Tone-up)</option>
-              <option value="คลีนเซอร์ / โฟมล้างหน้า / คลีนซิ่ง">คลีนเซอร์ / โฟมล้างหน้า / คลีนซิ่ง</option>
-              <option value="มาส์กหน้า / สลีปปิ้งมาส์ก">มาส์กหน้า / สลีปปิ้งมาส์ก</option>
-              <option value="ลิปสติก / ลิปทินท์ / ลิปออยล์">ลิปสติก / ลิปทินท์ / ลิปออยล์</option>
-              <option value="คุชชั่น / รองพื้น / แป้งพัฟ">คุชชั่น / รองพื้น / แป้งพัฟ</option>
-              <option value="บอดี้โลชั่น / สครับผิวกาย">บอดี้โลชั่น / สครับผิวกาย</option>
-              <option value="โทนเนอร์ / น้ำตบ / แพดเช็ดหน้า">โทนเนอร์ / น้ำตบ / โทนเนอร์แพด</option>
-              <option value="ผลิตภัณฑ์ดูแลเส้นผมและความงามอื่นๆ">ผลิตภัณฑ์ความงามอื่นๆ</option>
+            <select id="activePresenterSelect" onchange="setActivePresenter(this.value)" class="hidden">
+              <option value="female">พรีเซนเตอร์หญิง (อายุ 20)</option>
+              <option value="male">พรีเซนเตอร์ชาย (อายุ 20)</option>
+              <option value="both">ทั้งหญิงและชาย (เหมาะกับ 20 วิ / 2 ฉาก)</option>
             </select>
           </div>
+        </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">รูปแบบการสร้างคลิปและเสียง</label>
-            <div class="space-y-2">
-              <label class="flex items-start gap-3 p-3 rounded-xl border-2 border-pink-500 bg-pink-50/70 cursor-pointer" id="modeLabelStandard">
-                <input type="radio" name="prodMode" value="standard" checked onchange="updateProdMode(this.value)" class="mt-1 accent-pink-600">
-                <div>
-                  <div class="text-sm font-semibold text-gray-900">โหมดสาธิต + บทพูดรีวิว (Hook 3 วิ + พูดไม่เกิน 10 วิ/ฉาก)</div>
-                  <div class="text-xs text-gray-600">พรีเซนเตอร์สาธิตคู่กับสินค้า พร้อมบทพูดจากข้อมูลร้านจริง</div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Female Presenter Card -->
+          <div id="femalePresenterCard" class="rounded-2xl border-2 border-pink-500 ring-2 ring-pink-200 bg-gradient-to-b from-pink-50/70 to-white p-5 space-y-4 transition">
+            <div class="flex items-start gap-4">
+              <div class="relative w-24 h-28 rounded-2xl overflow-hidden bg-pink-100 border border-pink-200 shrink-0 flex items-center justify-center">
+                <img id="femalePreviewImg" class="w-full h-full object-cover hidden" alt="พรีเซนเตอร์หญิง">
+                <div id="femalePlaceholder" class="text-center p-2">
+                  <div class="text-2xl">👩🏻</div>
+                  <div class="text-[10px] text-pink-700 font-medium leading-tight mt-1">AI หญิง<br>อายุ 20 ปี</div>
                 </div>
-              </label>
-              <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer" id="modeLabelAsmr">
-                <input type="radio" name="prodMode" value="asmr" onchange="updateProdMode(this.value)" class="mt-1 accent-pink-600">
-                <div>
-                  <div class="text-sm font-semibold text-gray-900">โหมด ASMR โดยเฉพาะ (สำหรับนำไปใส่เสียงพากย์ในแอปต่างๆ)</div>
-                  <div class="text-xs text-gray-600">เน้นเสียงสัมผัสจริง เปิดฝา ปั๊ม หยด เกลี่ยเนื้อ ไม่มีเสียงพูดรบกวนในคลิป + แยกบทพากย์ทับ Timecode ไว้ใส่ใน CapCut / TikTok</div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-700 text-xs font-semibold">พรีเซนเตอร์หญิง #1</span>
+                  <label class="cursor-pointer text-xs text-pink-600 hover:underline font-medium">
+                    อัปโหลดรูป AI ของคุณ
+                    <input type="file" accept="image/*" class="hidden" onchange="handlePresenterImage('female', this.files[0])">
+                  </label>
                 </div>
-              </label>
+                <input id="femaleName" type="text" value="น้องมิลค์ (อายุ 20 ปี)" class="w-full rounded-xl border border-gray-200 px-3 py-1.5 text-sm font-semibold">
+                <p class="text-[11px] text-gray-500">ค่าเริ่มต้น: หน้าขาวใสฉ่ำโกลว์ เห็นใบหน้าชัดเจน ผิวพรรณดี ขาว สมจริงระดับภาพถ่าย</p>
+              </div>
+            </div>
+            <div class="space-y-2.5">
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">ลักษณะใบหน้าและผิวพรรณ (แก้ไข/เพิ่มเติมได้)</label>
+                <textarea id="femaleLook" rows="2" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-xs focus:ring-2 focus:ring-pink-400 outline-none">20-year-old Thai woman, photorealistic real human skin texture, radiant fair dewy glass skin, bright clear complexion, clearly visible face looking straight at camera, natural soft makeup, healthy glowing skin</textarea>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">ทรงผม / การแต่งกาย</label>
+                  <input id="femaleOutfit" type="text" value="ผมยาวประบ่าสีน้ำตาลธรรมชาติ เสื้อปาดไหล่สีขาวสะอาดตา" class="w-full rounded-xl border border-gray-200 px-3 py-1.5 text-xs">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">ฉากหลัง / แสง</label>
+                  <input id="femaleBg" type="text" value="ห้องมินิมอลโทนขาวครีม แสงธรรมชาติสว่างนุ่มหน้าต่าง" class="w-full rounded-xl border border-gray-200 px-3 py-1.5 text-xs">
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                <button type="button" onclick="setActivePresenter('female')" id="selectFemaleCardBtn"
+                  class="w-full py-2.5 rounded-xl bg-pink-600 text-white text-xs font-bold shadow-sm transition">
+                  ✓ กำลังเลือกใช้พรีเซนเตอร์หญิง
+                </button>
+                <button type="button" onclick="copyPresenterPrompt('female')"
+                  class="w-full py-2.5 rounded-xl border border-pink-300 text-pink-700 hover:bg-pink-50 text-xs font-semibold transition">
+                  📋 คัดลอก Prompt สร้างภาพหญิง
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Male Presenter Card -->
+          <div id="malePresenterCard" class="rounded-2xl border border-sky-200 bg-gradient-to-b from-sky-50/50 to-white p-5 space-y-4 transition">
+            <div class="flex items-start gap-4">
+              <div class="relative w-24 h-28 rounded-2xl overflow-hidden bg-sky-100 border border-sky-200 shrink-0 flex items-center justify-center">
+                <img id="malePreviewImg" class="w-full h-full object-cover hidden" alt="พรีเซนเตอร์ชาย">
+                <div id="malePlaceholder" class="text-center p-2">
+                  <div class="text-2xl">👨🏻</div>
+                  <div class="text-[10px] text-sky-700 font-medium leading-tight mt-1">AI ชาย<br>อายุ 20 ปี</div>
+                </div>
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <span class="px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-700 text-xs font-semibold">พรีเซนเตอร์ชาย #1</span>
+                  <label class="cursor-pointer text-xs text-sky-600 hover:underline font-medium">
+                    อัปโหลดรูป AI ของคุณ
+                    <input type="file" accept="image/*" class="hidden" onchange="handlePresenterImage('male', this.files[0])">
+                  </label>
+                </div>
+                <input id="maleName" type="text" value="น้องวิน (อายุ 20 ปี)" class="w-full rounded-xl border border-gray-200 px-3 py-1.5 text-sm font-semibold">
+                <p class="text-[11px] text-gray-500">ค่าเริ่มต้น: หน้าขาวใสฉ่ำโกลว์ เห็นใบหน้าชัดเจน ผิวพรรณดี ขาว สมจริงระดับภาพถ่าย</p>
+              </div>
+            </div>
+            <div class="space-y-2.5">
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">ลักษณะใบหน้าและผิวพรรณ (แก้ไข/เพิ่มเติมได้)</label>
+                <textarea id="maleLook" rows="2" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-xs focus:ring-2 focus:ring-sky-400 outline-none">20-year-old Thai young man, photorealistic real human skin texture, radiant fair dewy glowing skin, clean clear face clearly visible to camera, well-groomed natural look, healthy bright complexion</textarea>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">ทรงผม / การแต่งกาย</label>
+                  <input id="maleOutfit" type="text" value="ทรงผมคอมม่าเกาหลีสะอาดตา เสื้อยืดคอกลมสีขาวเรียบหรู" class="w-full rounded-xl border border-gray-200 px-3 py-1.5 text-xs">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">ฉากหลัง / แสง</label>
+                  <input id="maleBg" type="text" value="ห้องน้ำ/โต๊ะเครื่องแป้งมินิมอลโทนสว่าง แสงธรรมชาติคมชัด" class="w-full rounded-xl border border-gray-200 px-3 py-1.5 text-xs">
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                <button type="button" onclick="setActivePresenter('male')" id="selectMaleCardBtn"
+                  class="w-full py-2.5 rounded-xl border-2 border-sky-500 text-sky-700 bg-white hover:bg-sky-50 text-xs font-bold transition">
+                  เลือกใช้พรีเซนเตอร์ชายคนนี้
+                </button>
+                <button type="button" onclick="copyPresenterPrompt('male')"
+                  class="w-full py-2.5 rounded-xl border border-sky-300 text-sky-700 hover:bg-sky-50 text-xs font-semibold transition">
+                  📋 คัดลอก Prompt สร้างภาพชาย
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Product Link + Store Info + 6 Images -->
-        <div class="lg:col-span-7 glass-card rounded-3xl p-6 shadow-sm space-y-5">
-          <h2 class="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center text-sm font-bold">2</span>
-            ข้อมูลสินค้าจริงจากร้านค้า &amp; รูปภาพสินค้า (สูงสุด 6 รูป)
-          </h2>
+        <div class="pt-2 flex flex-wrap items-center justify-between gap-3">
+          <button type="button" onclick="switchTab(1)" class="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50">
+            ← ย้อนกลับไปแก้ไขข้อมูลสินค้า
+          </button>
+          <button type="button" onclick="generateAllContent()" id="generateBtn"
+            class="px-7 py-3 rounded-xl gradient-brand text-white font-bold text-sm shadow-lg hover:opacity-95 transition flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            วิเคราะห์สินค้า &amp; สร้างสคริปต์ + สตอรี่บอร์ด + Prompt + แคปชั่น
+          </button>
+        </div>
+      </div>
+    </section>
 
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-            <label class="block text-sm font-medium text-gray-800">ดึงข้อมูลจากลิงก์สินค้าอัตโนมัติ (Shopee / TikTok Shop)</label>
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input id="productUrl" type="url" placeholder="วางลิงก์สินค้า Shopee หรือ TikTok Shop ที่นี่..."
-                class="flex-1 rounded-xl border border-gray-300 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-pink-400 outline-none bg-white">
-              <button type="button" onclick="fetchProductLink()" id="fetchBtn"
-                class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-sm font-medium whitespace-nowrap transition flex items-center justify-center gap-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                </svg>
-                ดึงข้อมูลอัตโนมัติ
-              </button>
+    <!-- ==================== TAB 3: GENERATED OUTPUT ==================== -->
+    <section id="tab3" class="tab-section hidden space-y-6">
+      <div id="outputEmptyState" class="glass-card rounded-3xl p-10 text-center space-y-3">
+        <div class="text-4xl">✨</div>
+        <h3 class="text-lg font-bold text-gray-800">ยังไม่ได้สร้างข้อมูลสำหรับคลิปนี้</h3>
+        <p class="text-sm text-gray-500">กรุณากรอกข้อมูลสินค้าในแท็บ 1 และกดปุ่ม "วิเคราะห์สินค้า &amp; สร้างสคริปต์ + สตอรี่บอร์ด + Prompt"</p>
+        <button onclick="switchTab(1)" class="px-5 py-2 rounded-xl gradient-brand text-white text-sm font-semibold">ไปหน้ากรอกข้อมูล</button>
+      </div>
+
+      <div id="outputContent" class="hidden space-y-6">
+        <div id="complianceBanner" class="rounded-2xl p-4 border flex flex-wrap items-center justify-between gap-3"></div>
+
+        <div class="glass-card rounded-3xl p-6 shadow-sm space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-lg font-bold text-gray-900">1. วิเคราะห์รูปลักษณ์และคุณสมบัติสินค้าตามจริง (อ้างอิงข้อมูลร้านอัตโนมัติ)</h2>
+            <span id="analysisModeBadge" class="text-xs px-3 py-1 rounded-full bg-pink-100 text-pink-700 font-medium"></span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <div class="text-xs font-bold uppercase tracking-wide text-slate-600">รูปลักษณ์ทางกายภาพที่ต้องคงเดิม 100% (ห้ามเปลี่ยนแปลง)</div>
+              <div id="visualSpecOutput" class="text-sm text-gray-800 space-y-1 leading-relaxed"></div>
             </div>
-            <p id="fetchStatus" class="text-xs text-gray-500">
-              * ระบบจะพยายามดึงชื่อและรายละเอียดจากหน้าลิงก์ (หากแพลตฟอร์มป้องกันบอท สามารถคัดลอกรายละเอียดจากหน้าร้านมาวางในช่องด้านล่างเพื่อความแม่นยำ 100%)
-            </p>
+            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-2">
+              <div class="text-xs font-bold uppercase tracking-wide text-emerald-700">คุณสมบัติ ปัญหา &amp; ทางออก (เฉพาะที่ร้านค้าระบุเท่านั้น)</div>
+              <div id="verifiedClaimsOutput" class="text-sm text-gray-800 space-y-1 leading-relaxed"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-6 glass-card rounded-3xl p-6 shadow-sm space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h2 class="text-lg font-bold text-gray-900">2. Hook 3 วิ &amp; บทพูด (ไม่เกิน 10 วิ/ฉาก)</h2>
+                <p class="text-[11px] text-gray-500">โครงสร้าง: เปิดคลิปด้วยลบ (ปัญหาที่ร้านระบุ) → จบคลิปด้วยบวก (ทางออกจริงจากร้าน)</p>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button onclick="regenerateVariedScript()" class="text-xs px-3 py-1.5 rounded-lg border border-pink-300 text-pink-700 bg-pink-50 hover:bg-pink-100 font-medium">🔄 สุ่มแนวใหม่</button>
+                <button onclick="copyAllScripts()" class="text-xs px-3 py-1.5 rounded-lg bg-pink-600 text-white hover:bg-pink-700 font-medium">คัดลอกบทพูดทั้งหมด</button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-800">⚡ HOOK ดึงดูดความสนใจ (0:00 - 0:03 วิ • เปิดด้วยเชิงลบ)</span>
+                <button onclick="copyTextEl('hookText')" class="text-xs text-amber-800 bg-white px-2.5 py-1 rounded-lg border border-amber-300 hover:bg-amber-100 font-medium">คัดลอก</button>
+              </div>
+              <p id="hookText" class="text-sm font-medium text-gray-900"></p>
+            </div>
+
+            <div id="sceneScriptsContainer" class="space-y-3"></div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="lg:col-span-6 glass-card rounded-3xl p-6 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-bold text-gray-900">3. แผนเสียง ASMR &amp; สคริปต์พากย์ทับในแอปตัดต่อ</h2>
+              <button onclick="copyTextEl('asmrVoiceoverBox')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-white hover:bg-slate-900 font-medium">คัดลอกสคริปต์พากย์ทับ</button>
+            </div>
+            <p class="text-xs text-gray-500">ใช้สำหรับคลิป ASMR โดยเฉพาะ: เปิดเสียงสัมผัสสินค้าจริง 100% หรือปิดเสียงคลิปบางส่วนแล้วพากย์ทับใน CapCut / TikTok Studio</p>
+
+            <div id="asmrSoundCues" class="space-y-2"></div>
+
+            <div class="p-4 rounded-2xl bg-purple-50 border border-purple-200 space-y-1.5">
+              <div class="text-xs font-bold text-purple-800">🎙️ สคริปต์สำหรับนำไปอัดเสียงพากย์ทับ (Voiceover Timecode)</div>
+              <pre id="asmrVoiceoverBox" class="text-xs sm:text-sm text-gray-800 whitespace-pre-wrap font-sans leading-relaxed"></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 shadow-sm space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">ชื่อสินค้า / แบรนด์ (ตามจริงบนฉลาก) *</label>
-              <input id="productName" type="text" placeholder="เช่น GlowCalm Ceramide Serum 30ml"
-                class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-pink-400 outline-none">
+              <h2 class="text-lg font-bold text-gray-900">4. สตอรี่บอร์ดทีละฉาก &amp; AI Video Prompt (คัดลอกได้ทีละฉาก)</h2>
+              <p class="text-xs text-gray-500">ทุก Prompt ล็อคอัตราส่วน ความละเอียด เพศใบหน้าพรีเซนเตอร์ และบังคับคงรูปทรง ฉลาก โลโก้ สี เนื้อสัมผัสสินค้าตามจริง</p>
             </div>
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">แพลตฟอร์มที่ปักตะกร้า</label>
-              <select id="targetPlatform" class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-pink-400 outline-none bg-white">
-                <option value="Shopee & TikTok Shop">ทั้ง Shopee &amp; TikTok Shop</option>
-                <option value="TikTok Shop">TikTok Shop โดยเฉพาะ</option>
-                <option value="Shopee Video">Shopee Video โดยเฉพาะ</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="block text-xs font-semibold text-gray-700">รายละเอียดและจุดเด่นตามที่ร้านค้าระบุจริง (ใช้สร้างสคริปต์และแคปชั่นเท่านั้น ห้ามแต่งเติม) *</label>
-              <button type="button" onclick="loadSampleProduct()" class="text-xs text-pink-600 hover:underline font-medium">ใส่ข้อมูลตัวอย่างทดสอบ</button>
-            </div>
-            <textarea id="storeSpecs" rows="4"
-              placeholder="วางข้อมูลจากหน้าร้าน เช่น ส่วนผสมสำคัญ (เช่น Niacinamide 5%, Ceramide, Hyaluron), ปัญหาผิวที่ร้านระบุ (เช่น ผิวแห้ง ขาดน้ำ หน้าหมองคล้ำ), เนื้อสัมผัส (เนื้อเจลใส บางเบา ซึมไว), ปริมาณ, วิธีใช้..."
-              class="w-full rounded-xl border border-gray-300 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-pink-400 outline-none"></textarea>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <label class="text-sm font-semibold text-gray-800">อัปโหลดรูปสินค้าจริง (ได้สูงสุด 6 รูป) <span id="imgCountBadge" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-pink-100 text-pink-700">0/6 รูป</span></label>
-              <label class="cursor-pointer px-3 py-1.5 rounded-xl bg-pink-600 hover:bg-pink-700 text-white text-xs font-medium transition">
-                + เพิ่มรูปสินค้า (เลือกหลายรูปได้)
-                <input type="file" id="multiImgInput" accept="image/*" multiple class="hidden" onchange="handleProductImages(this.files)">
-              </label>
-            </div>
-            <p class="text-xs text-gray-500 mb-3">แนะนำให้อัปโหลดหลายมุม (หน้าตรงเห็นฉลากโลโก้ชัด, ด้านหลัง, หัวปั๊ม/ฝา, สีและเนื้อสัมผัสจริง) เพื่อให้คงความตรงปกทุกมิติ</p>
-
-            <div id="productImagesGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-          </div>
-
-          <div class="pt-2 flex justify-end">
-            <button type="button" onclick="switchTab(2)" class="px-6 py-2.5 rounded-xl gradient-brand text-white font-semibold text-sm shadow-md hover:opacity-95 transition">
-              ถัดไป: ตั้งค่าพรีเซนเตอร์ AI →
+            <button onclick="switchTab(4)" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition">
+              สร้างคลิปเสร็จแล้ว? ไปหน้าเช็คความตรงปก →
             </button>
+          </div>
+          <div id="storyboardContainer" class="space-y-5"></div>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 shadow-sm space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-lg font-bold text-gray-900">5. แคปชั่น &amp; แฮชแท็กอัตโนมัติ (อ้างอิงข้อมูลจากร้านจริงเท่านั้น)</h2>
+              <p class="text-xs text-gray-500">สร้างจากชื่อสินค้า คุณสมบัติ ส่วนผสม เนื้อสัมผัส และวิธีใช้ที่ร้านค้าระบุไว้เท่านั้น ไม่กล่าวอ้างหรือเติมแต่งเอง</p>
+            </div>
+            <button onclick="copyCaptionAndHashtags()" class="px-4 py-2 rounded-xl gradient-brand text-white text-xs font-bold shadow-sm hover:opacity-95 transition">
+              📋 คัดลอกแคปชั่น + แฮชแท็กทั้งหมด
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            <div class="lg:col-span-7 space-y-3" id="captionsContainer"></div>
+            <div class="lg:col-span-5 p-4 rounded-2xl bg-pink-50/60 border border-pink-200 flex flex-col justify-between space-y-3">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-pink-800"># แฮชแท็กอัตโนมัติ (ตามสินค้าและแพลตฟอร์ม)</span>
+                  <button onclick="copyTextEl('hashtagsOutput')" class="text-xs bg-white px-2.5 py-1 rounded-lg border border-pink-200 text-pink-700 hover:bg-pink-100 font-medium">คัดลอกแฮชแท็ก</button>
+                </div>
+                <p id="hashtagsOutput" class="text-xs sm:text-sm text-pink-900 font-medium leading-relaxed break-words"></p>
+              </div>
+              <div class="text-[11px] text-gray-500 border-t border-pink-200/60 pt-2">
+                * แฮชแท็กคัดกรองเฉพาะคำที่เกี่ยวข้องกับสินค้าจริงและแพลตฟอร์มปักตะกร้า ปลอดคำต้องห้าม
+              </div>
+            </div>
           </div>
         </div>
       </div>
