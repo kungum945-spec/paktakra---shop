@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Beauty & Affiliate AI Studio</title>
+<title>Beauty & Affiliate AI Studio v2</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
@@ -27,7 +27,7 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 <div class="flex items-center gap-2.5">
 <div class="w-9 h-9 rounded-xl step-badge flex items-center justify-center text-white text-lg shadow">🎥</div>
 <div>
-<h1 class="text-base font-bold text-slate-800 leading-tight">Beauty & Affiliate AI Video Studio</h1>
+<h1 class="text-base font-bold text-slate-800 leading-tight">Beauty & Affiliate AI Studio (v2)</h1>
 <p class="text-[11px] text-slate-500">สคริปต์ ASMR • Prompt ตรงปก • ทำคลิปมือถือ • คิวปักตะกร้า</p>
 </div>
 </div>
@@ -65,7 +65,6 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 </header>
 
 <main class="max-w-6xl mx-auto px-4 mt-5 space-y-6">
-
 <!-- STEP 1 -->
 <section id="step1" class="glass-card rounded-2xl p-5 scroll-mt-32">
 <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
@@ -231,15 +230,16 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 <div class="flex items-center gap-2.5 mb-4"><span class="w-7 h-7 rounded-full step-badge text-white font-bold flex items-center justify-center text-sm">6</span><h2 class="text-base sm:text-lg font-bold">ทำคลิปจากรูปสินค้า & คิวปักตะกร้า (Shopee / TikTok)</h2></div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
 <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2.5">
-<div class="flex justify-between items-center"><h3 class="text-sm font-bold">🎬 ทำคลิปสั้นบนมือถือ</h3><span id="makerRatioTag" class="text-[11px] px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 font-semibold">9:16</span></div>
-<div class="grid grid-cols-2 gap-2">
-<select id="makerThemeSelect" class="text-xs rounded-lg border px-2 py-1.5 bg-white"><option value="beauty">🌸 ชมพู-ม่วง</option><option value="shopee">🟠 Shopee ส้ม</option><option value="tiktok">🎵 TikTok ดำ</option><option value="clean">⚪ มินิมอล</option></select>
-<select id="makerSlideSecSelect" class="text-xs rounded-lg border px-2 py-1.5 bg-white"><option value="2.5">2.5 วิ/รูป</option><option value="3.5" selected>3.5 วิ/รูป</option><option value="5">5 วิ/รูป</option></select>
+<div class="flex justify-between items-center"><h3 class="text-sm font-bold">🎬 ทำคลิปสั้นบนมือถือ (v2)</h3><span id="makerRatioTag" class="text-[11px] px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 font-semibold">9:16</span></div>
+<div class="grid grid-cols-3 gap-1.5">
+<select id="makerThemeSelect" class="text-xs rounded-lg border px-1.5 py-1.5 bg-white"><option value="beauty">🌸 ชมพู</option><option value="shopee">🟠 Shopee</option><option value="tiktok">🎵 TikTok</option><option value="clean">⚪ คลีน</option></select>
+<select id="makerSlideSecSelect" class="text-xs rounded-lg border px-1.5 py-1.5 bg-white"><option value="2.5">2.5 วิ/รูป</option><option value="3.5" selected>3.5 วิ/รูป</option><option value="5">5 วิ/รูป</option></select>
+<select id="makerQualSelect" class="text-xs rounded-lg border px-1.5 py-1.5 bg-white"><option value="540" selected>540p ลื่น</option><option value="720">720p HD</option></select>
 </div>
 <input id="makerOverlayInput" type="text" placeholder="ข้อความพาดหัวในคลิป (ดึงจาก Hook อัตโนมัติ)" class="w-full text-xs rounded-lg border px-2.5 py-2 bg-white" />
-<div class="bg-slate-900 rounded-xl p-2 flex justify-center"><canvas id="makerCanvas" width="720" height="1280" class="w-full max-w-[220px] max-h-[340px] object-contain rounded bg-black"></canvas></div>
+<div class="bg-slate-900 rounded-xl p-2 flex justify-center"><canvas id="makerCanvas" width="540" height="960" class="w-full max-w-[220px] max-h-[340px] object-contain rounded bg-black"></canvas></div>
 <div id="makerProgressWrap" class="hidden w-full h-2 bg-slate-200 rounded-full overflow-hidden"><div id="makerProgressFill" class="h-full w-0 bg-pink-600"></div></div>
-<p id="makerStatusText" class="text-[11px] text-slate-500 text-center">แนะนำเปิดผ่าน Safari (iPhone) หรือ Chrome (Android)</p>
+<p id="makerStatusText" class="text-[11px] text-slate-600 text-center font-medium">ใส่รูปในข้อ 1 แล้วกดปุ่ม "สร้างวิดีโอลงมือถือ"</p>
 <div class="grid grid-cols-2 gap-2">
 <button id="makerPreviewBtn" type="button" class="text-xs py-2 rounded-xl border bg-white font-semibold">▶️ พรีวิว</button>
 <button id="makerCoverBtn" type="button" class="text-xs py-2 rounded-xl border bg-white font-semibold">🖼️ ปก PNG</button>
@@ -463,67 +463,115 @@ function wrapTh(ctx,txt,mw){
   const ls=[];let cur='';for(const t of tk){if(ctx.measureText(cur+t).width>mw&&cur){ls.push(cur.trim());cur=t;}else cur+=t;}
   if(cur.trim())ls.push(cur.trim());return ls.slice(0,3);
 }
+function getMakerSize(){
+  const q=$('makerQualSelect').value==='720'?720:540;
+  if(st.ar==='1:1')return{w:q,h:q};
+  if(st.ar==='16:9')return{w:Math.round(q*16/9),h:q};
+  return{w:q,h:Math.round(q*16/9)};
+}
 function drawMaker(tSec,forcedIdx=null){
-  const cv=$('makerCanvas'),d=st.ar==='1:1'?{w:960,h:960}:st.ar==='16:9'?{w:1280,h:720}:{w:720,h:1280};
+  const safeT=Math.max(0,Number(tSec)||0);
+  const cv=$('makerCanvas'),d=getMakerSize();
   if(cv.width!==d.w||cv.height!==d.h){cv.width=d.w;cv.height=d.h;}
-  $('makerRatioTag').textContent=st.ar;
+  $('makerRatioTag').textContent=`${st.ar} (${d.w}×${d.h})`;
   const ctx=cv.getContext('2d'),W=cv.width,H=cv.height,tm=$('makerThemeSelect').value;
   const cl=tm==='shopee'?{a:'#2a0d06',b:'#ee4d2d',bg:'#ee4d2d',bt:'#fff',ct:'#ffdf00',cx:'#111'}:tm==='tiktok'?{a:'#09090d',b:'#1a1025',bg:'#fe2c55',bt:'#fff',ct:'#25f4ee',cx:'#000'}:tm==='clean'?{a:'#1e293b',b:'#334155',bg:'#fff',bt:'#0f172a',ct:'#22c55e',cx:'#052e16'}:{a:'#3b0764',b:'#be185d',bg:'#db2777',bt:'#fff',ct:'#fdf2f8',cx:'#831843'};
   const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,cl.a);g.addColorStop(1,cl.b);ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
   const px=Math.round(W*.08),iy=Math.round(H*.23),ih=Math.round(H*.54),iw=W-px*2,dur=parseFloat($('makerSlideSecSelect').value)||3.5;
   if(st.imgs.length){
-    const idx=forcedIdx!==null?forcedIdx:Math.floor(tSec/dur)%st.imgs.length,lt=forcedIdx!==null?.3:(tSec%dur)/dur,im=st.imgs[idx].imgEl;
+    const idx=forcedIdx!==null?forcedIdx:Math.max(0,Math.floor(safeT/dur)%st.imgs.length),lt=forcedIdx!==null?.3:(safeT%dur)/dur,im=st.imgs[idx]?.imgEl;
     if(im&&im.complete){
       ctx.save();ctx.globalAlpha=.22;const bs=Math.max(W/im.width,H/im.height);ctx.drawImage(im,(W-im.width*bs)/2,(H-im.height*bs)/2,im.width*bs,im.height*bs);ctx.restore();
-      ctx.save();rrect(ctx,px,iy,iw,ih,26);ctx.clip();const s=Math.max(iw/im.width,ih/im.height)*(1+.08*lt);ctx.drawImage(im,px+(iw-im.width*s)/2,iy+(ih-im.height*s)/2,im.width*s,im.height*s);ctx.restore();
-      ctx.strokeStyle='rgba(255,255,255,.32)';ctx.lineWidth=4;rrect(ctx,px,iy,iw,ih,26);ctx.stroke();
+      ctx.save();rrect(ctx,px,iy,iw,ih,20);ctx.clip();const s=Math.max(iw/im.width,ih/im.height)*(1+.08*lt);ctx.drawImage(im,px+(iw-im.width*s)/2,iy+(ih-im.height*s)/2,im.width*s,im.height*s);ctx.restore();
+      ctx.strokeStyle='rgba(255,255,255,.32)';ctx.lineWidth=3;rrect(ctx,px,iy,iw,ih,20);ctx.stroke();
     }
-  }else{ctx.fillStyle='rgba(255,255,255,.1)';rrect(ctx,px,iy,iw,ih,26);ctx.fill();ctx.fillStyle='#fff';ctx.font='bold 28px sans-serif';ctx.textAlign='center';ctx.fillText('อัปโหลดรูปในข้อ 1',W/2,iy+ih/2);}
+  }else{ctx.fillStyle='rgba(255,255,255,.1)';rrect(ctx,px,iy,iw,ih,20);ctx.fill();ctx.fillStyle='#fff';ctx.font=`bold ${Math.round(W*.045)}px sans-serif`;ctx.textAlign='center';ctx.fillText('อัปโหลดรูปในข้อ 1',W/2,iy+ih/2);}
   const hk=$('makerOverlayInput').value.trim()||st.resData?.hook3s||$('productNameInput').value.trim()||'สินค้าแนะนำ';
-  ctx.font=`bold ${Math.round(Math.min(W,H)*.05)}px sans-serif`;const ls=wrapTh(ctx,hk,iw-36),lh=Math.round(Math.min(W,H)*.065);
-  ctx.fillStyle=cl.bg;rrect(ctx,px,Math.round(H*.06),iw,34+ls.length*lh,20);ctx.fill();
-  ctx.fillStyle=cl.bt;ctx.textAlign='center';ctx.textBaseline='middle';ls.forEach((l,i)=>ctx.fillText(l,W/2,Math.round(H*.06)+22+lh*.5+i*lh));
-  const bn=forcedIdx!==null?0:Math.sin(tSec*5)*7,cw=Math.min(iw,580),cx=(W-cw)/2,cy=Math.round(H*.84)+bn,ch=Math.round(Math.min(W,H)*.11);
+  ctx.font=`bold ${Math.round(Math.min(W,H)*.05)}px sans-serif`;const ls=wrapTh(ctx,hk,iw-28),lh=Math.round(Math.min(W,H)*.065);
+  ctx.fillStyle=cl.bg;rrect(ctx,px,Math.round(H*.06),iw,26+ls.length*lh,16);ctx.fill();
+  ctx.fillStyle=cl.bt;ctx.textAlign='center';ctx.textBaseline='middle';ls.forEach((l,i)=>ctx.fillText(l,W/2,Math.round(H*.06)+16+lh*.5+i*lh));
+  const bn=forcedIdx!==null?0:Math.sin(safeT*5)*5,cw=Math.min(iw,Math.round(W*.82)),cx=(W-cw)/2,cy=Math.round(H*.84)+bn,ch=Math.round(Math.min(W,H)*.11);
   ctx.fillStyle=cl.ct;rrect(ctx,cx,cy,cw,ch,ch/2);ctx.fill();
   ctx.fillStyle=cl.cx;ctx.font=`bold ${Math.round(Math.min(W,H)*.045)}px sans-serif`;ctx.fillText(detPlat()==='Shopee'?'กดดูสินค้าที่ตะกร้าส้ม 👇':'กดดูสินค้าในตะกร้าด้านล่าง 👇',W/2,cy+ch/2);
 }
 
+function setMakerMsg(msg,err=false){
+  const el=$('makerStatusText');el.textContent=msg;
+  el.className=`text-[11px] text-center font-semibold ${err?'text-rose-600':'text-slate-600'}`;
+}
+
 function renderVideo(){
-  if(st.rendering)return;if(!st.imgs.length)return toast('อัปโหลดรูปสินค้าในข้อ 1 ก่อน','warning');
-  const cv=$('makerCanvas');if(typeof cv.captureStream!=='function'||typeof MediaRecorder==='undefined')return toast('เบราว์เซอร์ไม่รองรับอัดคลิป กดบันทึกสไลด์แทนครับ','warning');
+  if(st.rendering)return;
+  if(!st.imgs.length){setMakerMsg('⚠️ กรุณาอัปโหลดรูปสินค้าในขั้นตอนที่ 1 ก่อนครับ',true);return toast('อัปโหลดรูปสินค้าในข้อ 1 ก่อน','warning');}
+  const cv=$('makerCanvas');
+  if(typeof cv.captureStream!=='function'||typeof MediaRecorder==='undefined'){
+    setMakerMsg('เบราว์เซอร์นี้ไม่รองรับการสร้างวิดีโอ กรุณาเปิดผ่าน Chrome/Safari หรือกดปุ่ม "บันทึกภาพสไลด์ทุกรูป"',true);
+    return toast('เบราว์เซอร์ไม่รองรับอัดคลิป','warning');
+  }
+
   let stm=null,rec=null,mime='';
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
   try{
-    cancelAnimationFrame(st.animId);drawMaker(0);stm=cv.captureStream(30);
-    const cands=['video/mp4;codecs=avc1.42E01E','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
-    if(typeof MediaRecorder.isTypeSupported==='function')mime=cands.find(m=>{try{return MediaRecorder.isTypeSupported(m);}catch{return false;}})||'';
+    cancelAnimationFrame(st.animId);
+    drawMaker(0);
+    stm=cv.captureStream(25);
+    const cands=isIOS?['video/mp4;codecs=avc1.42E01E','video/mp4']:['video/webm;codecs=vp8','video/webm','video/webm;codecs=vp9'];
+    if(typeof MediaRecorder.isTypeSupported==='function'){mime=cands.find(m=>{try{return MediaRecorder.isTypeSupported(m);}catch{return false;}})||'';}
     try{rec=mime?new MediaRecorder(stm,{mimeType:mime}):new MediaRecorder(stm);}catch{rec=new MediaRecorder(stm);}
-  }catch(e){if(stm)stm.getTracks().forEach(t=>t.stop());$('makerStatusText').textContent='เปิดไม่สำเร็จ ลองกดบันทึกภาพสไลด์แทนครับ';return toast('อัดคลิปไม่ได้ในเบราว์เซอร์นี้','error');}
+  }catch(e){
+    if(stm)stm.getTracks().forEach(t=>t.stop());
+    setMakerMsg(`เปิดเครื่องอัดคลิปไม่สำเร็จ (${e.message}) กดบันทึกสไลด์แทนได้ครับ`,true);
+    return toast('เปิดอัดคลิปไม่ได้','error');
+  }
+
   st.rendering=true;$('makerRenderBtn').disabled=true;$('makerProgressWrap').classList.remove('hidden');$('makerProgressFill').style.width='0%';$('makerDownloadArea').innerHTML='';
   if(st.blobUrl){URL.revokeObjectURL(st.blobUrl);st.blobUrl=null;}
-  const tot=Math.max(1,st.imgs.length)*(parseFloat($('makerSlideSecSelect').value)||3.5),chunks=[];let aid=null;
-  const done=()=>{if(aid)cancelAnimationFrame(aid);if(stm)stm.getTracks().forEach(t=>t.stop());$('makerRenderBtn').disabled=false;st.rendering=false;};
+
+  const tot=Math.max(1,st.imgs.length)*(parseFloat($('makerSlideSecSelect').value)||3.5),chunks=[];let timerId=null;
+  const done=()=>{if(timerId){clearInterval(timerId);timerId=null;}if(stm)stm.getTracks().forEach(t=>t.stop());$('makerRenderBtn').disabled=false;st.rendering=false;};
+
   rec.ondataavailable=e=>{if(e.data&&e.data.size>0)chunks.push(e.data);};
-  rec.onerror=()=>{done();toast('สร้างวิดีโอผิดพลาด','error');};
+  rec.onerror=e=>{done();setMakerMsg(`เกิดข้อผิดพลาดระหว่างอัดคลิป (${e?.error?.message||'Encoder Error'})`,true);toast('สร้างวิดีโอผิดพลาด','error');};
   rec.onstop=()=>{
-    done();if(!chunks.length){$('makerStatusText').textContent='ไฟล์ว่างเปล่า แนะนำเปิดผ่าน Safari/Chrome หรือกดบันทึกสไลด์แทน';return toast('สร้างคลิปไม่สำเร็จ','warning');}
-    const am=rec.mimeType||mime||'video/webm',ext=am.includes('mp4')?'mp4':'webm',bl=new Blob(chunks,{type:am});
+    done();
+    if(!chunks.length){
+      setMakerMsg('⚠️ มือถือ/เบราว์เซอร์นี้ส่งออกไฟล์วิดีโอว่างเปล่า แนะนำเปิดใน Chrome หรือกดปุ่ม "บันทึกภาพสไลด์ทุกรูป" ไปต่อใน CapCut ครับ',true);
+      return toast('สร้างคลิปไม่สำเร็จในเบราว์เซอร์นี้','warning');
+    }
+    const am=rec.mimeType||mime||(isIOS?'video/mp4':'video/webm'),ext=am.includes('mp4')?'mp4':'webm',bl=new Blob(chunks,{type:am});
+    if(bl.size<800){setMakerMsg('⚠️ ไฟล์เล็กผิดปกติ กรุณากดบันทึกสไลด์แทนครับ',true);return;}
+
     const url=URL.createObjectURL(bl);st.blobUrl=url;const fn=`clip-${Date.now()}.${ext}`;
-    const v=document.createElement('video');v.src=url;v.controls=true;v.playsInline=true;v.className='w-full max-w-[220px] mx-auto rounded-lg bg-black mt-2';$('makerDownloadArea').appendChild(v);
-    const a=document.createElement('a');a.href=url;a.download=fn;a.className='block text-xs px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold mt-2';a.textContent=`📥 ดาวน์โหลด (.${ext})`;$('makerDownloadArea').appendChild(a);
+    const v=document.createElement('video');v.src=url;v.controls=true;v.playsInline=true;v.className='w-full max-w-[220px] mx-auto rounded-lg bg-black mt-2 border';$('makerDownloadArea').appendChild(v);
+    const a=document.createElement('a');a.href=url;a.download=fn;a.className='block text-xs px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-bold mt-2';a.textContent=`📥 ดาวน์โหลดคลิป (.${ext}) ${(bl.size/1048576).toFixed(2)} MB`;$('makerDownloadArea').appendChild(a);
     const fo=new File([bl],fn,{type:am});
     if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[fo]}))){
-      const sb=document.createElement('button');sb.type='button';sb.className='w-full text-xs px-4 py-2 rounded-xl bg-sky-600 text-white font-bold mt-1.5';sb.textContent='📤 บันทึกลงแอป "รูปภาพ" (iPhone)';
-      sb.onclick=async()=>{try{await navigator.share({files:[fo],title:'Video'});}catch{}};$('makerDownloadArea').appendChild(sb);
+      const sb=document.createElement('button');sb.type='button';sb.className='w-full text-xs px-4 py-2.5 rounded-xl bg-sky-600 text-white font-bold mt-1.5';sb.textContent='📤 แชร์ / ส่งเข้าแอปตัดต่อหรือคลังภาพ';
+      sb.onclick=async()=>{try{await navigator.share({files:[fo],title:'Affiliate Video'});}catch{}};$('makerDownloadArea').appendChild(sb);
     }
-    $('makerStatusText').textContent=`เสร็จแล้ว (.${ext})`;$('makerProgressFill').style.width='100%';toast('สร้างคลิปสำเร็จ!','success');try{a.click();}catch{}
+    setMakerMsg(`✅ สร้างคลิปเสร็จแล้ว (.${ext}) กดเล่นหรือดาวน์โหลดด้านล่างได้เลย!`);
+    $('makerProgressFill').style.width='100%';toast('สร้างคลิปสำเร็จ!','success');
+    try{a.click();}catch{}
   };
-  try{rec.start();}catch{done();return toast('เริ่มอัดคลิปไม่ได้','error');}
-  const s0=performance.now();
-  (function step(n){
-    if(!st.rendering)return;const el=(n-s0)/1000,p=Math.min(100,el/tot*100);
-    $('makerProgressFill').style.width=p.toFixed(0)+'%';$('makerStatusText').textContent=`กำลังสร้าง... ${p.toFixed(0)}%`;
-    if(el<tot){drawMaker(el);aid=requestAnimationFrame(step);}else{drawMaker(tot);setTimeout(()=>{if(rec&&rec.state==='recording')rec.stop();},150);}
-  })(s0);
+
+  try{rec.start(isIOS?undefined:250);}catch(e){done();setMakerMsg(`เริ่มอัดคลิปไม่ได้ (${e.message})`,true);return toast('เริ่มอัดคลิปไม่ได้','error');}
+
+  const startMs=Date.now();
+  setMakerMsg(`กำลังสร้างวิดีโอ (v2)... 0%`);
+  timerId=setInterval(()=>{
+    if(!st.rendering)return done();
+    try{
+      const el=Math.max(0,(Date.now()-startMs)/1000),p=Math.min(100,Math.round(el/tot*100));
+      $('makerProgressFill').style.width=p+'%';
+      setMakerMsg(`กำลังสร้างวิดีโอ (v2)... ${p}% (เปิดหน้านี้ค้างไว้)`);
+      if(el<tot){drawMaker(el);}
+      else{
+        drawMaker(tot);
+        clearInterval(timerId);timerId=null;
+        setTimeout(()=>{if(rec&&rec.state==='recording')rec.stop();},200);
+      }
+    }catch(err){done();setMakerMsg('ผิดพลาด: '+err.message,true);}
+  },40);
 }
 
 const getQ=()=>{try{return JSON.parse(localStorage.getItem(Q_KEY)||'[]');}catch{return[];}};
@@ -572,8 +620,8 @@ $('copyPromptScene2Btn').onclick=()=>copyTxt($('promptScene2Output').textContent
 $('copyAllOutputsBtn').onclick=()=>copyTxt([$('hookOutput').textContent,$('scriptScene1Output').textContent,st.dur===20?$('scriptScene2Output').textContent:'',$('promptScene1Output').textContent,st.dur===20?$('promptScene2Output').textContent:'',$('captionOutput').textContent].filter(Boolean).join('\n\n'),$('copyAllOutputsBtn'));
 $('videoDropzone').onclick=()=>$('videoFileInput').click();$('videoFileInput').onchange=e=>{if(e.target.files?.[0])loadVid(e.target.files[0]);};
 $('clearVideoBtn').onclick=resetQc;$('inspectVideoBtn').onclick=inspectQc;
-$('makerThemeSelect').onchange=()=>drawMaker(.5);$('makerOverlayInput').oninput=()=>drawMaker(.5);
-$('makerPreviewBtn').onclick=()=>{if(st.rendering)return;cancelAnimationFrame(st.animId);const s=performance.now(),t=Math.max(1,st.imgs.length)*(parseFloat($('makerSlideSecSelect').value)||3.5);(function k(n){const e=(n-s)/1000;if(e<t){drawMaker(e);st.animId=requestAnimationFrame(k);}else drawMaker(.5);})(s);};
+$('makerThemeSelect').onchange=()=>drawMaker(.5);$('makerOverlayInput').oninput=()=>drawMaker(.5);$('makerQualSelect').onchange=()=>drawMaker(.5);
+$('makerPreviewBtn').onclick=()=>{if(st.rendering)return;cancelAnimationFrame(st.animId);let s=null;const t=Math.max(1,st.imgs.length)*(parseFloat($('makerSlideSecSelect').value)||3.5);st.animId=requestAnimationFrame(function k(n){if(s===null)s=n;const e=Math.max(0,(n-s)/1000);if(e<t){drawMaker(e);st.animId=requestAnimationFrame(k);}else drawMaker(.5);});};
 $('makerCoverBtn').onclick=()=>{drawMaker(.5);$('makerCanvas').toBlob(b=>{if(!b)return;const a=document.createElement('a');a.download=`cover-${Date.now()}.png`;a.href=URL.createObjectURL(b);document.body.appendChild(a);a.click();a.remove();toast('บันทึกปกแล้ว','success');});};
 $('makerSaveAllSlidesBtn').onclick=()=>{if(!st.imgs.length)return toast('อัปโหลดรูปในข้อ 1 ก่อน','warning');$('makerDownloadArea').innerHTML='<div id="sg" class="grid grid-cols-3 gap-2"></div>';st.imgs.forEach((_,i)=>{drawMaker(.5,i);const u=$('makerCanvas').toDataURL('image/png');$('sg').innerHTML+=`<div class="bg-white border rounded p-1"><img src="${u}" class="w-full rounded aspect-[9/16] object-cover"/><a href="${u}" download="slide-${i+1}.png" class="block text-[10px] py-1 mt-1 rounded bg-pink-600 text-white font-bold">บันทึกรูป ${i+1}</a></div>`;});drawMaker(.5);};
 $('makerRenderBtn').onclick=renderVideo;
