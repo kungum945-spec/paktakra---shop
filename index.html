@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Beauty & Affiliate AI Studio v5</title>
+<title>Beauty & Affiliate AI Studio v6</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
@@ -27,8 +27,8 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 <div class="flex items-center gap-2.5">
 <div class="w-9 h-9 rounded-xl step-badge flex items-center justify-center text-white text-lg shadow">🎥</div>
 <div>
-<h1 class="text-base font-bold text-slate-800 leading-tight">Beauty & Affiliate AI Studio (v5)</h1>
-<p class="text-[11px] text-slate-500">ไดคัทเฉพาะสินค้า • คลิปวิธีใช้ 10/20 วิ • แต่งภาพนิ่ง • คิวปักตะกร้า</p>
+<h1 class="text-base font-bold text-slate-800 leading-tight">Beauty & Affiliate AI Studio (v6)</h1>
+<p class="text-[11px] text-slate-500">ไดคัทสินค้า+พรีเซนเตอร์ AI • Prompt เปลี่ยนนางแบบ • คลิปวิธีใช้ 10/20 วิ</p>
 </div>
 </div>
 <button id="resetProjectBtn" type="button" class="lg:hidden text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 text-slate-600">รีเซ็ตงาน</button>
@@ -128,8 +128,8 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 bg-slate-50 border border-slate-200 rounded-xl p-3.5">
 <div class="lg:col-span-8"><label for="presenterPromptInput" class="block text-xs font-semibold mb-1">รายละเอียดพรีเซนเตอร์ (แก้ไขได้)</label><textarea id="presenterPromptInput" rows="3" class="w-full text-xs rounded-xl border border-slate-300 px-3 py-2 bg-white"></textarea></div>
 <div class="lg:col-span-4 space-y-2">
-<label class="block text-xs font-semibold">รูปหน้าพรีเซนเตอร์เพิ่ม (ถ้ามี)</label>
-<div class="flex items-center gap-2"><label for="presenterImgInput" class="cursor-pointer px-3 py-1.5 rounded-lg border border-pink-300 bg-white text-xs font-semibold text-pink-700">+ เลือกรูป</label><input id="presenterImgInput" type="file" accept="image/*" class="hidden" /><button id="clearPresenterImgBtn" type="button" class="hidden text-xs text-rose-600">ลบ</button></div>
+<label class="block text-xs font-semibold">รูปพรีเซนเตอร์ AI ของคุณ (ใช้จัดวางคู่สินค้าในข้อ 6 ได้)</label>
+<div class="flex items-center gap-2"><label for="presenterImgInput" class="cursor-pointer px-3 py-1.5 rounded-lg border border-pink-300 bg-white text-xs font-semibold text-pink-700">+ เลือกรูปพรีเซนเตอร์</label><input id="presenterImgInput" type="file" accept="image/*" class="hidden" /><button id="clearPresenterImgBtn" type="button" class="hidden text-xs text-rose-600">ลบ</button></div>
 <div id="presenterImgPreviewWrap" class="hidden flex items-center gap-2 bg-white p-1.5 rounded-lg border"><img id="presenterImgPreview" class="w-12 h-12 object-cover rounded" /><span class="text-xs text-emerald-700 font-semibold">แนบรูปแล้ว</span></div>
 </div>
 </div>
@@ -219,17 +219,36 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 
 <!-- STEP 6 -->
 <section id="step6" class="glass-card rounded-2xl p-5 scroll-mt-32">
-<div class="flex items-center gap-2.5 mb-4"><span class="w-7 h-7 rounded-full step-badge text-white font-bold flex items-center justify-center text-sm">6</span><h2 class="text-base sm:text-lg font-bold">ไดคัทเฉพาะสินค้า -> คลิปวิธีใช้ 10/20 วิ & คิวปักตะกร้า (v5)</h2></div>
+<div class="flex items-center gap-2.5 mb-4"><span class="w-7 h-7 rounded-full step-badge text-white font-bold flex items-center justify-center text-sm">6</span><h2 class="text-base sm:text-lg font-bold">ไดคัทสินค้า+พรีเซนเตอร์ AI -> แต่งภาพนิ่ง & คลิปวิธีใช้ (v6)</h2></div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
 <div class="lg:col-span-6 bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2.5">
-<div class="flex justify-between items-center"><h3 class="text-sm font-bold">🎨 สตูดิโอแต่งภาพ & คลิปวิธีใช้ (v5)</h3><span id="makerRatioTag" class="text-[11px] px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 font-semibold">9:16</span></div>
+<div class="flex justify-between items-center"><h3 class="text-sm font-bold">🎨 สตูดิโอภาพนิ่ง & คลิปวิธีใช้ (v6)</h3><span id="makerRatioTag" class="text-[11px] px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 font-semibold">9:16</span></div>
 
 <div id="makerImgPick" class="flex flex-wrap gap-1.5 items-center text-xs"></div>
 
+<!-- Cutout Product Bar -->
 <div class="grid grid-cols-3 gap-1.5 bg-white border border-pink-200 rounded-xl p-2">
-<button id="cutoutAiBtn" type="button" class="text-[11px] py-1.5 px-2 rounded-lg bg-pink-600 text-white font-bold">✂️ ไดคัท AI</button>
+<button id="cutoutAiBtn" type="button" class="text-[11px] py-1.5 px-2 rounded-lg bg-pink-600 text-white font-bold">✂️ ไดคัทสินค้า</button>
 <button id="cutoutFastBtn" type="button" class="text-[11px] py-1.5 px-2 rounded-lg bg-amber-500 text-white font-bold">🪄 ลบพื้นเรียบ</button>
 <button id="cutoutUndoBtn" type="button" class="text-[11px] py-1.5 px-2 rounded-lg border text-slate-700 font-semibold">↩️ รูปเดิม</button>
+</div>
+
+<!-- Option 1: AI Presenter Composite Bar -->
+<div class="bg-white border border-purple-200 rounded-xl p-2 space-y-1.5">
+<div class="flex flex-wrap items-center justify-between gap-1.5">
+<span class="text-[11px] font-bold text-purple-800">👤 วางคู่พรีเซนเตอร์ AI:</span>
+<div class="flex gap-1">
+<label for="makerPresInput" class="cursor-pointer text-[11px] px-2 py-1 rounded bg-purple-50 text-purple-700 border border-purple-200 font-semibold">+ รูปคน AI</label>
+<input id="makerPresInput" type="file" accept="image/*" class="hidden" />
+<button id="cutoutPresAiBtn" type="button" class="text-[11px] px-2 py-1 rounded bg-purple-600 text-white font-bold">✂️ ไดคัทคน</button>
+</div>
+</div>
+<select id="makerPresLayoutSelect" class="w-full text-xs rounded-lg border px-2 py-1 bg-slate-50">
+<option value="none">ไม่ใส่พรีเซนเตอร์ (โชว์เฉพาะสินค้า)</option>
+<option value="left">👤 ซ้าย: พรีเซนเตอร์ AI | ขวา: สินค้า</option>
+<option value="right">ขวา: พรีเซนเตอร์ AI | ซ้าย: สินค้า</option>
+<option value="back">👤 หลัง: พรีเซนเตอร์ AI | หน้า: สินค้า</option>
+</select>
 </div>
 
 <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
@@ -251,9 +270,8 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 </div>
 <input id="makerOverlayInput" type="text" placeholder="Hook เปิดคลิป (0–3 วิแรก)" class="w-full text-xs rounded-lg border px-2.5 py-1.5 bg-white" />
 
-<!-- 3 Usage Steps Box -->
 <div id="usageStepsBox" class="bg-white border border-purple-200 rounded-xl p-2.5 space-y-1.5">
-<div class="text-[11px] font-bold text-purple-800">📖 ข้อความขั้นตอนวิธีใช้ในคลิป (แก้เองได้ หรือให้ข้อ 4 เติมให้):</div>
+<div class="text-[11px] font-bold text-purple-800">📖 ข้อความขั้นตอนวิธีใช้ในคลิป:</div>
 <input id="makerStep1Input" type="text" value="เปิดฝา หยด/แต้มผลิตภัณฑ์พอประมาณ" class="w-full text-xs rounded border px-2 py-1" placeholder="STEP 1..." />
 <input id="makerStep2Input" type="text" value="เกลี่ยเบาๆ ให้ซึมเข้าผิวหน้า" class="w-full text-xs rounded border px-2 py-1" placeholder="STEP 2..." />
 <input id="makerStep3Input" type="text" value="ใช้เป็นประจำ เช้า-เย็น เพื่อผิวดูอิ่มน้ำ" class="w-full text-xs rounded border px-2 py-1" placeholder="STEP 3..." />
@@ -266,7 +284,7 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 
 <div class="bg-slate-900 rounded-xl p-2 flex justify-center"><canvas id="makerCanvas" width="540" height="960" class="w-full max-w-[240px] max-h-[360px] object-contain rounded bg-black"></canvas></div>
 <div id="makerProgressWrap" class="hidden w-full h-2 bg-slate-200 rounded-full overflow-hidden"><div id="makerProgressFill" class="h-full w-0 bg-pink-600"></div></div>
-<p id="makerStatusText" class="text-[11px] text-slate-600 text-center font-medium">ใส่รูปข้อ 1 (แนะนำ 2–4 รูป) แล้วกดพรีวิวหรือแปลงเป็นคลิป 10/20 วิ</p>
+<p id="makerStatusText" class="text-[11px] text-slate-600 text-center font-medium">ไดคัทสินค้า+วางคู่คน AI หรือกดสร้าง Prompt เปลี่ยนนางแบบด้านขวา</p>
 <div class="grid grid-cols-2 gap-2">
 <button id="makerCoverBtn" type="button" class="text-xs py-2.5 rounded-xl border border-pink-300 bg-white text-pink-700 font-bold">🖼️ บันทึกภาพนิ่ง (PNG)</button>
 <button id="makerPreviewBtn" type="button" class="text-xs py-2.5 rounded-xl border bg-white font-semibold">▶️ พรีวิวคลิปขยับ</button>
@@ -275,12 +293,27 @@ body{font-family:'Noto Sans Thai',sans-serif;background:linear-gradient(135deg,#
 <div id="makerDownloadArea" class="space-y-2 text-center"></div>
 </div>
 
-<div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 space-y-3">
+<!-- Right Column: Option 2 (Free Gemini Image Swap Prompt) + Queue -->
+<div class="lg:col-span-6 space-y-4">
+<div class="bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200 rounded-2xl p-4 space-y-2.5">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<h3 class="text-sm font-bold text-pink-900">✨ เปลี่ยนนางแบบ/นายแบบร้าน (ใช้ฟรีในแอป Gemini)</h3>
+<button id="genSwapPromptBtn" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-pink-600 text-white font-bold">สร้าง Prompt เปลี่ยนคน</button>
+</div>
+<p class="text-[11px] text-slate-600">นำ Prompt นี้ + แนบรูปสินค้าของร้าน + รูปพรีเซนเตอร์ AI ไปวางในแชทปกติของแอป Gemini (โหมดสร้างภาพฟรี) แล้วเซฟภาพกลับมาใส่ข้อ 1 เพื่อทำคลิป 10/20 วิได้เลย</p>
+<div id="swapPromptBox" class="hidden space-y-2">
+<pre id="swapPromptOut" class="text-xs font-mono whitespace-pre-wrap bg-slate-900 text-slate-100 p-3 rounded-xl max-h-44 overflow-y-auto"></pre>
+<button id="copySwapPromptBtn" type="button" class="w-full text-xs py-2 rounded-lg bg-emerald-600 text-white font-bold">📋 คัดลอก Prompt ไปวางในแอป Gemini</button>
+</div>
+</div>
+
+<div class="bg-white border border-slate-200 rounded-2xl p-4 space-y-3">
 <div class="flex flex-wrap justify-between items-center gap-2">
 <h3 class="text-sm font-bold">📌 คิวโพสต์ & ปักตะกร้า</h3>
 <div class="flex gap-1.5"><button id="addCurrentToQueueBtn" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold">+ เพิ่มเข้าคิว</button><button id="clearDoneQueueBtn" type="button" class="text-xs px-2.5 py-1.5 rounded-lg border text-slate-600">ล้างที่เสร็จแล้ว</button></div>
 </div>
-<div id="queueListContainer" class="space-y-2 max-h-[640px] overflow-y-auto"></div>
+<div id="queueListContainer" class="space-y-2 max-h-[420px] overflow-y-auto"></div>
+</div>
 </div>
 </div>
 </section>
@@ -332,11 +365,21 @@ async function callGemini(parts,json=true){
 function renderImgs(){
   $('imgCountText').textContent=`${st.imgs.length}/6`;$('clearAllImgsBtn').classList.toggle('hidden',!st.imgs.length);if(st.selIdx>=st.imgs.length)st.selIdx=0;
   $('productImgGrid').innerHTML=st.imgs.map((x,i)=>`<div class="relative rounded-xl overflow-hidden border aspect-square bg-white"><img src="${x.dataUrl}" class="w-full h-full object-contain"/><button type="button" data-del="${x.id}" class="rm-img absolute top-1 right-1 w-6 h-6 rounded-full bg-rose-600 text-white text-xs font-bold">×</button><div class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] px-1">#${i+1} ${x.cutout?'✂️':''}</div></div>`).join('');
-  $('makerImgPick').innerHTML=st.imgs.length?'<span>เลือกรูป:</span>'+st.imgs.map((x,i)=>`<button type="button" data-pick="${i}" class="px-2 py-0.5 rounded-md border font-bold ${st.selIdx===i?'bg-pink-600 text-white border-pink-600':'bg-white'}">รูป ${i+1}${x.cutout?' ✂️':''}</button>`).join(''):'<span class="text-slate-400">อัปโหลดรูปในข้อ 1 เพื่อไดคัท/ทำคลิป</span>';
+  $('makerImgPick').innerHTML=st.imgs.length?'<span>เลือกรูปสินค้า:</span>'+st.imgs.map((x,i)=>`<button type="button" data-pick="${i}" class="px-2 py-0.5 rounded-md border font-bold ${st.selIdx===i?'bg-pink-600 text-white border-pink-600':'bg-white'}">รูป ${i+1}${x.cutout?' ✂️':''}</button>`).join(''):'<span class="text-slate-400">อัปโหลดรูปในข้อ 1 เพื่อไดคัท/ทำคลิป</span>';
   drawMaker(0);
 }
 async function addImgs(files){const fs=Array.from(files||[]).filter(f=>f.type.startsWith('image/')).slice(0,6-st.imgs.length);for(const f of fs){try{const c=await compImg(f);st.imgs.push({id:'i'+Date.now()+Math.random().toString(36).slice(2,6),...c});}catch(e){toast(e.message,'error');}}renderImgs();$('productImgInput').value='';}
 function renderPresenters(){$('presenterCardsContainer').innerHTML=PRESETS.map(p=>{const act=st.pid===p.id;return`<button type="button" data-pid="${p.id}" class="presenter-card text-left rounded-2xl border p-3 flex items-center gap-2.5 ${act?'active':'border-slate-200 bg-white'}"><svg viewBox="0 0 120 120" class="w-12 h-12 rounded-full border shrink-0 bg-pink-50"><circle cx="60" cy="60" r="58" fill="${p.tc}"/><path d="M30 118 C32 94,46 88,60 88 C74 88,88 94,90 118 Z" fill="${p.tc}"/><ellipse cx="60" cy="57" rx="23" ry="27" fill="${p.sc}"/><path d="M35 48 C38 26,82 26,85 48 Z" fill="${p.hc}"/><circle cx="49" cy="54" r="2.6" fill="#1e293b"/><circle cx="71" cy="54" r="2.6" fill="#1e293b"/><path d="M53 69 Q60 73 67 69" stroke="#e11d48" stroke-width="2" fill="none"/></svg><div class="min-w-0"><div class="text-[10px] font-bold text-pink-700">${p.g} • 20 ปี ${act?'✓':''}</div><div class="text-xs font-bold truncate">${p.n}</div><div class="text-[11px] text-slate-500 truncate">${p.s}</div></div></button>`;}).join('');}
+
+async function setPresenterImage(file){
+  if(!file)return;
+  try{
+    const c=await compImg(file,900);st.pimg=c;
+    $('presenterImgPreview').src=c.dataUrl;$('presenterImgPreviewWrap').classList.remove('hidden');$('clearPresenterImgBtn').classList.remove('hidden');
+    if($('makerPresLayoutSelect').value==='none')$('makerPresLayoutSelect').value='left';
+    drawMaker(0);toast('แนบรูปพรีเซนเตอร์ AI แล้ว!','success');
+  }catch{toast('โหลดรูปพรีเซนเตอร์ไม่ได้','error');}
+}
 
 async function analyzeProd(){
   if(!st.imgs.length)return toast('กรุณาอัปโหลดรูปสินค้าอย่างน้อย 1 รูป','warning');
@@ -401,7 +444,10 @@ function trimCanvasToProduct(src){
   if(!f)return src;minX=Math.max(0,minX-6);minY=Math.max(0,minY-6);maxX=Math.min(w-1,maxX+6);maxY=Math.min(h-1,maxY+6);
   const cw=maxX-minX+1,ch=maxY-minY+1,o=document.createElement('canvas');o.width=cw;o.height=ch;o.getContext('2d').drawImage(src,minX,minY,cw,ch,0,0,cw,ch);return o;
 }
-function applyCutoutCanvas(item,cutCanvas){const u=trimCanvasToProduct(cutCanvas).toDataURL('image/png'),im=new Image();im.onload=()=>{item.dataUrl=u;item.imgEl=im;item.cutout=true;renderImgs();};im.src=u;}
+function applyCutoutCanvas(item,cutCanvas,isPres=false){
+  const u=trimCanvasToProduct(cutCanvas).toDataURL('image/png'),im=new Image();
+  im.onload=()=>{item.dataUrl=u;item.imgEl=im;item.cutout=true;if(isPres){$('presenterImgPreview').src=u;drawMaker(0);}else renderImgs();};im.src=u;
+}
 function fastCutout(){
   if(!st.imgs.length)return toast('อัปโหลดรูปในข้อ 1 ก่อน','warning');
   const item=st.imgs[st.selIdx],im=item.origEl||item.imgEl,c=document.createElement('canvas');c.width=im.width;c.height=im.height;const ctx=c.getContext('2d');ctx.drawImage(im,0,0);
@@ -410,24 +456,52 @@ function fastCutout(){
   const push=i=>{const p=i*4;if(!vis[i]&&((d[p]-br)**2+(d[p+1]-bg)**2+(d[p+2]-bb)**2)<=tol){vis[i]=1;q[tl++]=i;}};
   for(let x=0;x<w;x++){push(x);push((h-1)*w+x);}for(let y=0;y<h;y++){push(y*w);push(y*w+w-1);}
   while(hd<tl){const i=q[hd++],x=i%w,y=(i/w)|0;d[i*4+3]=0;if(x>0)push(i-1);if(x<w-1)push(i+1);if(y>0)push(i-w);if(y<h-1)push(i+w);}
-  ctx.putImageData(imgD,0,0);applyCutoutCanvas(item,c);setMakerMsg('✅ ลบพื้นหลังเรียบร้อย!');toast('ลบพื้นหลังเสร็จแล้ว','success');
+  ctx.putImageData(imgD,0,0);applyCutoutCanvas(item,c);setMakerMsg('✅ ลบพื้นหลังสินค้าเรียบร้อย!');toast('ลบพื้นหลังเสร็จแล้ว','success');
 }
-async function aiCutout(){
-  if(!st.imgs.length)return toast('อัปโหลดรูปในข้อ 1 ก่อน','warning');
-  const item=st.imgs[st.selIdx],im=item.origEl||item.imgEl,btn=$('cutoutAiBtn');setLoad(btn,true,'โหลด AI...');setMakerMsg('กำลังโหลดตัวไดคัท AI (ครั้งแรกอาจใช้ 15–30 วิ)...');
+async function runAiCutout(item,btn,isPres=false){
+  const im=item.origEl||item.imgEl;setLoad(btn,true,'โหลด AI...');setMakerMsg('กำลังโหลดตัวไดคัท AI (ครั้งแรกอาจใช้ 15–30 วิ)...');
   try{
     if(!st.rmbgFn){const mod=await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm');st.rmbgFn=mod.removeBackground;}
     const sc=Math.min(1,800/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-    const inB=await new Promise(r=>c.toBlob(r,'image/png'));setMakerMsg('กำลังแยกตัวสินค้า...');
+    const inB=await new Promise(r=>c.toBlob(r,'image/png'));setMakerMsg(isPres?'กำลังแยกตัวพรีเซนเตอร์...':'กำลังแยกตัวสินค้า...');
     const outB=await st.rmbgFn(inB,{model:'isnet_quint8'}),url=URL.createObjectURL(outB),ri=new Image();
-    ri.onload=()=>{const rc=document.createElement('canvas');rc.width=ri.width;rc.height=ri.height;rc.getContext('2d').drawImage(ri,0,0);URL.revokeObjectURL(url);applyCutoutCanvas(item,rc);setMakerMsg('✅ ไดคัทสินค้าเรียบร้อย!');toast('ไดคัท AI เสร็จแล้ว!','success');};ri.src=url;
-  }catch(e){setMakerMsg('ไดคัท AI ไม่สำเร็จ ลองกด "🪄 ลบพื้นเรียบ" แทนได้ครับ',true);toast('ไดคัท AI ไม่สำเร็จ','error');}finally{setLoad(btn,false);}
+    ri.onload=()=>{const rc=document.createElement('canvas');rc.width=ri.width;rc.height=ri.height;rc.getContext('2d').drawImage(ri,0,0);URL.revokeObjectURL(url);applyCutoutCanvas(item,rc,isPres);setMakerMsg('✅ ไดคัทเรียบร้อย!');toast('ไดคัท AI เสร็จแล้ว!','success');};ri.src=url;
+  }catch{setMakerMsg('ไดคัท AI ไม่สำเร็จ',true);toast('ไดคัท AI ไม่สำเร็จ','error');}finally{setLoad(btn,false);}
 }
 function undoCutout(){if(!st.imgs.length)return;const item=st.imgs[st.selIdx];if(item.origUrl&&item.origEl){item.dataUrl=item.origUrl;item.imgEl=item.origEl;item.cutout=false;renderImgs();toast('คืนค่ารูปเดิมแล้ว');}}
+
+function genSwapPrompt(){
+  const name=$('productNameInput').value.trim()||'the skincare/beauty product';
+  const themeMap={marble:'luxury white marble studio table',sunlight:'warm sunlit minimalist Korean vanity room',beauty:'soft pastel pink-lavender glow beauty studio',shopee:'vibrant studio setting',tiktok:'sleek modern studio lighting',clean:'clean bright botanical vanity setting'};
+  const scene=themeMap[$('makerThemeSelect').value]||'bright luxury beauty studio';
+  const pres=$('presenterPromptInput').value.trim()||PRESETS[0].p;
+  const prodDesc=[$('anaShape').value,$('anaColor').value,$('anaLabelLogo').value,$('anaText').value].filter(Boolean).join(', ')||'exact appearance from reference image 1';
+  const txt=`Edit & Composite Prompt (ใช้ฟรีในแอป Gemini — แนบรูปสินค้า + รูปพรีเซนเตอร์ AI ของคุณ):
+
+1) PRODUCT EXTRACTION: From the 1st attached image, extract ONLY the product (${name}: ${prodDesc}). COMPLETELY REMOVE the original store model, hand, person, and original store background.
+2) NEW PRESENTER: Replace the person with the 20-year-old AI presenter ${st.pimg?'from the 2nd attached image':'described here'} (${pres}). Show a clear full face with bright fair glowing glass skin looking naturally at the camera.
+3) SCENE & POSE: The new presenter is naturally holding or posing closely beside the product in a ${scene}, photorealistic commercial beauty photography, ${$('makerRatioSelect').value} aspect ratio, sharp focus.
+4) STRICT PRODUCT LOCK: Keep 100% exact original shape, colors, size proportion, label layout, brand logo, and legible text of the product untouched and clearly visible. DO NOT alter or distort the product.`;
+  $('swapPromptOut').textContent=txt;$('swapPromptBox').classList.remove('hidden');toast('สร้าง Prompt เปลี่ยนนางแบบ/นายแบบแล้ว!','success');
+}
 
 function rrect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
 function wrapTh(ctx,txt,mw){let tk=[];try{tk=Array.from(new Intl.Segmenter('th',{granularity:'word'}).segment(txt),s=>s.segment);}catch{tk=txt.split('');}const ls=[];let cur='';for(const t of tk){if(ctx.measureText(cur+t).width>mw&&cur){ls.push(cur.trim());cur=t;}else cur+=t;}if(cur.trim())ls.push(cur.trim());return ls.slice(0,2);}
 function getMakerSize(){const q=$('makerQualSelect').value==='720'?720:540,r=$('makerRatioSelect').value;if(r==='1:1')return{w:q,h:q,r};if(r==='4:5')return{w:q,h:Math.round(q*5/4),r};return{w:q,h:Math.round(q*16/9),r};}
+
+function drawBoxImg(ctx,im,cut,bx,by,bw,bh,z,sh){
+  if(!im||!im.complete)return;
+  if(cut){
+    const s=Math.min(bw/im.width,bh/im.height)*z,dw=im.width*s,dh=im.height*s;
+    ctx.save();if(sh){ctx.shadowColor='rgba(0,0,0,.32)';ctx.shadowBlur=22;ctx.shadowOffsetY=10;}
+    ctx.drawImage(im,bx+(bw-dw)/2,by+bh-dh,dw,dh);ctx.restore();
+  }else{
+    ctx.save();if(sh){ctx.shadowColor='rgba(0,0,0,.24)';ctx.shadowBlur=22;ctx.shadowOffsetY=10;}ctx.fillStyle='#fff';rrect(ctx,bx,by,bw,bh,20);ctx.fill();ctx.restore();
+    ctx.save();rrect(ctx,bx,by,bw,bh,20);ctx.clip();const s=Math.max(bw/im.width,bh/im.height)*z;
+    ctx.drawImage(im,bx+(bw-im.width*s)/2,by+(bh-im.height*s)/2,im.width*s,im.height*s);ctx.restore();
+    ctx.strokeStyle='rgba(255,255,255,.75)';ctx.lineWidth=3;rrect(ctx,bx,by,bw,bh,20);ctx.stroke();
+  }
+}
 
 function drawMaker(tSec,isAnim=false){
   const safeT=Math.max(0,Number(tSec)||0),cv=$('makerCanvas'),d=getMakerSize();
@@ -440,51 +514,47 @@ function drawMaker(tSec,isAnim=false){
   if(TH.vein){ctx.save();ctx.strokeStyle='rgba(160,150,145,.16)';ctx.lineWidth=3;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(0,H*(.18+.22*i));ctx.bezierCurveTo(W*.35,H*(.12+.2*i),W*.65,H*(.3+.18*i),W,H*(.2+.21*i));ctx.stroke();}ctx.restore();}
   if(TH.sun){ctx.save();ctx.fillStyle='rgba(255,250,235,.32)';ctx.beginPath();ctx.moveTo(W*.15,0);ctx.lineTo(W*.55,0);ctx.lineTo(W*.95,H*.8);ctx.lineTo(W*.35,H*.8);ctx.closePath();ctx.fill();ctx.restore();}
 
-  const dur=parseFloat($('makerSlideSecSelect').value)||10,mode=$('makerModeSelect').value;
-  const pct=isAnim?Math.min(.999,safeT/dur):0;
-  let phase=0;
-  if(mode==='usage'){if(pct>=.8)phase=3;else if(pct>=.55)phase=2;else if(pct>=.3)phase=1;}
+  const dur=parseFloat($('makerSlideSecSelect').value)||10,mode=$('makerModeSelect').value,pct=isAnim?Math.min(.999,safeT/dur):0;
+  let phase=0;if(mode==='usage'){if(pct>=.8)phase=3;else if(pct>=.55)phase=2;else if(pct>=.3)phase=1;}
+  const padX=Math.round(W*.08),iy=Math.round(H*.23),ih=Math.round(H*.51),iw=W-padX*2;
+  const pLay=$('makerPresLayoutSelect').value,hasPres=Boolean(st.pimg&&pLay!=='none');
 
-  const padX=Math.round(W*.11),iy=Math.round(H*.23),ih=Math.round(H*.51),iw=W-padX*2;
-  ctx.save();ctx.fillStyle='rgba(0,0,0,.15)';ctx.beginPath();ctx.ellipse(W/2,iy+ih+8,iw*.42,16,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=TH.ped;ctx.beginPath();ctx.ellipse(W/2,iy+ih,iw*.4,13,0,0,Math.PI*2);ctx.fill();ctx.restore();
+  // Presenter behind if layout == 'back'
+  if(hasPres&&pLay==='back')drawBoxImg(ctx,st.pimg.imgEl,st.pimg.cutout,Math.round(W*.14),iy,Math.round(W*.72),ih,1,false);
 
+  // Studio pedestal (shifted to side if left/right presenter layout)
+  const prodX=hasPres&&pLay==='left'?Math.round(W*.44):hasPres&&pLay==='right'?padX:Math.round(W*.11);
+  const prodW=hasPres&&(pLay==='left'||pLay==='right')?Math.round(W*.48):W-Math.round(W*.22);
+  const pedCX=prodX+prodW/2;
+  ctx.save();ctx.fillStyle='rgba(0,0,0,.15)';ctx.beginPath();ctx.ellipse(pedCX,iy+ih+8,prodW*.42,15,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=TH.ped;ctx.beginPath();ctx.ellipse(pedCX,iy+ih,prodW*.4,12,0,0,Math.PI*2);ctx.fill();ctx.restore();
+
+  // Presenter side if left/right
+  if(hasPres&&(pLay==='left'||pLay==='right')){
+    const px=pLay==='left'?padX:Math.round(W*.46),pw=Math.round(W*.48);
+    drawBoxImg(ctx,st.pimg.imgEl,st.pimg.cutout,px,iy+Math.round(ih*.04),pw,Math.round(ih*.94),1,true);
+  }
+
+  // Product in front
   if(st.imgs.length){
     const idx=mode==='usage'?(phase%st.imgs.length):mode==='all'?Math.floor(safeT/(dur/Math.max(1,st.imgs.length)))%st.imgs.length:st.selIdx%st.imgs.length;
     const item=st.imgs[idx],im=item?.imgEl;
     if(im&&im.complete){
-      const userZ=parseInt($('makerZoomRange').value,10)/100,phaseZoom=(mode==='usage'&&st.imgs.length===1&&phase>0)?(1+.06*phase):1,motionZ=(isAnim?1+.06*Math.sin(safeT*1.2):1)*phaseZoom;
-      if(item.cutout){
-        const s=Math.min(iw/im.width,ih/im.height)*userZ*motionZ,dw=im.width*s,dh=im.height*s,dx=(W-dw)/2,dy=iy+ih-dh-(isAnim?Math.sin(safeT*2.2)*5:4);
-        ctx.save();ctx.shadowColor='rgba(0,0,0,.32)';ctx.shadowBlur=24;ctx.shadowOffsetY=12;ctx.drawImage(im,dx,dy,dw,dh);ctx.restore();
-      }else{
-        ctx.save();ctx.shadowColor='rgba(0,0,0,.25)';ctx.shadowBlur=28;ctx.shadowOffsetY=12;ctx.fillStyle='#fff';rrect(ctx,padX,iy,iw,ih,24);ctx.fill();ctx.restore();
-        ctx.save();rrect(ctx,padX,iy,iw,ih,24);ctx.clip();
-        const s=Math.max(iw/im.width,ih/im.height)*userZ*motionZ;ctx.drawImage(im,padX+(iw-im.width*s)/2,iy+(ih-im.height*s)/2,im.width*s,im.height*s);
-        if(isAnim){const sx=(safeT*W*.7)%(W*1.6)-W*.3,lg=ctx.createLinearGradient(sx,iy,sx+W*.25,iy+ih);lg.addColorStop(0,'rgba(255,255,255,0)');lg.addColorStop(.5,'rgba(255,255,255,.22)');lg.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=lg;ctx.fillRect(padX,iy,iw,ih);}
-        ctx.restore();ctx.strokeStyle='rgba(255,255,255,.7)';ctx.lineWidth=3;rrect(ctx,padX,iy,iw,ih,24);ctx.stroke();
-      }
+      const userZ=parseInt($('makerZoomRange').value,10)/100,phaseZ=(mode==='usage'&&st.imgs.length===1&&phase>0)?(1+.06*phase):1,mZ=(isAnim?1+.05*Math.sin(safeT*1.2):1)*phaseZ;
+      const py=hasPres&&pLay==='back'?iy+Math.round(ih*.22):iy,ph=hasPres&&pLay==='back'?Math.round(ih*.78):ih;
+      drawBoxImg(ctx,im,item.cutout,prodX,py-(isAnim?Math.sin(safeT*2)*4:2),prodW,ph,userZ*mZ,true);
     }
-  }else{ctx.fillStyle='rgba(0,0,0,.08)';rrect(ctx,padX,iy,iw,ih,24);ctx.fill();ctx.fillStyle=TH.hd;ctx.font=`bold ${Math.round(W*.045)}px sans-serif`;ctx.textAlign='center';ctx.fillText('อัปโหลดรูปสินค้าในข้อ 1',W/2,iy+ih/2);}
+  }else{ctx.fillStyle='rgba(0,0,0,.08)';rrect(ctx,prodX,iy,prodW,ih,24);ctx.fill();ctx.fillStyle=TH.hd;ctx.font=`bold ${Math.round(W*.042)}px sans-serif`;ctx.textAlign='center';ctx.fillText('อัปโหลดรูปข้อ 1',pedCX,iy+ih/2);}
 
   if($('makerSparkleChk').checked){[[.14,.2],[.86,.24],[.12,.72],[.88,.68],[.22,.78],[.8,.16]].forEach((pt,k)=>{const a=isAnim?.35+.65*Math.abs(Math.sin(safeT*3+k)):.75,sz=7+3*(k%2);ctx.save();ctx.globalAlpha=a;ctx.fillStyle='#fff8dc';const x=W*pt[0],y=H*pt[1];ctx.beginPath();ctx.moveTo(x,y-sz);ctx.lineTo(x+sz*.28,y-sz*.28);ctx.lineTo(x+sz,y);ctx.lineTo(x+sz*.28,y+sz*.28);ctx.lineTo(x,y+sz);ctx.lineTo(x-sz*.28,y+sz*.28);ctx.lineTo(x-sz,y);ctx.lineTo(x-sz*.28,y-sz*.28);ctx.closePath();ctx.fill();ctx.restore();});}
 
   let tag=$('makerTagInput').value.trim(),hk=$('makerOverlayInput').value.trim()||st.resData?.hook3s||$('productNameInput').value.trim()||'ไอเท็มดูแลผิวแนะนำ';
-  if(mode==='usage'&&phase>0){
-    tag=`STEP ${phase} / 3 • วิธีใช้`;
-    hk=phase===1?($('makerStep1Input').value.trim()||'เปิดฝา หยด/แต้มผลิตภัณฑ์พอประมาณ'):phase===2?($('makerStep2Input').value.trim()||'เกลี่ยเบาๆ ให้ซึมเข้าผิวหน้า'):($('makerStep3Input').value.trim()||'ใช้เป็นประจำ เช้า-เย็น');
-  }
-  if(tag){ctx.font=`bold ${Math.round(W*.035)}px sans-serif`;const tw=Math.min(iw+40,ctx.measureText(tag).width+38);ctx.fillStyle=TH.tag;rrect(ctx,(W-tw)/2,Math.round(H*.038),tw,32,16);ctx.fill();ctx.fillStyle=TH.tagT;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(tag,W/2,Math.round(H*.038)+16);}
+  if(mode==='usage'&&phase>0){tag=`STEP ${phase} / 3 • วิธีใช้`;hk=phase===1?($('makerStep1Input').value.trim()||'เปิดฝา หยด/แต้มผลิตภัณฑ์พอประมาณ'):phase===2?($('makerStep2Input').value.trim()||'เกลี่ยเบาๆ ให้ซึมเข้าผิวหน้า'):($('makerStep3Input').value.trim()||'ใช้เป็นประจำ เช้า-เย็น');}
+  if(tag){ctx.font=`bold ${Math.round(W*.035)}px sans-serif`;const tw=Math.min(iw,ctx.measureText(tag).width+38);ctx.fillStyle=TH.tag;rrect(ctx,(W-tw)/2,Math.round(H*.038),tw,32,16);ctx.fill();ctx.fillStyle=TH.tagT;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(tag,W/2,Math.round(H*.038)+16);}
   ctx.font=`bold ${Math.round(Math.min(W,H)*.047)}px sans-serif`;const ls=wrapTh(ctx,hk,W-56),lh=Math.round(Math.min(W,H)*.06);ctx.fillStyle=TH.hd;ctx.textAlign='center';ctx.textBaseline='middle';ls.forEach((l,i)=>ctx.fillText(l,W/2,Math.round(H*.13)+i*lh));
-
-  // Step dots for usage mode
-  if(mode==='usage'){
-    const dy=iy+ih+28;[0,1,2,3].forEach(k=>{ctx.fillStyle=k===phase?TH.cta:'rgba(148,163,184,.45)';ctx.beginPath();ctx.arc(W/2+(k-1.5)*20,dy,k===phase?6:4,0,Math.PI*2);ctx.fill();});
-  }
-
+  if(mode==='usage'){const dy=iy+ih+28;[0,1,2,3].forEach(k=>{ctx.fillStyle=k===phase?TH.cta:'rgba(148,163,184,.45)';ctx.beginPath();ctx.arc(W/2+(k-1.5)*20,dy,k===phase?6:4,0,Math.PI*2);ctx.fill();});}
   const pr=$('makerPriceInput').value.trim()||(detPlat()==='Shopee'?'กดดูสินค้าที่ตะกร้าส้ม 👇':'กดดูสินค้าในตะกร้าด้านล่าง 👇'),bn=isAnim?Math.sin(safeT*4.5)*(phase===3?6:3):0,cw=Math.min(W-70,Math.max(W*.65,ctx.measureText(pr).width+56)),ch=Math.round(Math.min(W,H)*.088),cy=Math.round(H*.845)+bn;
   ctx.fillStyle=TH.cta;rrect(ctx,(W-cw)/2,cy,cw,ch,ch/2);ctx.fill();ctx.fillStyle=TH.ctaT;ctx.font=`bold ${Math.round(Math.min(W,H)*.042)}px sans-serif`;ctx.fillText(pr,W/2,cy+ch/2);
-
   if(isAnim){ctx.fillStyle='rgba(255,255,255,.35)';ctx.fillRect(0,H-5,W,5);ctx.fillStyle=TH.cta;ctx.fillRect(0,H-5,W*(safeT/dur),5);}
 }
 
@@ -509,7 +579,7 @@ function renderVideo(){
     setMakerMsg(`✅ สร้างคลิป ${tot} วินาทีเสร็จแล้ว (.${ext}) กดเล่นหรือดาวน์โหลดได้เลย!`);$('makerProgressFill').style.width='100%';toast('สร้างคลิปสำเร็จ!','success');try{a.click();}catch{}
   };
   try{rec.start(isIOS?undefined:250);}catch(e){done();return setMakerMsg(`เริ่มอัดคลิปไม่ได้ (${e.message})`,true);}
-  const startMs=Date.now();setMakerMsg(`กำลังสร้างคลิป ${tot} วิ (v5)... 0% (เปิดหน้านี้ค้างไว้)`);
+  const startMs=Date.now();setMakerMsg(`กำลังสร้างคลิป ${tot} วิ (v6)... 0% (เปิดหน้านี้ค้างไว้)`);
   timerId=setInterval(()=>{if(!st.rendering)return done();try{const el=Math.max(0,(Date.now()-startMs)/1000),p=Math.min(100,Math.round(el/tot*100));$('makerProgressFill').style.width=p+'%';setMakerMsg(`กำลังสร้างคลิป ${tot} วิ... ${p}% (เปิดหน้าจอค้างไว้)`);if(el<tot)drawMaker(el,true);else{drawMaker(tot,true);clearInterval(timerId);timerId=null;setTimeout(()=>{if(rec&&rec.state==='recording')rec.stop();},200);}}catch(err){done();setMakerMsg('ผิดพลาด: '+err.message,true);}},40);
 }
 
@@ -525,7 +595,7 @@ $('toggleApiVisBtn').onclick=()=>{$('apiKeyInput').type=$('apiKeyInput').type===
 $('clearApiBtn').onclick=()=>{$('apiKeyInput').value='';saveKey(false);toast('ลบ API Key แล้ว');};
 $('testApiBtn').onclick=async()=>{setLoad($('testApiBtn'),true,'เช็ค...');try{const{model}=await callGemini([{text:'Reply JSON {"status":"OK"}'}],true);toast(`เชื่อมต่อสำเร็จ (${model})`,'success');}catch(e){if(e.message!=='NO_KEY')toast(e.message,'error');}finally{setLoad($('testApiBtn'),false);}};
 document.querySelectorAll('.step-nav-btn').forEach(b=>b.onclick=()=>{const t=$(b.dataset.target);if(t)t.scrollIntoView({behavior:'smooth'});});
-const rst=()=>{st.imgs=[];st.selIdx=0;st.resData=null;st.pimg=null;renderImgs();$('productUrlInput').value='';detPlat();$('productNameInput').value='';$('storeInfoInput').value='';$('makerOverlayInput').value='';$('makerDownloadArea').innerHTML='';$('productAnalysisBox').classList.add('hidden');$('outputContainer').classList.add('hidden');$('outputEmptyState').classList.remove('hidden');resetQc();drawMaker(0);toast('รีเซ็ตงานแล้ว');};
+const rst=()=>{st.imgs=[];st.selIdx=0;st.resData=null;st.pimg=null;renderImgs();$('productUrlInput').value='';detPlat();$('productNameInput').value='';$('storeInfoInput').value='';$('makerOverlayInput').value='';$('makerDownloadArea').innerHTML='';$('productAnalysisBox').classList.add('hidden');$('outputContainer').classList.add('hidden');$('outputEmptyState').classList.remove('hidden');$('presenterImgInput').value='';$('makerPresInput').value='';$('presenterImgPreviewWrap').classList.add('hidden');$('clearPresenterImgBtn').classList.add('hidden');$('makerPresLayoutSelect').value='none';resetQc();drawMaker(0);toast('รีเซ็ตงานแล้ว');};
 $('resetProjectBtn').onclick=rst;$('resetProjectBtnDesktop').onclick=rst;
 $('productUrlInput').oninput=()=>{detPlat();drawMaker(0);};
 $('smartParseBtn').onclick=()=>{const r=$('storeInfoInput').value.trim();if(!r)return toast('วางข้อความก่อน','warning');const u=r.match(/https?:\/\/[^\s]+/);if(u&&!$('productUrlInput').value){$('productUrlInput').value=u[0];detPlat();}const l=r.split(/\n+/).map(s=>s.trim()).find(s=>s&&!s.startsWith('http')&&s.length>5);if(l&&!$('productNameInput').value)$('productNameInput').value=l.slice(0,90);toast('ดึงข้อมูลแล้ว','success');};
@@ -534,8 +604,9 @@ $('productImgDropzone').onclick=()=>$('productImgInput').click();$('productImgIn
 $('productImgGrid').onclick=e=>{const b=e.target.closest('.rm-img');if(b){st.imgs=st.imgs.filter(x=>x.id!==b.dataset.del);renderImgs();}};
 $('clearAllImgsBtn').onclick=()=>{st.imgs=[];renderImgs();};$('analyzeProductBtn').onclick=analyzeProd;
 $('presenterCardsContainer').onclick=e=>{const b=e.target.closest('button[data-pid]');if(!b)return;st.pid=b.dataset.pid;$('presenterPromptInput').value=PRESETS.find(x=>x.id===st.pid).p;renderPresenters();};
-$('presenterImgInput').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{const c=await compImg(f,900);st.pimg=c;$('presenterImgPreview').src=c.dataUrl;$('presenterImgPreviewWrap').classList.remove('hidden');$('clearPresenterImgBtn').classList.remove('hidden');}catch{toast('โหลดรูปไม่ได้','error');}};
-$('clearPresenterImgBtn').onclick=()=>{st.pimg=null;$('presenterImgInput').value='';$('presenterImgPreviewWrap').classList.add('hidden');$('clearPresenterImgBtn').classList.add('hidden');};
+$('presenterImgInput').onchange=e=>setPresenterImage(e.target.files?.[0]);
+$('makerPresInput').onchange=e=>setPresenterImage(e.target.files?.[0]);
+$('clearPresenterImgBtn').onclick=()=>{st.pimg=null;$('presenterImgInput').value='';$('makerPresInput').value='';$('presenterImgPreviewWrap').classList.add('hidden');$('clearPresenterImgBtn').classList.add('hidden');$('makerPresLayoutSelect').value='none';drawMaker(0);};
 bindGrp('aspectRatioGroup',v=>{st.ar=v;if(['9:16','1:1'].includes(v)){$('makerRatioSelect').value=v;drawMaker(0);}});bindGrp('resolutionGroup',v=>st.res=v);
 bindGrp('durationGroup',v=>{st.dur=parseInt(v,10);$('makerSlideSecSelect').value=v;drawMaker(0);});bindGrp('demoStyleGroup',v=>st.style=v);
 $('asmrToggle').onchange=e=>st.asmr=e.target.checked;
@@ -551,8 +622,10 @@ $('videoDropzone').onclick=()=>$('videoFileInput').click();$('videoFileInput').o
 $('clearVideoBtn').onclick=resetQc;$('inspectVideoBtn').onclick=inspectQc;
 
 $('makerImgPick').onclick=e=>{const b=e.target.closest('button[data-pick]');if(!b)return;st.selIdx=Number(b.dataset.pick);renderImgs();};
-$('cutoutAiBtn').onclick=aiCutout;$('cutoutFastBtn').onclick=fastCutout;$('cutoutUndoBtn').onclick=undoCutout;
-['makerThemeSelect','makerRatioSelect','makerQualSelect','makerModeSelect','makerSlideSecSelect','makerSparkleChk'].forEach(id=>$(id).onchange=()=>{$('usageStepsBox').style.display=$('makerModeSelect').value==='usage'?'block':'none';drawMaker(0);});
+$('cutoutAiBtn').onclick=()=>{if(!st.imgs.length)return toast('อัปโหลดรูปสินค้าในข้อ 1 ก่อน','warning');runAiCutout(st.imgs[st.selIdx],$('cutoutAiBtn'),false);};
+$('cutoutPresAiBtn').onclick=()=>{if(!st.pimg)return toast('กรุณากด "+ รูปคน AI" เลือกรูปพรีเซนเตอร์ก่อนครับ','warning');runAiCutout(st.pimg,$('cutoutPresAiBtn'),true);};
+$('cutoutFastBtn').onclick=fastCutout;$('cutoutUndoBtn').onclick=undoCutout;
+['makerThemeSelect','makerRatioSelect','makerQualSelect','makerModeSelect','makerSlideSecSelect','makerPresLayoutSelect','makerSparkleChk'].forEach(id=>$(id).onchange=()=>{$('usageStepsBox').style.display=$('makerModeSelect').value==='usage'?'block':'none';drawMaker(0);});
 ['makerTagInput','makerPriceInput','makerOverlayInput','makerStep1Input','makerStep2Input','makerStep3Input','makerZoomRange'].forEach(id=>$(id).oninput=()=>drawMaker(0));
 $('makerPreviewBtn').onclick=()=>{
   if(st.rendering)return;
@@ -562,6 +635,7 @@ $('makerPreviewBtn').onclick=()=>{
 };
 $('makerCoverBtn').onclick=()=>{drawMaker(0,false);$('makerCanvas').toBlob(b=>{if(!b)return;const a=document.createElement('a');a.download=`studio-photo-${Date.now()}.png`;a.href=URL.createObjectURL(b);document.body.appendChild(a);a.click();a.remove();toast('บันทึกภาพนิ่ง PNG แล้ว!','success');});};
 $('makerRenderBtn').onclick=renderVideo;
+$('genSwapPromptBtn').onclick=genSwapPrompt;$('copySwapPromptBtn').onclick=()=>copyTxt($('swapPromptOut').textContent,$('copySwapPromptBtn'));
 $('addCurrentToQueueBtn').onclick=addQ;$('clearDoneQueueBtn').onclick=()=>{setQ(getQ().filter(x=>!x.done));renderQ();};
 $('queueListContainer').onclick=e=>{const b=e.target.closest('button[data-qa]');if(!b)return;const id=Number(b.dataset.qi),a=b.dataset.qa;let q=getQ(),x=q.find(i=>i.id===id);if(!x)return;if(a==='n')copyTxt(x.name,b);else if(a==='c')copyTxt(x.caption,b);else if(a==='d'){setQ(q.map(i=>i.id===id?{...i,done:!i.done}:i));renderQ();}else if(a==='x'){setQ(q.filter(i=>i.id!==id));renderQ();}};
 renderPresenters();$('presenterPromptInput').value=PRESETS[0].p;renderImgs();renderQ();
